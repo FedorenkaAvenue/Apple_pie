@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import UserSchema from '../models/User';
+import UserSchema from '@models/User';
 
 export async function register(req: Request, res: Response) {
     const newUser = new UserSchema({

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import 'module-alias/register'; // для алиасов путей
 
 import app from './app';
 
