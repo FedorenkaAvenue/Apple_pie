@@ -1,5 +1,25 @@
+import mongoose from "mongoose";
+
 import app from './app';
 
-const PORT: number = 2101;
+const APP_PORT: number = 2101;
+const DB_PORT: string = 'mongodb://localhost:27017/';
 
-app.listen(PORT, () => console.log(`cервер стартовал на ${PORT} порту`));
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
+
+async function runServer() {
+    try {
+        await mongoose.connect(DB_PORT);
+        app.listen(APP_PORT, () => console.log(`
+            cервер стартовал. порт:localhost:${APP_PORT}. \n
+            база стартовала. порт:${DB_PORT}.
+        `));
+    } catch(err) {
+        console.error(err);
+    }
+}
+
+runServer();

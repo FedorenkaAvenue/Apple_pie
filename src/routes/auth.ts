@@ -1,8 +1,9 @@
-import express from 'express';
+import { Router } from 'express';
 
-import { login } from '../controllers/auth';
+import { register } from '../controllers/auth';
 
-const router: any = express.Router();
-router.post('/login', login);
+const router: Router = Router();
+//@ts-ignore
+router.post('/register', register);
 
 export default router;
