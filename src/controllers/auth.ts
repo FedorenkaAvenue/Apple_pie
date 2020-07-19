@@ -1,23 +1,31 @@
 import { Request, Response } from "express";
 
-import UserSchema from '@models/User';
+import UserModel from '@models/User';
 
 export async function register(req: Request, res: Response) {
-    const newUser = new UserSchema({
-        email: req.body.email,
-        name: req.body.name,
-        password: req.body.password,
-        registerDate: Date.now()
-    });
+    const { name, email, password } = req.body;
+
+    // тут немешало бы валидацию данных
 
     try {
-        const existedUser = await UserSchema.findOne({ email: req.body.email });
+        const existedUser = await UserModel.findOne({ email: email });
 
-        if (existedUser) return res.status(409).json({ message: 'ты уже есть!' });
-
-        await newUser.save();
-        console.log(`${new Date()}: created new user ${JSON.stringify(req.body)}`);
+        if (existedUser) {
+            res.status(409).json({ message: 'ты уже есть!' });
+        } else {
+            const newUser = new UserModel({
+                email: email,
+                name: name,
+                password: password,
+                registerDate: Date.now()
+            });
+            
+            await newUser.save();
+            res.status(200).json({ message: 'зареган!' });
+            console.log(`${new Date()}: created new user ${JSON.stringify(req.body)}`);
+        }
     } catch(err) {
+        res.status(500).send();
         console.log(err);
     }
 };

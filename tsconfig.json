@@ -44,7 +44,7 @@
     "paths": {
       "@src/*": ["./src/*"],
       "@models/*": ["models/*"],
-      "@routes/*": ["routes/*"],
+      "@routers/*": ["routers/*"],
       "@controllers/*": ["controllers/*"]
     },
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
