@@ -27,6 +27,7 @@
     "@src": "./src",
     "@models": "./src/models",
     "@routers": "./src/routers",
-    "@controllers": "./src/controllers"
+    "@controllers": "./src/controllers",
+    "@config": "./src/config"
   }
 }

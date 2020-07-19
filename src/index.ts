@@ -1,25 +1,15 @@
-import mongoose from "mongoose";
 import 'module-alias/register'; // для алиасов путей
 
 import app from './app';
-
-const APP_PORT: number = 2101;
-const DB_PORT: string = 'mongodb://localhost:27017/';
-
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
-mongoose.set('useUnifiedTopology', true);
+import { runDB } from './mongoose';
+import { APP_PORT } from '@config/app';
 
 async function runServer() {
     try {
-        await mongoose.connect(DB_PORT);
-        app.listen(APP_PORT, () => console.log(`
-            cервер стартовал. порт:localhost:${APP_PORT}. \n
-            база стартовала. порт:${DB_PORT}.
-        `));
+        await runDB();
+        app.listen(APP_PORT, () => console.log(`cервер запущен. порт:localhost:${APP_PORT}`));
     } catch(err) {
-        console.error(err);
+        console.error(`ошибка старта сервера: ${err}`);
     }
 }
 
