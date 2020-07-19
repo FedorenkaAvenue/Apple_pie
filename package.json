@@ -4,7 +4,7 @@
   "main": "./src/index.ts",
   "repository": "https://github.com/bringmetheaugust/Apple_pie.git",
   "private": true,
-  "author": "August_Luzanovsky, Loik_Viktor",
+  "author": "Loik_Viktor, August_Luzanovsky",
   "license": "MIT",
   "scripts": {
     "dev": "nodemon ./src/index.ts"
