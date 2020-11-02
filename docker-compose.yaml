@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+  server:
+    container_name: apple_pie_server
+    build: ./server
+    restart: unless-stopped
+    ports:
+      - '2700:2700'
+    # volumes:
+    #   - ./server/src:/app/src
+    depends_on:
+      - db
+
+  db:
+    container_name: apple_pie_db
+    build: ./db
+    restart: unless-stopped
+    # volumes:
+    #   - pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  client:
+    container_name: apple_pie_client
+    build: ./client
+    restart: unless-stopped
+    ports:
+      - '2702:2702'
+    # volumes:
+    #   - ./telegram_bot/src:/app/src

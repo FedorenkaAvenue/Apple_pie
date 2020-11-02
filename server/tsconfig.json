@@ -43,7 +43,6 @@
     "baseUrl": "./src",
     "paths": {
       "@src/*": ["./src/*"],
-      "@models/*": ["models/*"],
       "@routers/*": ["routers/*"],
       "@controllers/*": ["controllers/*"],
       "@config/*": ["config/*"]

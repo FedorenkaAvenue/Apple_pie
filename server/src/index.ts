@@ -1,7 +1,6 @@
 import 'module-alias/register'; // для алиасов путей
 
 import app from './app';
-import { runDB } from './mongoose';
 import { APP_PORT } from '@config/app';
 
 async function runServer() {

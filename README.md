@@ -1,23 +1,22 @@
-### What is this?   
-Server side application of @Invite_me project based on NodeJS & MongoDB.    
-***
-### How can I deploy it?
- + **via hands**
-    * install all dependencies via `yarn i` command
-    * install *MongoDB* on Your host machine with default configuration and run it (official docs are [here](https://docs.mongodb.com/manual))
-    * run `yarn dev` inside project root directory
-    * check result and logs on Your terminal
- + **via Docker**
-    * install *Docker* (official docs are [here](https://docs.docker.com/))
-    * run `bash deploy.sh` or `docker-compose -p apple_pie up -d --build` inside project directory
-    * check server logs via `docker logs -f apple_pie`
-***
-### Docs
-API docs are [here](/APIdocs.md).    
-Repo with front side (web) located [here](https://github.com/bringmetheaugust/Choko_pie).
-***
-### Who made this?
-Viktor Loik & August Luzanovsky, 2020
-***
-### WTF?
-Don't aspite to be alone. Ok?)
+# Apple pie
+
+![online](https://img.shields.io/website?url=https://bringmetheaugust.github.io/Apple_pie) ![license](https://img.shields.io/github/license/bringmetheaugust/Apple_pie) ![releaze](https://img.shields.io/github/v/release/bringmetheaugust/Apple_pie) ![realise date](https://img.shields.io/github/release-date/bringmetheaugust/Apple_pie) ![issues](https://img.shields.io/github/issues-raw/bringmetheaugust/Apple_pie) ![PR](https://img.shields.io/github/issues-pr-raw/bringmetheaugust/Apple_pie)
+
+## What is this?
+
+Web app for searching tattoo masters.
+
+## How can I deploy it?
+
+ * ##### by Docker🐋
+    - `docker-compose up --no-start` to deploy containers
+    - `docker-compose start` to up containers
+
+## Docs
+
+ - [server](./server/README.md)
+   * [REST api](./server/API_DOCS.md)
+ - [client](./client/README.md)
+ - [database](./db/README.md)
+
+<!-- ## WTF? -->
