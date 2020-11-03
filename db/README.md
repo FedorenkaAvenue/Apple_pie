@@ -8,8 +8,11 @@
  * root pass: **2700**
  * exposed local http: **localhost:5432**
 
-
 ## Tools
+
+ * ##### Schema
+
+   * `bash schema_update.sh` to update schema
 
  * ##### Dump
 

@@ -1,8 +1,14 @@
 import { Router } from 'express';
 
-import { register } from '@controllers/auth';
+import { registrationController } from '@controllers/auth';
+// import checkAuth from '@middleware/checkAuth';
 
 const router: Router = Router();
-router.post('/register', register);
+
+// router.get('/', checkAuth, authorization);
+// router.get('/logout', logOut);
+
+// router.post('/login', logIn);
+router.post('/reg', registrationController);
 
 export default router;
