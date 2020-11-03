@@ -1,12 +1,11 @@
 import { Request, Response } from "express";
 
-export async function registrationController(req: Request, res: Response) {
-    // const { name, email, password } = req.body;
+import { poolDB } from '@src/postgreSQL';
 
-    try {
-        // // const existedUser = await UserModel.findOne({ email: email });
-        res.status(200).send();
-    } catch(err) {
+export async function registerController(req: Request, res: Response) {
+    poolDB.query('SELECT * FROM users', (error, results) => {
+        if (error) throw error;
 
-    }
+        res.status(200).json(results);
+    });
 };
