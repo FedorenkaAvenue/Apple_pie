@@ -16,72 +16,22 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-SET default_tablespace = '';
-
-SET default_table_access_method = heap;
-
---
--- Name: params; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.params (
-    id integer,
-    name character(1),
-    models json
-);
-
-
-ALTER TABLE public.params OWNER TO postgres;
-
---
--- Name: prices; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.prices (
-    id integer,
-    name json
-);
-
-
-ALTER TABLE public.prices OWNER TO postgres;
-
---
--- Name: users; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.users (
-    id integer,
-    name character(1)
-);
-
-
-ALTER TABLE public.users OWNER TO postgres;
-
---
--- Data for Name: params; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.params (id, name, models) FROM stdin;
-\.
-
-
---
--- Data for Name: prices; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.prices (id, name) FROM stdin;
-10000	\N
-\.
-
-
 --
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.users (id, name) FROM stdin;
-189	В
-92	А
+COPY public.users (id, name, email, role) FROM stdin;
+1	lol	\N	1
+3	lololol	\N	0
+4	lo	\N	1
 \.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 4, true);
 
 
 --

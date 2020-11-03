@@ -1,5 +1,7 @@
 Dockerfile
 .dockerignore
 README.md
+SCHEMA_DOC.md
 dump_deploy.sh
 dump_pull.sh
+schema_update.sh

@@ -16,7 +16,8 @@ Web app for searching tattoo masters.
 
  - [server](./server/README.md)
    * [REST api](./server/API_DOCS.md)
- - [client](./client/README.md)
  - [database](./db/README.md)
+   * [schema doc](./db/SCHEMA_DOC.md)
+ - [client](./client/README.md)
 
 <!-- ## WTF? -->

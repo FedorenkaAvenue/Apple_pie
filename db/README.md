@@ -6,7 +6,7 @@
 
  * root user: **postgres**
  * root pass: **2700**
- * exposed local http: **localhost:5432**
+ * exposed local *http*: **localhost:5432**
 
 ## Tools
 
@@ -21,3 +21,6 @@
 
  * ##### Logs
     * `docker logs -f apple_pie_db`
+
+## Docs
+Simple [schema docs](./SCHEMA_DOC.md).

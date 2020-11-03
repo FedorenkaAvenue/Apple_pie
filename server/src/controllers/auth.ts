@@ -3,9 +3,13 @@ import { Request, Response } from "express";
 import { poolDB } from '@src/postgreSQL';
 
 export async function registerController(req: Request, res: Response) {
-    poolDB.query('SELECT * FROM users', (error, results) => {
-        if (error) throw error;
+    try {
+        poolDB.query(`INSERT INTO users (name, role) VALUES ('lo', 1);`, (err, results) => {
+            if (err) return console.log(err);
 
-        res.status(200).json(results);
-    });
+            res.status(200).json(results);
+        });
+    } catch(err) {
+        console.log(err);
+    }
 };

@@ -16,14 +16,7 @@ services:
     container_name: apple_pie_db
     build: ./db
     restart: unless-stopped
+    volumes:
+      - ./db/schema.sql:/app/schema.sql
     ports:
       - '5432:5432'
-
-  # client:
-  #   container_name: apple_pie_client
-  #   build: ./client
-  #   restart: unless-stopped
-  #   ports:
-  #     - '2702:2702'
-    # volumes:
-    #   - ./telegram_bot/src:/app/src
