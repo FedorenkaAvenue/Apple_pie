@@ -25,8 +25,11 @@
   },
   "_moduleAliases": {
     "@src": "./src",
+    "@interfaces": "./src/interfaces",
     "@routers": "./src/routers",
     "@controllers": "./src/controllers",
+    "@db": "./src/db",
+    "@queries": "./src/queries",
     "@config": "./config"
   }
 }
