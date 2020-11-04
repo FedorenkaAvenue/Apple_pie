@@ -1,12 +1,16 @@
 # RestAPI list
 
- * ##### auth
+ * ##### auth🔑
  
     - [signup](#signup)
 
+ * ##### user🧑‍💻
+
+    - [exist](#exist) (проверить существующие данные юзеров)
+
 ***
 
-## Auth
+## Auth🔑
 
 <a name="signup"></a>
 
@@ -14,11 +18,27 @@
 
  * ###### req
 
-        name: String
-        password: String
-        email: String
-        role: String
+       name: String
+       password: String
+       email: String
+       role: String
     
  * ###### res
 
-        ???
+       ???
+
+
+## User🧑‍💻
+
+<a name="exist"></a>
+
+#### exist (GET `api/user/exist`)
+
+ * ###### query params (только один)
+
+    - name: String
+    - email: String
+
+ * ###### res
+
+       exists: Boolean
