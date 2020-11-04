@@ -9,7 +9,7 @@ services:
       - ./db/schema.sql:/app/schema.sql
     ports:
       - '5432:5432'
-      
+
   server:
     container_name: apple_pie_server
     build: ./server

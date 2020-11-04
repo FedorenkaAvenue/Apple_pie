@@ -23,10 +23,11 @@
        email: String
        role: String
     
- * ###### res
+ * ###### res success **201** + token
 
-       ???
+ * ###### res error **409**
 
+       existed: String (имя существующего поля)
 
 ## User🧑‍💻
 

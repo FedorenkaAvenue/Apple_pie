@@ -1,17 +1,16 @@
 import { SignOptions, sign } from 'jsonwebtoken';
 
-import { JWT_SECRET_WORD } from '@config/crypto';
+const JWT_SECRET_WORD = 'Vitya';
 
-interface IUserPayload {
-    _id: number
-    nickname: string
-    diaryId: number
+export type IUserTokenPayload = {
+    id: string
+    role: number
 }
 
 const WJT_HEADER: SignOptions = {
-    expiresIn: 60 * 60 * 24
+    expiresIn: 60 * 60 * 24,
 };
 
-export function generateToken(userPayload: IUserPayload) {
+export function generateUserToken(userPayload: IUserTokenPayload) {
     return sign(userPayload, JWT_SECRET_WORD, WJT_HEADER);
 }

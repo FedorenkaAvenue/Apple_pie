@@ -2,5 +2,5 @@ export type ISignUpBody = {
     name: string
     password: string
     email: string
-    role: string
+    role: number
 }
