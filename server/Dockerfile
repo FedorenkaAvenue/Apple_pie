@@ -8,6 +8,6 @@ RUN yarn
 
 EXPOSE 2700
 
-VOLUME /app/src
+# VOLUME [ "./" ]
 
 CMD ["yarn", "dev"]

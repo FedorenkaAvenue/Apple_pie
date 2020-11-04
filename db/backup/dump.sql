@@ -20,10 +20,12 @@ SET row_security = off;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.users (id, name, email, role) FROM stdin;
-1	lol	\N	1
-3	lololol	\N	0
-4	lo	\N	1
+COPY public.users (id, name, password, email, role) FROM stdin;
+160443305	Anie	9321932slk	bri@maill.ru	1
+160443308	Ani	9321932slk	bri@mail.ru	1
+160444900	Anikk	9321932slk	bring@mail.ru	1
+160444901	Anikka	9321932slk	bringme@mail.ru	1
+160445390	Anikuuu	9321932slk	bringme@mail.ruUU	1
 \.
 
 
@@ -31,7 +33,7 @@ COPY public.users (id, name, email, role) FROM stdin;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 4, true);
+SELECT pg_catalog.setval('public.users_id_seq', 1, false);
 
 
 --
