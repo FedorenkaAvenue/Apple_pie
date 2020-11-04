@@ -30,6 +30,7 @@
     "@controllers": "./src/controllers",
     "@db": "./src/db",
     "@queries": "./src/queries",
-    "@config": "./config"
+    "@config": "./config",
+    "@crypti": "./src/crypto"
   }
 }
