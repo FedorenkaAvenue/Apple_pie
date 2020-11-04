@@ -2,20 +2,19 @@
 
  * ##### auth🔑
  
-    - [signup](#signup)
-    - [login](#login)
+    - [sign up](#signup)
+    - [log in](#login)
+    - [log out](#logout)
 
  * ##### user🧑‍💻
 
     - [exist](#exist) (проверить существующие данные юзеров)
 
-***
-
 ## Auth🔑
 
 <a name="signup"></a>
 
-#### signup (POST `api/auth/signup`)
+#### sign up (POST `api/auth/signup`)
 
  * ##### req
 
@@ -30,7 +29,11 @@
 
        existed: String (имя существующего поля)
 
-#### login (POST `api/auth/login`)
+--
+
+<a name="login"></a>
+
+#### log in (POST `api/auth/login`)
 
  * ##### req
 
@@ -40,6 +43,16 @@
  * ##### res🆗 200 + token
 
  * ##### res⛔️ 403 (неверные данные)
+
+--
+
+<a name="logout"></a>
+
+#### log out (GET `api/auth/logout`)
+
+ * ##### res🆗 200 (с удалением кук токена)
+
+--
 
 ## User🧑‍💻
 
@@ -55,3 +68,5 @@
  * ##### res🆗 200
 
        exists: Boolean
+
+--
