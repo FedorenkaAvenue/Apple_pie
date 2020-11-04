@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import { poolDB } from '@db/connection';
 import { EXIST_NAME_QUERY, EXIST_EMAIL_QUERY } from '@queries/user';
 
-export default async function(req: Request, res: Response): Promise<void | Response> {
+export default async function(req: Request, res: Response) {
     try {
         const { name, email } = req.query;
 

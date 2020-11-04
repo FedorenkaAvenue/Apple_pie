@@ -4,3 +4,8 @@ export type ISignUpBody = {
     email: string
     role: number
 }
+
+export type ILogInBody = {
+    email: string
+    password: string
+}

@@ -8,17 +8,16 @@ import generateId from '@utils/generateId';
 
 import { ISignUpBody } from '@interfaces/requests';
 
-export async function signUpController(req: Request<any, any, ISignUpBody>, res: Response): Promise<Response|void> {
+export default async function signUpController(req: Request<any, any, ISignUpBody>, res: Response) {
     try {
         const { body: { name, password, email, role } } = req;
-        const id = generateId(); // ? generate id inside DB (UUID)
-        const saltedPassword = getSaltedPassword(password, id);
+        const id = generateId();
+        const saltedPassword = getSaltedPassword(password);
 
         try {
             await poolDB.query(SIGNUP_QUERY({ id, name, password: saltedPassword, email, role }));
 
-            setUserToken.call(res, { id, role });
-            res.status(201).send();
+            setUserToken.call(res, { id, role }).status(201).send();
         } catch({ code, constraint }) {
             if (code === '23505') return res.status(409).json({ existed: constraint });
 

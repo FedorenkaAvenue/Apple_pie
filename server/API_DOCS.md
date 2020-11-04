@@ -3,6 +3,7 @@
  * ##### auth🔑
  
     - [signup](#signup)
+    - [login](#login)
 
  * ##### user🧑‍💻
 
@@ -16,18 +17,29 @@
 
 #### signup (POST `api/auth/signup`)
 
- * ###### req
+ * ##### req
 
        name: String
        password: String
        email: String
        role: String
     
- * ###### res success **201** + token
+ * ##### res🆗 201 + token
 
- * ###### res error **409**
+ * ##### res⛔️ 409 (такие данные уже существуют в DB)
 
        existed: String (имя существующего поля)
+
+#### login (POST `api/auth/login`)
+
+ * ##### req
+
+       email: String
+       password: String
+
+ * ##### res🆗 200 + token
+
+ * ##### res⛔️ 403 (неверные данные)
 
 ## User🧑‍💻
 
@@ -35,11 +47,11 @@
 
 #### exist (GET `api/user/exist`)
 
- * ###### query params (только один)
+ * ##### query params (только один)
 
     - name: String
     - email: String
 
- * ###### res
+ * ##### res🆗 200
 
        exists: Boolean
