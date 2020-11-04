@@ -31,6 +31,7 @@
     "@db": "./src/db",
     "@queries": "./src/queries",
     "@config": "./config",
-    "@crypti": "./src/crypto"
+    "@crypto": "./src/crypto",
+    "@utils": "./src/utils"
   }
 }
