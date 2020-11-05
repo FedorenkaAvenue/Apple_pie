@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 
 import { LOGIN_QUERY } from '@queries/auth';
-import { poolDB } from '@db/connection';
 import { getSaltedPassword } from '@crypto/satl';
 import { setUserToken } from '@servises/cookie';
 
@@ -13,7 +12,7 @@ export default async function(req: Request<any, any, ILogInBody>, res: Response)
         const saltedPassword = getSaltedPassword(password);
 
         try {
-            const { rows, rowCount } = await poolDB.query(LOGIN_QUERY({ email, password: saltedPassword }));
+            const { rows, rowCount } = await LOGIN_QUERY({ email, password: saltedPassword });
 
             if (!rowCount) throw new Error();
 

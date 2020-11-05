@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 
-import { poolDB } from '@db/connection';
 import { SIGNUP_QUERY } from '@queries/auth';
 import { getSaltedPassword } from '@crypto/satl';
 import { setUserToken } from '@servises/cookie';
@@ -15,7 +14,7 @@ export default async function signUpController(req: Request<any, any, ISignUpBod
         const saltedPassword = getSaltedPassword(password);
 
         try {
-            await poolDB.query(SIGNUP_QUERY({ id, name, password: saltedPassword, email, role }));
+            await SIGNUP_QUERY({ id, name, password: saltedPassword, email, role });
 
             setUserToken.call(res, { id, role }).status(201).send();
         } catch({ code, constraint }) {
