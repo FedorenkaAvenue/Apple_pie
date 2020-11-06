@@ -19,4 +19,7 @@ app.use((req, res, next) => {
 app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 
+// test
+app.get('/', (req, res) => res.send('apple pie is working!!'))
+
 export default app;

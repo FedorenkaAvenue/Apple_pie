@@ -1,7 +1,7 @@
 document.getElementById('mail').addEventListener('submit', async e => {
     e.preventDefault();
 
-    await fetch('http://localhost:2700/api/auth/signup', {
+    await fetch('https://apple-pie-server.herokuapp.com/api/auth/signup', {
         method: 'POST',
         body: JSON.stringify({
             name: document.getElementById('name').value,

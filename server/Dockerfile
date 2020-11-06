@@ -1,13 +1,21 @@
-FROM node:10.23-alpine
+FROM node:14.15.0-alpine3.10
 
 WORKDIR /app
 
 COPY . .
 
+# app
+ENV APP_PORT=2700
+
+# db
+ENV PGUSER=postgres
+ENV PGHOST=apple_pie_db
+ENV PGDATABASE=postgres
+ENV PGPASSWORD=2700
+ENV PGPORT=5432
+
 RUN yarn
 
 EXPOSE 2700
-
-# VOLUME [ "./" ]
 
 CMD ["yarn", "dev"]

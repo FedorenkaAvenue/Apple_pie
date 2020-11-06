@@ -17,6 +17,6 @@ services:
     ports:
       - '2700:2700'
     volumes:
-      - ./server:/app
+      - ./server/src:/app/src
     depends_on:
       - db
