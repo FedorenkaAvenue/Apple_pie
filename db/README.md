@@ -24,7 +24,8 @@
 
  * ##### Schema
 
-   * `bash schema_update.sh` update schema on *Docker*
+   * `bash schema_update_docker.sh` update schema on *Docker*
+   * `bash schema_update_heroku.sh` update schema on *Heroku*
 
  * ##### Dump
 
