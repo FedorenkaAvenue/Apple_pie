@@ -1,17 +1,19 @@
-## What is this?
+# Server side for @Apple_pie
 
-Server side.
+## Join
 
-## Params
+ * **Heroku host**: https://apple-pie-server.herokuapp.com`
+ * **Docker exposed host**: http://localhost:2700
 
- * exposed host: **localhost:2700**
+## Deploy
 
-## Tools
+ * **on Heroku**: `git push heroku-server BRANCH:master`
 
- * Logs
+## Logs
 
-    - `docker logs -f apple_pie_server`
+ * **Docker**: `docker logs -f apple_pie_server`
+ * **Heroku**: `heroku logs --app apple-pie-server --tail`
 
-### Docs
+## Docs
 
 [RestAPI doc](./API_DOCS.md).    
