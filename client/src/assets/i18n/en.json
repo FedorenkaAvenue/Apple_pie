@@ -1,0 +1,10 @@
+{
+  "loading": "Loading",
+  "sidebar": {
+    "home": "Home"
+  },
+  "home": {
+    "title": "Home page",
+    "text": "This is some text in English at home page"
+  }
+}
