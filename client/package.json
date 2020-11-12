@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 4200 --disableHostCheck true --proxy-config proxy.config.json",
     "ssr": "ng run loik-proj:serve-ssr ",
     "ssr:watch": "ng run loik-proj:serve-ssr:dev",
     "format:check": "prettier --write --config ./.prettierrc --list-different \"src/{app,environments,styles}/**/*{.ts,.json,.scss}\"",
