@@ -21,7 +21,7 @@
        name: String
        password: String
        email: String
-       role: String
+       role: Number
     
  * ##### res🆗 201 + token
 
