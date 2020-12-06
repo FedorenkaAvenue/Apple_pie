@@ -4,7 +4,7 @@
 
 ## Description
 
-Web app for searching tattoo masters.
+Web app for searching tattoo artists tattoo's fans.
 
 ## Join
 
@@ -18,7 +18,7 @@ Web app for searching tattoo masters.
 
 ## Docs
 
-#### Main docs
+ - [nginx](./nginx/README.md)
 
  - [server](./server/README.md)
 
@@ -30,22 +30,7 @@ Web app for searching tattoo masters.
 
  - [client](./client/README.md)
 
-#### Heroku
-
- - ![server](https://img.shields.io/badge/-server-000?&logo=node.js)
-
-   * **domain**: `https://apple-pie-server.herokuapp.com`
-   * **git-url**: `https://git.heroku.com/apple-pie-server.git`
-   * **git remote server name**: `heroku-server`
-   * **app name**: `apple-pie-server`
-
- - ![database](https://img.shields.io/badge/-server-000?&logo=postgresql)
-
-   * **domain**: `https://apple-pie-db.herokuapp.com`
-   * **git-url**: `https://git.heroku.com/apple-pie-db.git`
-   * **app name**: `apple-pie-db`
-
-## WTF?
+<!-- ## WTF?
 
 <details>
    <summary>📔Create <i>Heroku</i> mulltiapp in monorepo</summary>
@@ -69,4 +54,4 @@ Web app for searching tattoo masters.
          </ul>
       </li>
    </ul>
-</details>
+</details> -->

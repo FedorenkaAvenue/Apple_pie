@@ -1,19 +1,13 @@
-# Server side for @Apple_pie
+# Server application for @Apple_pie
 
 ## Join
 
- * **Heroku host**: https://apple-pie-server.herokuapp.com`
- * **Docker exposed host**: http://localhost:2700
-
-## Deploy
-
- * **on Heroku**: `git push heroku-server BRANCH:master`
+ * **local Docker**: http://localhost (проксирование *Nginx*)
 
 ## Logs
 
- * **Docker**: `docker logs -f apple_pie_server`
- * **Heroku**: `heroku logs --app apple-pie-server --tail`
+ * `docker logs -f apple_pie_server`
 
 ## Docs
 
-[RestAPI doc](./API_DOCS.md).    
+ * [RestAPI doc](./API_DOCS.md).    
