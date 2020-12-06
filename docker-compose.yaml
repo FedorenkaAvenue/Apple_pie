@@ -1,6 +1,17 @@
 version: '3.1'
 
 services:
+  nginx:
+    container_name: apple_pie_nginx
+    build: ./nginx
+    restart: unless-stopped
+    ports:
+        - '80:80'
+    volumes:
+        - ./nginx/config:/etc/nginx/conf.d
+    depends_on:
+      - server
+
   db:
     container_name: apple_pie_db
     build: ./db
@@ -14,8 +25,6 @@ services:
     container_name: apple_pie_server
     build: ./server
     restart: unless-stopped
-    ports:
-      - '2700:2700'
     volumes:
       - ./server/src:/app/src
     depends_on:

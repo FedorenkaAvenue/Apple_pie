@@ -20,6 +20,6 @@ app.use('/api/auth', authRouter);
 app.use('/api/user', userRouter);
 
 // test
-app.get('/', (req, res) => res.send('Heroku Apple_pie test server!!'));
+app.get('/', (req, res) => res.send('Apple_pie test server!!'));
 
 export default app;
