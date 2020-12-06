@@ -3,11 +3,11 @@ import { config } from 'dotenv'; config();
 
 import app from './app';
 
-const { APP_PORT, PORT } = process.env;
+const { APP_PORT } = process.env;
 
 async function runServer() {
     try {
-        app.listen(PORT || APP_PORT);
+        app.listen(APP_PORT || 80);
     } catch(err) {
         console.error(`ошибка старта. ${err}`);
     }
