@@ -1,17 +1,16 @@
 {
-  "name": "apple_pie",
+  "name": "apple_pie_root_server",
   "version": "0.0.1",
   "main": "./src/index.ts",
   "repository": "https://github.com/bringmetheaugust/Apple_pie.git",
-  "private": false,
+  "description": "main server for @apple_pie project",
+  "private": true,
   "author": "August_Luzanovsky",
   "license": "MIT",
   "scripts": {
     "dev": "nodemon ./src/index.ts",
     "types": "tsc --noEmit",
-    "build": "tsc -p .",
-    "heroku-postbuild": "tsc -p .",
-    "heroku-run": "node ./src/index.js"
+    "build": "tsc -p ."
   },
   "engines": {
     "node": "14.15.0",

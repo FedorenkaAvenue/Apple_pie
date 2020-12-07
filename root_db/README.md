@@ -1,4 +1,4 @@
-# Database for @Apple_pie
+# Database for main server @Apple_pie project
 
 ## Params
 
@@ -21,7 +21,7 @@
 
 ## Logs
 
- * `docker logs -f apple_pie_db`
+ * `docker logs -f apple_pie_root_db`
 
 ## Docs
 

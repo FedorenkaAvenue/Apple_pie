@@ -1,4 +1,4 @@
-# Server application for @Apple_pie
+# Main server for @Apple_pie project
 
 ## Join
 
@@ -6,7 +6,7 @@
 
 ## Logs
 
- * `docker logs -f apple_pie_server`
+ * `docker logs -f apple_pie_root_server`
 
 ## Docs
 

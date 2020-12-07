@@ -10,22 +10,29 @@ services:
     volumes:
         - ./nginx/config:/etc/nginx/conf.d
     depends_on:
-      - server
+      - root_server
 
-  db:
-    container_name: apple_pie_db
-    build: ./db
+  root_server:
+    container_name: apple_pie_root_server
+    build: ./root_server
     restart: unless-stopped
     volumes:
-      - ./db/schema.sql:/app/schema.sql
-    ports:
-      - '5432:5432'
-
-  server:
-    container_name: apple_pie_server
-    build: ./server
-    restart: unless-stopped
-    volumes:
-      - ./server/src:/app/src
+      - ./root_server/src:/app/src
     depends_on:
-      - db
+      - root_db
+
+  root_db:
+    container_name: apple_pie_root_db
+    build: ./root_db
+    restart: unless-stopped
+    volumes:
+      - ./root_db/schema.sql:/app/schema.sql
+    ports:
+      - '5432:5432' # только для GUI базы
+
+  auth_server:
+    container_name: apple_pie_auth_server
+    build: ./auth_server
+    restart: unless-stopped
+    volumes:
+      - ./auth_server/src:/app/src

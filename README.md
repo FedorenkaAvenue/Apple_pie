@@ -6,10 +6,6 @@
 
 Web app for searching tattoo artists tattoo's fans.
 
-## Join
-
- * [test dev server](https://apple-pie-server.herokuapp.com) (`https://apple-pie-server.herokuapp.com`)
-
 ## Deploy
 
  * ![Docker](https://img.shields.io/badge/-Docker-000?&logo=docker)

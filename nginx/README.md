@@ -1,4 +1,4 @@
-# HTTP server (Nginx) for @Apple_pie
+# HTTP server (Nginx) for @Apple_pie project
 
 ## Params
 
