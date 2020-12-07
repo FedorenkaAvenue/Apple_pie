@@ -1,7 +1,7 @@
 import express, { Express } from 'express';
 import bodyParser from 'body-parser';
 
-import authRouter from '@routers/auth';
+import signRouter from '@routers/sign';
 import userRouter from '@routers/user';
 
 const app: Express = express();
@@ -16,10 +16,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/api/auth', authRouter);
+app.use('/api/sign', signRouter);
 app.use('/api/user', userRouter);
 
-// test
-app.get('/', (req, res) => res.send('Apple_pie test server!!'));
+app.get('/api', (req, res) => res.send('Apple_pie root server test!!')); // test
 
 export default app;

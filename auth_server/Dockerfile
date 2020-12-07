@@ -4,8 +4,6 @@ WORKDIR /app
 
 COPY . .
 
-ENV APP_PORT=80
-
 RUN yarn
 
 CMD ["yarn", "dev"]

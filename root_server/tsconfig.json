@@ -49,7 +49,6 @@
       "@controllers/*": ["controllers/*"],
       "@db/*": ["db/*"],
       "@queries/*": ["queries/*"],
-      "@config/*": ["../config/*"],
       "@crypto/*": ["crypto/*"],
       "@utils/*": ["utils/*"],
       "@servises/*": ["servises/*"]

@@ -1,12 +1,17 @@
 import { Response } from "express";
 
-import { generateUserToken, IUserTokenPayload } from '@crypto/jwt';
+const MAX_COOKIE_AGE = 86400 * 30;
 
-export function setUserToken(this: Response, userData: IUserTokenPayload): Response {
+export function setRefreshToken(this: Response, refreshToken: string): Response {
     this.cookie(
-        'token',
-        generateUserToken(userData),
-        { httpOnly: true }
+        'refresh_token',
+        refreshToken,
+        {
+            httpOnly: true,
+            maxAge: MAX_COOKIE_AGE,
+            path: '/api/auth',
+            sameSite: 'strict'
+        }
     );
 
     return this;

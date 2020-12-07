@@ -2,3 +2,4 @@
 *.sql linguist-language=SQL
 *.conf linguist-detectable=true
 *.conf linguist-language=Nginx
+*.yaml linguist-detectable=true
