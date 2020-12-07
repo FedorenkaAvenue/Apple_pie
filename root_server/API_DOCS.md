@@ -1,20 +1,20 @@
 # RestAPI list
 
- * ##### auth🔑
+ * ##### sign🔑
  
     - [sign up](#signup)
-    - [log in](#login)
-    - [log out](#logout)
+    <!-- - [log in](#login)
+    - [log out](#logout) -->
 
  * ##### user🧑‍💻
 
     - [exist](#exist) (проверить существующие данные юзеров)
 
-## Auth🔑
+## Sign🔑
 
 <a name="signup"></a>
 
-#### sign up (POST `api/auth/signup`)
+#### sign up (POST `api/sign/signup`)
 
  * ##### req
 
@@ -23,13 +23,15 @@
        email: String
        role: Number
     
- * ##### res🆗 201 + token
+ * ##### res🆗 201 + cookie (refresh_token)
+
+       accessToken: String
 
  * ##### res⛔️ 409 (такие данные уже существуют в DB)
 
        existed: String (имя существующего поля)
 
---
+<!-- --
 
 <a name="login"></a>
 
@@ -50,7 +52,7 @@
 
 #### log out (GET `api/auth/logout`)
 
- * ##### res🆗 200 (с удалением кук токена)
+ * ##### res🆗 200 (с удалением кук токена) -->
 
 --
 

@@ -1,9 +1,16 @@
 # HTTP server (Nginx) for @Apple_pie project
 
+## Proxy
+
+   * `/` to root server
+   * `/api/auth` to auth server
+   * `/img` to image hosting
+
 ## Params
 
-   * **open http port**: `80`
+   * **open HTTP/HTTPS port**: `80`
 
-## Logs
+## Tools
 
- * **Docker**: `docker logs -f apple_pie_nginx`
+ * `docker exec -it apple_pie_nginx bash` enter container
+ * `docker logs -f apple_pie_nginx` watch logs

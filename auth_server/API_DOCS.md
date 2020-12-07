@@ -1,35 +1,24 @@
-# RestAPI list
-
- * ##### auth🔑
+# Auth server RestAPI list
  
-    - [sign up](#signup)
-    - [log in](#login)
-    - [log out](#logout)
+ - [get pair token](#pairtoken)
 
- * ##### user🧑‍💻
+---
 
-    - [exist](#exist) (проверить существующие данные юзеров)
+<a name="pairtoken"></a>
 
-## Auth🔑
-
-<a name="signup"></a>
-
-#### sign up (POST `api/auth/signup`)
+#### get pair token (POST `api/auth/token_pair`)
 
  * ##### req
 
-       name: String
-       password: String
-       email: String
+       id: String
        role: Number
     
- * ##### res🆗 201 + token
+ * ##### res🆗 201
 
- * ##### res⛔️ 409 (такие данные уже существуют в DB)
+       accessToken: String
+       refreshToken: String
 
-       existed: String (имя существующего поля)
-
---
+<!-- --
 
 <a name="login"></a>
 
@@ -69,4 +58,4 @@
 
        exists: Boolean
 
---
+-- -->
