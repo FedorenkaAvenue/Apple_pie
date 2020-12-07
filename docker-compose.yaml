@@ -10,22 +10,48 @@ services:
     volumes:
         - ./nginx/config:/etc/nginx/conf.d
     depends_on:
-      - server
+      - root_server
 
-  db:
-    container_name: apple_pie_db
-    build: ./db
+  root_server:
+    container_name: apple_pie_root_server
+    build: ./root_server
     restart: unless-stopped
     volumes:
-      - ./db/schema.sql:/app/schema.sql
-    ports:
-      - '5432:5432'
-
-  server:
-    container_name: apple_pie_server
-    build: ./server
-    restart: unless-stopped
-    volumes:
-      - ./server/src:/app/src
+      - ./root_server/src:/app/src
+      - ./root_server/package.json:/app/package.json
+      - ./root_server/yarn.lock:/app/yarn.lock
+      - ./root_server/.env:/app/.env
+      - ./root_server/tsconfig.json:/app/tsconfig.json
+    environment:
+      - APP_PORT=80
+      - AUTH_SERVER_DOMAIN=http://apple_pie_auth_server
+      - PGUSER=postgres
+      - PGHOST=apple_pie_root_db
+      - PGDATABASE=postgres
+      - PGPASSWORD=2700
+      - PGPORT=5432
     depends_on:
-      - db
+      - root_db
+
+  root_db:
+    container_name: apple_pie_root_db
+    build: ./root_db
+    restart: unless-stopped
+    volumes:
+      - ./root_db/schema.sql:/app/schema.sql
+    ports:
+      - '5432:5432' # только для GUI базы
+    environment:
+      - POSTGRES_PASSWORD=2700
+
+  auth_server:
+    container_name: apple_pie_auth_server
+    build: ./auth_server
+    restart: unless-stopped
+    volumes:
+      - ./auth_server/src:/app/src
+      - ./auth_server/package.json:/app/package.json
+      - ./auth_server/yarn.lock:/app/yarn.lock
+      - ./auth_server/.env:/app/.env
+    environment:
+      - APP_PORT=80

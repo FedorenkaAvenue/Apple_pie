@@ -6,29 +6,35 @@
 
 Web app for searching tattoo artists tattoo's fans.
 
-## Join
-
- * [test dev server](https://apple-pie-server.herokuapp.com) (`https://apple-pie-server.herokuapp.com`)
-
 ## Deploy
 
  * ![Docker](https://img.shields.io/badge/-Docker-000?&logo=docker)
     - `docker-compose up --no-start` to deploy containers
     - `docker-compose start` to up containers
 
+## Tools
+
+ * ![Docker](https://img.shields.io/badge/-Docker-000?&logo=docker)
+    - `docker-compose up --no-start --build` rebuild containers
+    - `docker-compose stop` stop containers
+
 ## Docs
 
  - [nginx](./nginx/README.md)
 
- - [server](./server/README.md)
+ - [root server](./root_server/README.md)
 
-   * [REST api](./server/API_DOCS.md)
+   * [REST api](./root_server/API_DOCS.md)
 
- - [database](./db/README.md)
+ - [root database](./root_db/README.md)
 
-   * [schema doc](./db/SCHEMA_DOC.md)
+   * [schema doc](./root_db/SCHEMA_DOC.md)
 
  - [client](./client/README.md)
+
+ - [auth server](./auth_server/README.md)
+
+   * [REST api](./auth_server/API_DOCS.md)
 
 <!-- ## WTF?
 
