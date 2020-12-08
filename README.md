@@ -22,19 +22,21 @@ Web app for searching tattoo artists tattoo's fans.
 
  - [nginx](./nginx/README.md)
 
+ - [client](./client/README.md)
+
  - [root server](./root_server/README.md)
 
    * [REST api](./root_server/API_DOCS.md)
 
- - [root database](./root_db/README.md)
-
-   * [schema doc](./root_db/SCHEMA_DOC.md)
-
- - [client](./client/README.md)
-
  - [auth server](./auth_server/README.md)
 
    * [REST api](./auth_server/API_DOCS.md)
+
+ - [redis](./redis/README.md)
+
+ - [postgres](./postgres/README.md)
+
+   * [schema doc](./postgres/SCHEMA_DOC.md)
 
 <!-- ## WTF?
 

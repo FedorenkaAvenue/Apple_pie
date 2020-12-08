@@ -2,9 +2,10 @@
 
 ## Proxy
 
-   * `/` to root server
-   * `/api/auth` to auth server
-   * `/img` to image hosting
+   * `/` client
+   * `/api` root server
+   * `/api/auth` auth server
+   * `/img` image hosting
 
 ## Params
 

@@ -1,4 +1,4 @@
-# Database for main server @Apple_pie project
+# PostgreSQL DB for @Apple_pie project
 
 ## Params
 
@@ -10,8 +10,8 @@
 
 ## Tools
 
-   *  `docker exec -it apple_pie_root_db bash` enter container
-   *  `docker logs -f apple_pie_root_db` watch logs
+   *  `docker exec -it apple_pie_postgres bash` enter container
+   *  `docker logs -f apple_pie_postgres` watch logs
 
  * ##### Schema
 
