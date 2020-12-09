@@ -6,7 +6,7 @@ import signUpController from '@controllers/sign/signUp';
 
 const router: Router = Router();
 
-router.post('/sign_up', signUpController);
+router.post('/signup', signUpController);
 // router.post('/sign_in', signInController);
 // router.get('/sign_out', signOutController);
 

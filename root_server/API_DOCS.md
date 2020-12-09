@@ -1,5 +1,7 @@
 # RestAPI list
 
+ * ##### [auth](../auth_server/API_DOCS.md)🔬
+
  * ##### sign🔑
  
     - [sign up](#signup)

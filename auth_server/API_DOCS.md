@@ -1,8 +1,6 @@
 # Auth server RestAPI list
  
- - [get pair token](#pairtoken)
-
----
+ - [get pair token](#pairtoken) // для sign up, sign in
 
 <a name="pairtoken"></a>
 

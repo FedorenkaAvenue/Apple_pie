@@ -3,3 +3,16 @@ root_server/node_modules/
 
 # auth server
 auth_server/node_modules/
+
+# client
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+client/dist
+client/tmp
+client/out-tsc
+client/dist-server
+client/static
+client/server.js
+client/server.js.map
+client/prerender.js
+client/node_modules

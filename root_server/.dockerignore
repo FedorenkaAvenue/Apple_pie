@@ -2,4 +2,3 @@ Dockerfile
 .dockerignore
 node_modules
 API_DOCS.md
-.env

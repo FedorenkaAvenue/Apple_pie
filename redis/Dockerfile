@@ -3,6 +3,6 @@ FROM redis:6.0.9-alpine
 WORKDIR /app
 
 COPY redis.conf ./
-COPY dump ./dump
+COPY backup ./backup
 
 CMD [ "redis-server", "/app/redis.conf" ]

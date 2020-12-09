@@ -6,7 +6,7 @@ services:
     build: ./nginx
     restart: unless-stopped
     ports:
-        - '80:80'
+        - 80:80
     volumes:
         - ./nginx/config:/etc/nginx/conf.d
     depends_on:
@@ -17,7 +17,7 @@ services:
     build: ./client
     restart: unless-stopped
     volumes:
-      - ./client:/app # переделать
+      - ./client:/app
     depends_on:
       - root_server
 
@@ -64,7 +64,7 @@ services:
     volumes:
       - ./postgres/schema.sql:/app/schema.sql
     ports:
-      - '5432:5432' # только для GUI базы
+      - 5432:5432 # только для GUI базы
     environment:
       - POSTGRES_PASSWORD=2700
 
@@ -73,6 +73,6 @@ services:
     build: ./redis
     restart: unless-stopped
     ports:
-      - '6379:6379' # только для GUI базы
+      - 6379:6379 # только для GUI базы
     volumes:
       - ./redis/redis.conf:/app/redis.conf
