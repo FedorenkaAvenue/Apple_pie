@@ -17,7 +17,7 @@ export type ISignUpBody = {
 
 export default async function signUpController(req: Request<any, any, ISignUpBody>, res: Response) {
     const { body: { name, password, email, role }, ip } = req;
-    const id = generateId();
+    const id: string = generateId();
 
     try {
         await SIGNUP_QUERY({ id, name, password: getSaltedPassword(password), email, role });
@@ -26,7 +26,9 @@ export default async function signUpController(req: Request<any, any, ISignUpBod
             ua: req.get('User-Agent') as string
         });
         setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });
-    } catch({ code, constraint }) {
+    } catch({ code, constraint, message }) {
+        console.log(message);
+
         switch(code) {
             case '23505': // существующее уникальное поле
                 return res.status(409).json({ field: constraint });

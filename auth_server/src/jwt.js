@@ -1,8 +1,7 @@
 import jwt from 'jsonwebtoken';
-import { config } from 'dotenv'; config(); // ? хз почему в index.js не срабатывает SESSION_EXPIRES_IN
 
-const { sign } = jwt;
-const { JWT_SECRET_WORD, SESSION_EXPIRES_IN } = process.env;
+const { sign, verify } = jwt;
+const { JWT_SECRET_WORD, SESSION_EXPIRE_TIME } = process.env;
 
 export function generateAccessToken(userPayload) {
     return sign(
@@ -19,7 +18,16 @@ export function generateRefreshToken(userPayload) {
         userPayload,
         JWT_SECRET_WORD,
         {
-            expiresIn: SESSION_EXPIRES_IN
+            expiresIn: Number(SESSION_EXPIRE_TIME)
         }
     );
+}
+
+export function validateToken(token) {
+    try {
+        return verify(token, JWT_SECRET_WORD);
+    } catch(err) {
+        //TODO: сделать валидацию на ошибки: взлом или устарел токен
+        throw new Error(err.message);
+    }
 }

@@ -1,4 +1,4 @@
-import { generateAccessToken, generateRefreshToken } from './jwt.js';
+import { generateAccessToken, generateRefreshToken, validateToken } from './jwt.js';
 import { createSession } from './db.js';
 
 export async function signUp(req, res) {
@@ -14,5 +14,20 @@ export async function signUp(req, res) {
     } catch(err) {
         console.log(err);
         res.sendStatus(501);
+    }
+}
+
+export async function refreshToken(req, res) {
+    try {
+        const refreshToken = req.cookies['refresh_token'];
+
+        if (!refreshToken) throw new Error();
+
+        const payload = validateToken(refreshToken);
+        
+        res.sendStatus(201);
+    } catch(err) {
+        console.log(err);
+        res.sendStatus(403);
     }
 }

@@ -1,6 +1,6 @@
 import { Response } from "express";
 
-const MAX_COOKIE_AGE = 86400 * 30;
+const { SESSION_EXPIRE_TIME } = process.env;
 
 export function setRefreshToken(this: Response, refreshToken: string): Response {
     this.cookie(
@@ -8,7 +8,7 @@ export function setRefreshToken(this: Response, refreshToken: string): Response 
         refreshToken,
         {
             httpOnly: true,
-            maxAge: MAX_COOKIE_AGE,
+            maxAge: Number(SESSION_EXPIRE_TIME) * 1000,
             path: '/api/auth',
             sameSite: 'strict'
         }

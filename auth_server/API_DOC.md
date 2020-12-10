@@ -1,6 +1,7 @@
 # Auth server RestAPI list
  
  - [signup](#signup)🔑
+ - [refresh](#refresh)
 
 <a name="pairtoken"></a>
 
@@ -19,6 +20,18 @@
        refreshToken: String
 
  * ##### res⛔️ 501 (сессия не сохранена)
+
+--
+
+#### refresh tokens (GET `api/auth/refresh`)
+
+ * ##### res🆗 201 + cookie (refresh токен)
+
+       accessToken: String
+
+ * ##### res⛔️ 403 (не предоставлен валидный refresh токен)
+
+ * ##### res⛔️ 501 (неизвестная ошибка сервера)
 
 <!-- --
 

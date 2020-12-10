@@ -1,6 +1,6 @@
 import { createClient } from "redis";
 
-const { REDIS_PORT, REDIS_HOST, REDIS_DB_NUMBER, SESSION_EXPIRES_IN } = process.env;
+const { REDIS_PORT, REDIS_HOST, REDIS_DB_NUMBER, SESSION_EXPIRE_TIME } = process.env;
 const client = createClient({
     port: REDIS_PORT,
     host: REDIS_HOST,
@@ -16,7 +16,7 @@ export async function createSession({ id, refreshToken, ip, ua }) {
         'ua': ua,
         'fingerprint': 'null',
         'ip': ip,
-        'expiresIn': SESSION_EXPIRES_IN,
+        'expiresIn': Number(SESSION_EXPIRE_TIME),
         'createdAt': dateNow
     });
 }

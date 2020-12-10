@@ -40,6 +40,7 @@ services:
       - PGPASSWORD=2700
       - PGPORT=${PG_PORT}
       - JWT_SECRET_WORD=${JWT_SECRET_WORD}
+      - SESSION_EXPIRE_TIME=${SESSION_EXPIRE_TIME}
     depends_on:
       - postgres
       - redis
@@ -59,6 +60,7 @@ services:
       - REDIS_PORT=${REDIS_PORT}
       - REDIS_DB_NUMBER=0
       - JWT_SECRET_WORD=${JWT_SECRET_WORD}
+      - SESSION_EXPIRE_TIME=${SESSION_EXPIRE_TIME}
     depends_on:
       - redis
 
