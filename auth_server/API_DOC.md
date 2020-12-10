@@ -1,18 +1,19 @@
 # Auth server RestAPI list
  
- - [signup](#signup)🔑
- - [refresh](#refresh)
+ - [signup](#signup)🔑 (**redirect** от `/api/sign/signup`)
+ - [refresh](#refresh)💉
 
 <a name="pairtoken"></a>
 
 #### sign up (POST `api/auth/signup`)
 
- * ##### req
+ * ##### query params
 
        id: String
+
+ * ##### req
+
        role: Number
-       ip: String
-       ua: String // user agent
     
  * ##### res🆗 201
 
@@ -29,7 +30,9 @@
 
        accessToken: String
 
- * ##### res⛔️ 403 (не предоставлен валидный refresh токен)
+ * ##### res⛔️ 403 (простроченый refresh токен)
+
+ * ##### res⛔️ 418 (взломаный токен)
 
  * ##### res⛔️ 501 (неизвестная ошибка сервера)
 

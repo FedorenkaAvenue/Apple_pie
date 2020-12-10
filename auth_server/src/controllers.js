@@ -1,33 +1,41 @@
-import { generateAccessToken, generateRefreshToken, validateToken } from './jwt.js';
+import { generateTokenPair, validateToken } from './jwt.js';
 import { createSession } from './db.js';
+import { setRefreshToken } from './cookie.js';
 
 export async function signUp(req, res) {
     try {
-        const { id, role, ip, ua } = req.body;
-        const accessToken = generateAccessToken({ id, role });
-        const refreshToken = generateRefreshToken({ id, role });
-        const successSaved = await createSession({ id, refreshToken, ip, ua });
+        const { body: { role }, query: { id }, ip } = req;
+        const { accessToken, refreshToken } = generateTokenPair({ id, role });
+        const successSaved = await createSession({ id, refreshToken, ip, ua: req.get('User-Agent') });
         
         if (!successSaved) throw new Error(successSaved);
 
-        res.status(201).send({ accessToken, refreshToken });
+        setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });
     } catch(err) {
         console.log(err);
+
         res.sendStatus(501);
     }
 }
 
 export async function refreshToken(req, res) {
     try {
-        const refreshToken = req.cookies['refresh_token'];
+        const currentRefreshToken = req.cookies['refresh_token'];
 
-        if (!refreshToken) throw new Error();
+        if (!currentRefreshToken) throw new Error(403);
 
-        const payload = validateToken(refreshToken);
+        const { id, role } = validateToken(currentRefreshToken);
+        const { accessToken, refreshToken } = generateTokenPair({ id, role });
         
-        res.sendStatus(201);
+        setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });
     } catch(err) {
         console.log(err);
+
+        if (err.message === 418) {
+            //TODO сделать бан по взлому
+            return res.sendStatus(418);
+        }
+
         res.sendStatus(403);
     }
 }

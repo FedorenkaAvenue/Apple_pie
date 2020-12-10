@@ -1,12 +1,8 @@
 import { Request, Response } from "express";
 
-import { SIGNUP_QUERY } from '@src/queries/sign';
+import { SIGNUP_QUERY } from '@queries/sign';
 import { getSaltedPassword } from '@crypto/satl';
-import authSignUp from '@servises/auth/signUp';
-import { setRefreshToken } from '@servises/cookie';
 import generateId from '@utils/generateId';
-
-import { ITokenPair } from '@interfaces/IToken';
 
 export type ISignUpBody = {
     name: string
@@ -16,16 +12,13 @@ export type ISignUpBody = {
 }
 
 export default async function signUpController(req: Request<any, any, ISignUpBody>, res: Response) {
-    const { body: { name, password, email, role }, ip } = req;
+    const { body: { name, password, email, role } } = req;
     const id: string = generateId();
 
     try {
         await SIGNUP_QUERY({ id, name, password: getSaltedPassword(password), email, role });
-        const { accessToken, refreshToken }: ITokenPair = await authSignUp({
-            id, role, ip,
-            ua: req.get('User-Agent') as string
-        });
-        setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });
+
+        res.redirect(307, `/api/auth/signup?id=${id}`);
     } catch({ code, constraint, message }) {
         console.log(message);
 

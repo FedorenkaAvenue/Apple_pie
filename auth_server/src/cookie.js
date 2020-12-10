@@ -1,8 +1,6 @@
-import { Response } from "express";
-
 const { SESSION_EXPIRE_TIME } = process.env;
 
-export function setRefreshToken(this: Response, refreshToken: string): Response {
+export function setRefreshToken(refreshToken) {
     this.cookie(
         'refresh_token',
         refreshToken,
