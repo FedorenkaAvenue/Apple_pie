@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken';
 
+import { SESSION_EXPIRES_IN } from './config.js';
+
 const { sign } = jwt;
 
 const JWT_SECRET_WORD = 'Vitya';
@@ -19,7 +21,7 @@ export function generateRefreshToken(userPayload) {
         userPayload,
         JWT_SECRET_WORD,
         {
-            expiresIn: 259200, // 360 * 24 * 30
+            expiresIn: SESSION_EXPIRES_IN
         }
     );
 }

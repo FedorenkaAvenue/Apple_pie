@@ -1,20 +1,24 @@
 # Auth server RestAPI list
  
- - [get pair token](#pairtoken) // для sign up, sign in
+ - [signup](#signup)
 
 <a name="pairtoken"></a>
 
-#### get pair token (POST `api/auth/token_pair`)
+#### sign up (POST `api/auth/signup`)
 
  * ##### req
 
        id: String
        role: Number
+       ip: String
+       ua: String // user agent
     
  * ##### res🆗 201
 
        accessToken: String
        refreshToken: String
+
+ * ##### res⛔️ 501 (сессия не сохранена)
 
 <!-- --
 

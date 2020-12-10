@@ -38,7 +38,7 @@ services:
       - PGHOST=apple_pie_postgres
       - PGDATABASE=postgres
       - PGPASSWORD=2700
-      - PGPORT=5432
+      - PGPORT=${PG_PORT}
     depends_on:
       - postgres
       - redis
@@ -54,6 +54,9 @@ services:
       - ./auth_server/.env:/app/.env
     environment:
       - APP_PORT=80
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_DB_NUMBER=0
     depends_on:
       - redis
 
@@ -64,7 +67,7 @@ services:
     volumes:
       - ./postgres/schema.sql:/app/schema.sql
     ports:
-      - 5432:5432 # только для GUI базы
+      - ${PG_PORT}:${PG_PORT} # только для GUI базы
     environment:
       - POSTGRES_PASSWORD=2700
 
@@ -73,6 +76,6 @@ services:
     build: ./redis
     restart: unless-stopped
     ports:
-      - 6379:6379 # только для GUI базы
+      - ${REDIS_PORT}:${REDIS_PORT} # только для GUI базы
     volumes:
       - ./redis/redis.conf:/app/redis.conf
