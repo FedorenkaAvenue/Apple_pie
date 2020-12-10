@@ -1,12 +1,12 @@
 import { generateAccessToken, generateRefreshToken } from './jwt.js';
-import { createSession } from './redis.js';
+import { createSession } from './db.js';
 
 export async function signUp(req, res) {
     try {
         const { id, role, ip, ua } = req.body;
         const accessToken = generateAccessToken({ id, role });
         const refreshToken = generateRefreshToken({ id, role });
-        const successSaved = await createSession({ id, role, refreshToken, ip, ua });
+        const successSaved = await createSession({ id, refreshToken, ip, ua });
         
         if (!successSaved) throw new Error(successSaved);
 

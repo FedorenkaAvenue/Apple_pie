@@ -11,4 +11,6 @@
 
 ## Docs
 
- * [RestAPI doc](./API_DOCS.md).    
+ * [RestAPI](./API_DOC.md)    
+ * [Postgres DB schema](../postgres/SCHEMA_DOC.md)    
+ * [Redis DB schema (models)](../redis/SCHEMA_DOC.md)    

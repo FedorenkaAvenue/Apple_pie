@@ -24,4 +24,4 @@
 
 ## Docs
 
-[Schema docs](./SCHEMA_DOC.md).
+* [DB schema](./SCHEMA_DOC.md)

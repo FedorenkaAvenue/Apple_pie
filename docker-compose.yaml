@@ -39,6 +39,7 @@ services:
       - PGDATABASE=postgres
       - PGPASSWORD=2700
       - PGPORT=${PG_PORT}
+      - JWT_SECRET_WORD=${JWT_SECRET_WORD}
     depends_on:
       - postgres
       - redis
@@ -57,6 +58,7 @@ services:
       - REDIS_HOST=${REDIS_HOST}
       - REDIS_PORT=${REDIS_PORT}
       - REDIS_DB_NUMBER=0
+      - JWT_SECRET_WORD=${JWT_SECRET_WORD}
     depends_on:
       - redis
 

@@ -1,6 +1,6 @@
 # Auth server RestAPI list
  
- - [signup](#signup)
+ - [signup](#signup)🔑
 
 <a name="pairtoken"></a>
 

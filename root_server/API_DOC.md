@@ -1,6 +1,6 @@
 # RestAPI list
 
- * ##### [auth](../auth_server/API_DOCS.md)🔬
+ * ##### [auth](../auth_server/API_DOC.md)🔬
 
  * ##### sign🔑
  

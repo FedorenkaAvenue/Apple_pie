@@ -1,10 +1,8 @@
 import jwt from 'jsonwebtoken';
-
-import { SESSION_EXPIRES_IN } from './config.js';
+import { config } from 'dotenv'; config(); // ? хз почему в index.js не срабатывает SESSION_EXPIRES_IN
 
 const { sign } = jwt;
-
-const JWT_SECRET_WORD = 'Vitya';
+const { JWT_SECRET_WORD, SESSION_EXPIRES_IN } = process.env;
 
 export function generateAccessToken(userPayload) {
     return sign(
