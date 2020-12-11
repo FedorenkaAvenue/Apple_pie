@@ -1,10 +1,13 @@
 import { Request, Response } from 'express';
 
-import { LOGIN_QUERY } from '@queries/auth';
+// import { LOGIN_QUERY } from '@src/queries/sign';
 import { getSaltedPassword } from '@crypto/satl';
-import { setUserToken } from '@servises/cookie';
+// import { setUserToken } from '@servises/cookie';
 
-import { ILogInBody } from '@interfaces/requests';
+export type ILogInBody = {
+    password: string
+    email: string
+}
 
 export default async function(req: Request<any, any, ILogInBody>, res: Response) {
     try {
@@ -12,13 +15,13 @@ export default async function(req: Request<any, any, ILogInBody>, res: Response)
         const saltedPassword = getSaltedPassword(password);
 
         try {
-            const { rows, rowCount } = await LOGIN_QUERY({ email, password: saltedPassword });
+            // const { rows, rowCount } = await LOGIN_QUERY({ email, password: saltedPassword });
 
-            if (!rowCount) throw new Error();
+            // if (!rowCount) throw new Error();
 
-            const { id, role } = rows[0];
+            // const { id, role } = rows[0];
             
-            setUserToken.call(res, { id, role }).status(200).send();
+            // setUserToken.call(res, { id, role }).status(200).send();
         } catch(err) {
             res.status(403).send();
         }

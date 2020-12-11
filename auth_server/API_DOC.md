@@ -1,20 +1,40 @@
 # Auth server RestAPI list
  
- - [get pair token](#pairtoken) // для sign up, sign in
+ - [signup](#signup)🔑 (**redirect** от `/api/sign/signup`)
+ - [refresh](#refresh)💉
 
 <a name="pairtoken"></a>
 
-#### get pair token (POST `api/auth/token_pair`)
+#### sign up (POST `api/auth/signup`)
+
+ * ##### query params
+
+       id: String
 
  * ##### req
 
-       id: String
        role: Number
     
  * ##### res🆗 201
 
        accessToken: String
        refreshToken: String
+
+ * ##### res⛔️ 501 (сессия не сохранена)
+
+--
+
+#### refresh tokens (GET `api/auth/refresh`)
+
+ * ##### res🆗 201 + cookie (refresh токен)
+
+       accessToken: String
+
+ * ##### res⛔️ 403 (простроченый refresh токен)
+
+ * ##### res⛔️ 418 (взломаный токен)
+
+ * ##### res⛔️ 501 (неизвестная ошибка сервера)
 
 <!-- --
 

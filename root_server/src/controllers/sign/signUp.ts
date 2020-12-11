@@ -1,29 +1,34 @@
 import { Request, Response } from "express";
 
-import { SIGNUP_QUERY } from '@queries/auth';
+import { SIGNUP_QUERY } from '@queries/sign';
 import { getSaltedPassword } from '@crypto/satl';
-import { getPairToken } from '@servises/auth';
-import { setRefreshToken } from '@servises/cookie';
 import generateId from '@utils/generateId';
 
-import { ISignUpBody } from '@interfaces/requests';
+export type ISignUpBody = {
+    name: string
+    password: string
+    email: string
+    role: number
+}
 
 export default async function signUpController(req: Request<any, any, ISignUpBody>, res: Response) {
     const { body: { name, password, email, role } } = req;
-    const id = generateId();
+    const id: string = generateId();
 
     try {
         await SIGNUP_QUERY({ id, name, password: getSaltedPassword(password), email, role });
-        const { accessToken, refreshToken } = await getPairToken(id, role);
-        setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });
-    } catch({ code, constraint }) {
+
+        res.redirect(307, `/api/auth/signup?id=${id}`);
+    } catch({ code, constraint, message }) {
+        console.log(message);
+
         switch(code) {
             case '23505': // существующее уникальное поле
-                return res.status(409).json({ existed: constraint });
+                return res.status(409).json({ field: constraint });
             case '22001': // неверный формат данных
-                return res.status(406).json({ invalidField: constraint });
+                return res.status(406).json({ field: constraint });
             default:
-                return res.sendStatus(500);
+                return res.sendStatus(501);
         }
     }
 };

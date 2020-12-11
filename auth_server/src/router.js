@@ -1,9 +1,10 @@
 import { Router } from 'express';
 
-import { getPairToken } from './controllers.js';
+import { signUp, refreshToken } from './controllers.js';
 
 const router = Router();
 
-router.post('/token_pair', getPairToken);
+router.post('/signup', signUp);
+router.get('/refresh', refreshToken);
 
 export default router;

@@ -1,25 +1,40 @@
 import jwt from 'jsonwebtoken';
 
-const { sign } = jwt;
+const { sign, verify, TokenExpiredError, JsonWebTokenError } = jwt;
+const { JWT_SECRET_WORD, SESSION_EXPIRE_TIME } = process.env;
 
-const JWT_SECRET_WORD = 'Vitya';
-
-export function generateAccessToken(userPayload) {
-    return sign(
-        userPayload,
-        JWT_SECRET_WORD,
-        {
-            expiresIn: 300, // 60 sec * 5
-        }
-    );
+export function generateTokenPair({ id, role }) {
+    return ({
+        accessToken: sign(
+            { id, role },
+            JWT_SECRET_WORD,
+            {
+                expiresIn: 300, // 60 sec * 5
+            }
+        ),
+        refreshToken: sign(
+            { id, role },
+            JWT_SECRET_WORD,
+            {
+                expiresIn: Number(SESSION_EXPIRE_TIME),
+            }
+        )
+    });
 }
 
-export function generateRefreshToken(userPayload) {
-    return sign(
-        userPayload,
-        JWT_SECRET_WORD,
-        {
-            expiresIn: 259200, // 360 * 24 * 30
+export function validateToken(token) {
+    try {
+        return verify(token, JWT_SECRET_WORD);
+    } catch(err) {
+        console.log(err);
+
+        switch(true) {
+            case err instanceof TokenExpiredError:
+                throw new Error(403);
+            case err instanceof JsonWebTokenError:
+                throw new Error(418);
+            default:
+                throw new Error(err);
         }
-    );
+    }
 }

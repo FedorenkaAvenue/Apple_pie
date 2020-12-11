@@ -1,5 +1,4 @@
-import 'module-alias/register'; // для алиасов путей
-import { config } from 'dotenv'; config();
+import 'module-alias/register'; // для алиасов путей TS
 
 import app from './app';
 
