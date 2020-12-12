@@ -14,8 +14,8 @@ app
         res.append('Access-Control-Allow-Origin', '*').
             append('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE').
             append('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-});
+        next();
+    });
 
 app.use('/api/auth', router);
 

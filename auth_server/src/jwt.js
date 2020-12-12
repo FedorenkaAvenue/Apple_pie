@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 const { sign, verify, TokenExpiredError, JsonWebTokenError } = jwt;
 const { JWT_SECRET_WORD, SESSION_EXPIRE_TIME } = process.env;
 
-export function generateTokenPair({ id, role }) {
+export function generateTokenPair({ id, role, sessionKey }) {
     return ({
         accessToken: sign(
             { id, role },
@@ -13,7 +13,7 @@ export function generateTokenPair({ id, role }) {
             }
         ),
         refreshToken: sign(
-            { id, role },
+            { sessionKey },
             JWT_SECRET_WORD,
             {
                 expiresIn: Number(SESSION_EXPIRE_TIME),

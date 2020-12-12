@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
+import { v4 as uuidv4 } from 'uuid';
 
 import { SIGNUP_QUERY } from '@queries/sign';
 import { getSaltedPassword } from '@crypto/satl';
-import generateId from '@utils/generateId';
 
 export type ISignUpBody = {
     name: string
@@ -13,7 +13,7 @@ export type ISignUpBody = {
 
 export default async function signUpController(req: Request<any, any, ISignUpBody>, res: Response) {
     const { body: { name, password, email, role } } = req;
-    const id: string = generateId();
+    const id: string = uuidv4();
 
     try {
         await SIGNUP_QUERY({ id, name, password: getSaltedPassword(password), email, role });

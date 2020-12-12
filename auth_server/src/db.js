@@ -7,18 +7,27 @@ const client = createClient({
     db: REDIS_DB_NUMBER
 });
 
-export async function createSession({ id, refreshToken, ip, ua }) {
-    const dateNow = Date.now();
+export async function createSession({ sessionKey, id, refreshToken, ip, ua }) {
+    try {
+        const savedResult = await client.hmset(sessionKey, {
+            'userId': id,
+            'refreshToken': refreshToken,
+            'ua': ua,
+            'fingerprint': 'null',
+            'ip': ip,
+            'expiresIn': Number(SESSION_EXPIRE_TIME),
+            'createdAt': Date.now()
+        });
+        client.expire(sessionKey, SESSION_EXPIRE_TIME);
 
-    return await client.hmset(`${id}.${dateNow}`, {
-        'userId': id,
-        'refreshToken': refreshToken,
-        'ua': ua,
-        'fingerprint': 'null',
-        'ip': ip,
-        'expiresIn': Number(SESSION_EXPIRE_TIME),
-        'createdAt': dateNow
-    });
+        if (!savedResult) throw new Error(savedResult);
+
+        return savedResult;
+    } catch(err) {
+        console.log(err);
+
+        throw new Error(err);
+    }
 }
 
 client.on("error", error => console.error(error));

@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 import { generateTokenPair, validateToken } from './jwt.js';
 import { createSession } from './db.js';
 import { setRefreshToken } from './cookie.js';
@@ -5,11 +7,11 @@ import { setRefreshToken } from './cookie.js';
 export async function signUp(req, res) {
     try {
         const { body: { role }, query: { id }, ip } = req;
-        const { accessToken, refreshToken } = generateTokenPair({ id, role });
-        const successSaved = await createSession({ id, refreshToken, ip, ua: req.get('User-Agent') });
-        
-        if (!successSaved) throw new Error(successSaved);
+        const sessionKey = uuidv4();
+        const { accessToken, refreshToken } = generateTokenPair({ id, role, sessionKey });
+        //TODO: подумать на счет синхронизации сохранения сессий и юзера в БД
 
+        await createSession({ sessionKey, id, refreshToken, ip, ua: req.get('User-Agent') });
         setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });
     } catch(err) {
         console.log(err);
@@ -24,7 +26,7 @@ export async function refreshToken(req, res) {
 
         if (!currentRefreshToken) throw new Error(403);
 
-        const { id, role } = validateToken(currentRefreshToken);
+        const { id } = validateToken(currentRefreshToken);
         const { accessToken, refreshToken } = generateTokenPair({ id, role });
         
         setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });
