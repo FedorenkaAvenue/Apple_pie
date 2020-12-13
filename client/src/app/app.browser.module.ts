@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { StateTransferInitializerModule } from '@nguniversal/common';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 // import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -26,6 +27,7 @@ export function getRequest(): any {
     BrowserTransferStateModule,
     TranslatesBrowserModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: false }),
+    NoopAnimationsModule,
   ],
   providers: [
     {

@@ -1,1 +1,13 @@
+<mat-toolbar>
+  <div class="toolbar__wrapper"></div>
+  <img class="toolbar__logo" src="assets/logos/tattoo-logo.jpg" alt="">
+  <nav class="toolbar__navigate">
+    <ng-container *ngFor="let link of links">
+      <a [routerLink]="link.path">{{ link.title }}</a>
+    </ng-container>
+  </nav>
+  <button class="toolbar__account-btn" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon class="toolbar__account-icon">account_circle</mat-icon>
+  </button>
+</mat-toolbar>
 <span class="toolbar__logo">loik proj</span>
