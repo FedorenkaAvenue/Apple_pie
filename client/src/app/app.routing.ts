@@ -10,6 +10,10 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
+    path: 'applications',
+    loadChildren: () => import('./applications/applications.module').then(m => m.ApplicationsModule)
+  },
+  {
     path: '',
     component: WrapperComponent,
     canActivateChild: [MetaGuard],
