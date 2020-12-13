@@ -13,7 +13,11 @@
   },
   "scripts": {
     "ng": "ng",
+<<<<<<< HEAD
     "start": "ng serve --port 80 --host 0.0.0.0 --disable-host-check --poll 500",
+=======
+    "start": "ng serve --port 4200 --disableHostCheck true --proxy-config proxy.config.json",
+>>>>>>> feature/create-auth-module
     "ssr": "ng run loik-proj:serve-ssr ",
     "ssr:watch": "ng run loik-proj:serve-ssr:dev",
     "format:check": "prettier --write --config ./.prettierrc --list-different \"src/{app,environments,styles}/**/*{.ts,.json,.scss}\"",
