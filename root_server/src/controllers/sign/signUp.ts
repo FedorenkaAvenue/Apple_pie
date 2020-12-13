@@ -13,12 +13,12 @@ export type ISignUpBody = {
 
 export default async function signUpController(req: Request<any, any, ISignUpBody>, res: Response) {
     const { body: { name, password, email, role } } = req;
-    const id: string = uuidv4();
+    const userId: string = uuidv4();
 
     try {
-        await SIGNUP_QUERY({ id, name, password: getSaltedPassword(password), email, role });
+        await SIGNUP_QUERY({ userId, name, password: getSaltedPassword(password), email, role });
 
-        res.redirect(307, `/api/auth/signup?id=${id}`);
+        res.redirect(307, `/api/auth/signup?userId=${userId}`);
     } catch({ code, constraint, message }) {
         console.log(message);
 

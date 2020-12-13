@@ -1,6 +1,6 @@
 # Auth server RestAPI list
  
- - [signup](#signup)🔑 (**redirect** от `/api/sign/signup`)
+ - [signup](#signup)🔑 (**redirect** от `/api/sign/signup`, недоступен клиенту)
  - [refresh](#refresh)💉
 
 <a name="pairtoken"></a>
@@ -9,16 +9,15 @@
 
  * ##### query params
 
-       id: String
+       userId: String
 
  * ##### req
 
        role: Number
     
- * ##### res🆗 201
+ * ##### res🆗 201 + cookie(refresh token)
 
        accessToken: String
-       refreshToken: String
 
  * ##### res⛔️ 501 (сессия не сохранена)
 
