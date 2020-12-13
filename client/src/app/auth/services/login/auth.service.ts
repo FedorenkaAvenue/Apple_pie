@@ -5,7 +5,6 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
 
   private readonly apiUrl = '/api/auth';

@@ -235,12 +235,11 @@ textarea {
   margin: 0; // 3
 }
 
-//
-// Address `overflow` set to `hidden` in IE 8/9/10.
-//
+
 
 button {
   overflow: visible;
+  border: none;
 }
 
 //

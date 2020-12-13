@@ -4,9 +4,12 @@
   <nav>
     <ul class="p-0 m-0 l-s-n d-f j-c-s-b f-g">
       <li class="nav-link p-0 b-b-2 w-100 t-a-c"
-          [routerLinkActive]="'active'"
-          *ngFor="let route of routes">
-        <a class="w-100 d-i-b p-2" [routerLink]="route.link">{{route.text}}</a>
+          [routerLinkActive]="'active'">
+        <a class="w-100 d-i-b p-2" [routerLink]="['./', 'registration']">registration</a>
+      </li>
+      <li class="nav-link p-0 b-b-2 w-100 t-a-c"
+          [routerLinkActive]="'active'">
+        <a class="w-100 d-i-b p-2" [routerLink]="['./', 'login']">login</a>
       </li>
     </ul>
   </nav>
