@@ -8,7 +8,8 @@ export function setRefreshToken(refreshToken) {
             httpOnly: true,
             maxAge: Number(SESSION_EXPIRE_TIME) * 1000,
             path: '/api/auth',
-            sameSite: 'strict'
+            sameSite: 'strict',
+            // secure: true // ! включить при HTTPS
         }
     );
 

@@ -2,7 +2,7 @@
 
 |key         |type        |required|unique|condition                      |description                 |
 |:-:         |:-:         |:-:     |:-:   |--                             |--                          |
-|id          |String      |+       |+     |length: **< 32**               |                            |
+|userId      |String      |+       |+     |length: **< 32**               |                            |
 |name        |String      |+       |+     |length: **3** - **20**         |                            |
 |password    |String      |+       |      |length: **< 50**               |                            |
 |email       |String      |        |+     |                               |                            |
