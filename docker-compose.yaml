@@ -10,7 +10,7 @@ services:
     volumes:
         - ./nginx/config:/etc/nginx/conf.d
     depends_on:
-      - root_server
+      - server
 
   client:
     container_name: apple_pie_client
@@ -19,46 +19,32 @@ services:
     volumes:
       - ./client:/app
     depends_on:
-      - root_server
+      - server
 
-  root_server:
-    container_name: apple_pie_root_server
-    build: ./root_server
+  server:
+    container_name: apple_pie_server
+    build: ./server
     restart: unless-stopped
     volumes:
-      - ./root_server/src:/app/src
-      - ./root_server/package.json:/app/package.json
-      - ./root_server/yarn.lock:/app/yarn.lock
-      - ./root_server/tsconfig.json:/app/tsconfig.json
+      - ./server/src:/app/src
+      - ./server/package.json:/app/package.json
+      - ./server/yarn.lock:/app/yarn.lock
+      - ./server/tsconfig.json:/app/tsconfig.json
     environment:
       - APP_PORT=80
-      - AUTH_SERVER_DOMAIN=http://apple_pie_auth_server
       - PGUSER=postgres
       - PGHOST=apple_pie_postgres
       - PGDATABASE=postgres
       - PGPASSWORD=2700
       - PGPORT=${PG_PORT}
-      - JWT_SECRET_WORD=${JWT_SECRET_WORD}
-    depends_on:
-      - postgres
-      - redis
-
-  auth_server:
-    container_name: apple_pie_auth_server
-    build: ./auth_server
-    restart: unless-stopped
-    volumes:
-      - ./auth_server/src:/app/src
-      - ./auth_server/package.json:/app/package.json
-      - ./auth_server/yarn.lock:/app/yarn.lock
-    environment:
-      - APP_PORT=80
       - REDIS_HOST=${REDIS_HOST}
       - REDIS_PORT=${REDIS_PORT}
-      - REDIS_DB_NUMBER=0
+      - REDIS_SESSION_DB_NUMBER=0
+      - REDIS_SESSION_CASH_NUMBER=1
       - JWT_SECRET_WORD=${JWT_SECRET_WORD}
       - SESSION_EXPIRE_TIME=${SESSION_EXPIRE_TIME}
     depends_on:
+      - postgres
       - redis
 
   postgres:

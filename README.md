@@ -24,13 +24,9 @@ Web app for searching tattoo artists tattoo's fans.
 
  - [client](./client/README.md)
 
- - [root server](./root_server/README.md)
+ - [server](./server/README.md)
 
-   * [REST api](./root_server/API_DOC.md)
-
- - [auth server](./auth_server/README.md)
-
-   * [REST api](./auth_server/API_DOC.md)
+   * [REST api](./server/API_DOC.md)
 
  - [redis](./redis/README.md)
 

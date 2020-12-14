@@ -9,5 +9,4 @@
 |ua          |String      |**user agent**              |
 |fingerprint |String      |**browser "ip"**            |
 |ip          |Number      |**user ip**                 |
-|expiresIn   |Number      |**session live time**       |
 |createdAt   |Number      |                            |
