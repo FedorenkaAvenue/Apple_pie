@@ -1,37 +1,30 @@
-import { v4 as uuidv4 } from 'uuid';
+import { Request, Response } from 'express';
 
-import { generateTokenPair, validateToken } from './jwt.js';
-import { createSession, findSession, deleteSession } from './db.js';
-import { setRefreshToken } from './cookie.js';
+import { validateToken } from '@crypto/jwt';
+import { setRefreshToken } from '@crypto/cookie';
+import { IRefreshTOkenPayload } from '@interfaces/IToken';
+import refreshSession from '@servises/sessions/refreshSession';
 
-export async function refreshToken(req, res) {
+export default async function(req: Request, res: Response) {
     try {
-        const currentRefreshToken = req.cookies['refresh_token'];
+        const currentRefreshToken: string = req.cookies['refresh_token'];
 
-        if (!currentRefreshToken) throw new Error(403);
+        if (!currentRefreshToken) throw new Error();
 
-        const { sessionKey: currentSessionKey, role } = validateToken(currentRefreshToken);
-        const session = await findSession(currentSessionKey);
-        const { userId, refreshToken: currentSessionRefreshToken } = session;
+        const { sessionKey, role } = validateToken(currentRefreshToken) as IRefreshTOkenPayload;
+        const { accessToken, refreshToken } = await refreshSession(currentRefreshToken, sessionKey, role);
 
-        if (currentRefreshToken !== currentSessionRefreshToken) throw new Error();
-
-        const newSessionKey = uuidv4();
-        const { accessToken, refreshToken } = generateTokenPair({ sessionKey: newSessionKey, userId, role });
-        
         setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });
-        createSession({ ...session, sessionKey: newSessionKey, refreshToken });
-        deleteSession(currentSessionKey);
     } catch(err) {
-        console.err(err);
+        console.log(err);
 
         switch(err.message) {
-            case 501:
+            case '501':
                 return res.sendStatus(501);
-            case 418:
+            case '418':
                 return res.sendStatus(418); //TODO: сделать бан
             default:
-                return res.sendStatus(403);
+                return res.sendStatus(406);
         }
     }
 }
