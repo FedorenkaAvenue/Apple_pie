@@ -1,0 +1,19 @@
+.toolbar {
+  &__navigate {
+    padding: 20px;
+  }
+  &__navigate {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  &__logo {
+    height: 100%;
+  }
+  &__account-icon {
+    display: flex;
+    font-size: 38px;
+    height: 38px;
+    width: 38px;
+  }
+}

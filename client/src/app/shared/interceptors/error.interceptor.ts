@@ -22,7 +22,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             }
           }
         }
-        const notification = error.error.message || error.statusText;
+        const notification = error.message || error.statusText;
         // TODO: If Notification (toast) service is present we can show current error notification
         return throwError(notification);
       }));
