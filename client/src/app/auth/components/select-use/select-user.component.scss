@@ -1,0 +1,22 @@
+.user-types {
+    margin: auto;
+    margin-top: 100px;
+    &__header {
+    }
+    &-wrapper {
+    }
+    &-links {
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+      margin: 0 auto;
+    }
+    &__link {
+      padding: 12px 52px;
+      border: 1px solid black;
+    }
+  }
+  // .sign-up {
+  //   margin-bottom: 20px;
+  // }
+  

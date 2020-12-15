@@ -1,55 +1,50 @@
-<div>registration</div>
-
 <div *ngIf="form">
-  <form class="form-group" [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
-    <div class="form-control p-0">
-      <label for="name" class="p-0 p-t-1 p-b-1 m-0 d-f a-i-c z-1 sz-l-12">
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="on">
+    <div class="form-control">
+      <label for="name">
         name
-        <span class="asterisk">* </span>
+        <span class="">* </span>
       </label>
-      <input type="string" class="p-1 p-r-8 bg-trans z-2 sz-12" formControlName="name" id="name" />
+      <input type="string" formControlName="name" id="name" />
       <!--<span class="validation error"></span>-->
     </div>
-    <div class="form-control p-0">
-      <label for="password" class="p-0 p-t-1 p-b-1 m-0 d-f a-i-c z-1 sz-l-12">
+    <div class="form-control">
+      <label for="password">
         password
-        <span class="asterisk">* </span>
+        <span class="">* </span>
       </label>
       <input
         type="string"
-        class="p-1 p-r-8 bg-trans z-2 sz-12"
         formControlName="password"
         id="password"
       />
       <!--<span class="validation error"></span>-->
     </div>
-    <div class="form-control p-0">
-      <label for="email" class="p-0 p-t-1 p-b-1 m-0 d-f a-i-c z-1 sz-l-12">
+    <div class="form-control">
+      <label for="email">
         email
-        <span class="asterisk">* </span>
+        <span class="">* </span>
       </label>
       <input
         type="string"
-        class="p-1 p-r-8 bg-trans z-2 sz-12"
         formControlName="email"
         id="email"
       />
       <!--<span class="validation error"></span>-->
     </div>
-    <div class="form-control p-0">
-      <label for="role" class="p-0 p-t-1 p-b-1 m-0 d-f a-i-c z-1 sz-l-12">
+    <div class="form-control">
+      <label for="role">
         role
-        <span class="asterisk">* </span>
+        <span class="">* </span>
       </label>
       <input
         type="string"
-        class="p-1 p-r-8 bg-trans z-2 sz-12"
         formControlName="role"
         id="role"
       />
       <!--<span class="validation error"></span>-->
     </div>
-    <div class="form-submit m-t-2">
+    <div class="">
       <button type="submit" [disabled]="form.invalid">{{ button | translate }}</button>
     </div>
   </form>
