@@ -15,7 +15,7 @@
 
  * ##### Schema
 
-   * `bash schema_update.sh` update schema
+   * `bash schema_deploy.sh` update schema
 
  * ##### Dump
 

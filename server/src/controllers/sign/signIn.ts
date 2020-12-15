@@ -1,31 +1,50 @@
 import { Request, Response } from 'express';
 
-// import { LOGIN_QUERY } from '@src/queries/sign';
+import { LOGIN_QUERY } from '@db/postgres/queries/sign';
 import { getSaltedPassword } from '@crypto/satl';
-// import { setUserToken } from '@servises/cookie';
+import createSession from '@servises/sessions/createSession';
+import { setRefreshToken } from '@crypto/cookie';
+import { IUserSchema } from '@interfaces/DB';
 
-export type ILogInBody = {
+type ILogInBody = {
     password: string
     email: string
 }
 
 export default async function(req: Request<any, any, ILogInBody>, res: Response) {
     try {
-        const { email, password } = req.body;
+        const { body: { email, password }, ip } = req;
         const saltedPassword = getSaltedPassword(password);
 
+        if (!email && !password) throw new Error();
+
         try {
-            // const { rows, rowCount } = await LOGIN_QUERY({ email, password: saltedPassword });
+            const { rows, rowCount } = await LOGIN_QUERY(email, saltedPassword);
 
-            // if (!rowCount) throw new Error();
+            if (!rowCount) throw new Error();
 
-            // const { id, role } = rows[0];
+            const { userId, role }: IUserSchema = rows[0];
             
-            // setUserToken.call(res, { id, role }).status(200).send();
+            try {
+                const { accessToken, refreshToken } = await createSession({
+                    userId, role, ip,
+                    ua: req.get('User-Agent') as string
+                });
+
+                setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });
+            } catch(err) {
+                console.log(err);
+
+                res.sendStatus(501);
+            }
         } catch(err) {
+            console.log(err);
+
             res.status(403).send();
         }
     } catch(err) {
-        res.send(400).send();
+        console.log(err);
+
+        res.sendStatus(400);
     }
 }
