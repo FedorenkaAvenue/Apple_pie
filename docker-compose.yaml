@@ -32,17 +32,18 @@ services:
       - ./server/tsconfig.json:/app/tsconfig.json
     environment:
       - APP_PORT=80
-      - PGUSER=postgres
+      - PGUSER=${POSTGRES_USER}
       - PGHOST=apple_pie_postgres
-      - PGDATABASE=postgres
-      - PGPASSWORD=2700
-      - PGPORT=${PG_PORT}
+      - PGDATABASE=${POSTGRES_DB}
+      - PGPASSWORD=${POSTGRES_PASSWORD}
+      - PGPORT=${POSTGRES_PORT}
       - REDIS_HOST=${REDIS_HOST}
       - REDIS_PORT=${REDIS_PORT}
       - REDIS_SESSION_DB_NUMBER=0
-      - REDIS_SESSION_CASH_NUMBER=1
+      - REDIS_CASH_DB_NUMBER=1
       - JWT_SECRET_WORD=${JWT_SECRET_WORD}
       - SESSION_EXPIRE_TIME=${SESSION_EXPIRE_TIME}
+      - ACCESS_TOKEN_EXPIRE_TIME=${ACCESS_TOKEN_EXPIRE_TIME}
     depends_on:
       - postgres
       - redis
@@ -52,11 +53,12 @@ services:
     build: ./postgres
     restart: unless-stopped
     volumes:
+      - ./postgres/postgresql.conf:/app/postgresql.conf
       - ./postgres/schema.sql:/app/schema.sql
     ports:
-      - ${PG_PORT}:${PG_PORT} # только для GUI базы
+      - ${POSTGRES_PORT}:${POSTGRES_PORT} # только для GUI базы
     environment:
-      - POSTGRES_PASSWORD=2700
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
   redis:
     container_name: apple_pie_redis
