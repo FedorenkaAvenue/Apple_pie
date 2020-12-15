@@ -3,8 +3,8 @@
  * ##### sign🔑
  
     - [sign up](#signup)
-    <!-- - [log in](#login)
-    - [log out](#logout) -->
+    - [sign in](#signin)
+    - [sign out](#signout)
 
  * ##### auth🔬
 
@@ -39,28 +39,33 @@
 
        field: String (имя существующего поля)
 
-<!-- --
+--
 
-<a name="login"></a>
+<a name="signin"></a>
 
-#### log in (POST `api/auth/login`)
+#### sign in (POST `api/sign/signin`)
 
  * ##### req
 
        email: String
        password: String
 
- * ##### res🆗 200 + token
+ * ##### res🆗 200 + cookie(refresh token)
+
+       accessToken: String
 
  * ##### res⛔️ 403 (неверные данные)
 
 --
 
-<a name="logout"></a>
+<a name="signout"></a>
 
-#### log out (GET `api/auth/logout`)
+#### sign out (POST `api/sign/signout`)
 
- * ##### res🆗 200 (с удалением кук токена) -->
+ * ##### req
+
+       accessToken: String
+ * ##### res🆗 200 (с удалением куки refresh токена)
 
 --
 
