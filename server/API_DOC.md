@@ -2,17 +2,21 @@
 
  * ##### sign🔑
  
-    - [sign up](#signup)
-    - [sign in](#signin)
-    - [sign out](#signout)
+      - [sign up](#signup)
+      - [sign in](#signin)
+      - [sign out](#signout)
 
  * ##### auth🔬
 
       - [refresh token](#refresh)
 
- * ##### user🧑‍💻
+ * ##### customer🧑‍💻
 
-    - [exist](#exist) (проверить существующие данные юзеров)
+      - [application list](#customer_application_list)
+
+ * ##### user👥
+
+      - [exist](#exist) (проверить существующие данные юзеров)
 
 ## Sign🔑
 
@@ -85,7 +89,23 @@
 
 --
 
-## User🧑‍💻
+## Customer🧑‍💻
+
+<a name="customer_application_list"></a>
+
+#### application list (GET `api/customer/applist`)
+
+ * ##### res🆗 200
+
+       appList: Array
+
+ * ##### res⛔️ 401 (не авторизирован)
+
+ * ##### res⛔️ 406 (неверная роль)
+
+--
+
+## User👥
 
 <a name="exist"></a>
 

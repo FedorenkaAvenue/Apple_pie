@@ -45,6 +45,7 @@
     "@db": "./src/db",
     "@crypto": "./src/crypto",
     "@utils": "./src/utils",
-    "@servises": "./src/servises"
+    "@servises": "./src/servises",
+    "@middleWares": "./src/middleWares"
   }
 }
