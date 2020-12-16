@@ -18,6 +18,8 @@
 
       - [exist](#exist) (проверить существующие данные юзеров)
 
+> <sup><sub>Эмоджи 👓 возле **API** указывает на требование предоставления **access** токена.</sub></sup>
+
 ## Sign🔑
 
 <a name="signup"></a>
@@ -93,7 +95,7 @@
 
 <a name="customer_application_list"></a>
 
-#### application list (GET `api/customer/applist`)
+#### application list👓 (GET `api/customer/applist`)
 
  * ##### res🆗 200
 

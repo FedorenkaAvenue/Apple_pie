@@ -7,6 +7,7 @@
 |password    |String      |+       |      |length: **< 50**               |                            |
 |email       |String      |        |+     |                               |                            |
 |role        |Number      |+       |      |                               |**1** user<br/> **2** master|
+|applications|Array       |        |      |                               |**1** user<br/> **2** master|
 
 ## applications
 
