@@ -2,17 +2,27 @@
 
  * ##### sign🔑
  
-    - [sign up](#signup)
-    - [sign in](#signin)
-    - [sign out](#signout)
+      - [sign up](#signup)
+      - [sign in](#signin)
+      - [sign out](#signout)
 
  * ##### auth🔬
 
       - [refresh token](#refresh)
 
- * ##### user🧑‍💻
+ * ##### customer🧑‍💻
 
-    - [exist](#exist) (проверить существующие данные юзеров)
+      - [application list](#customer_application_list)
+
+ * ##### artist👩‍🎓
+
+      - [sketch list](#artist_sketch_list)
+
+ * ##### user👥
+
+      - [exist](#exist) (проверить существующие данные юзеров)
+
+> <sup><sub>Эмоджи 👓 возле **API** указывает на требование предоставления **access** токена.</sub></sup>
 
 ## Sign🔑
 
@@ -85,7 +95,39 @@
 
 --
 
-## User🧑‍💻
+## Customer🧑‍💻
+
+<a name="customer_application_list"></a>
+
+#### application list👓 (GET `api/customer/applist`)
+
+ * ##### res🆗 200
+
+       appList: Array
+
+ * ##### res⛔️ 401 (не авторизирован)
+
+ * ##### res⛔️ 406 (неверная роль)
+
+--
+
+## Artist👩‍🎓
+
+<a name="artist_sketch_list"></a>
+
+#### sketch list👓 (GET `api/artist/sketchlist`)
+
+ * ##### res🆗 200
+
+       sketchList: Array
+
+ * ##### res⛔️ 401 (не авторизирован)
+
+ * ##### res⛔️ 406 (неверная роль)
+
+--
+
+## User👥
 
 <a name="exist"></a>
 
