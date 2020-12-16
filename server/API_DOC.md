@@ -14,6 +14,10 @@
 
       - [application list](#customer_application_list)
 
+ * ##### artist👩‍🎓
+
+      - [sketch list](#artist_sketch_list)
+
  * ##### user👥
 
       - [exist](#exist) (проверить существующие данные юзеров)
@@ -100,6 +104,22 @@
  * ##### res🆗 200
 
        appList: Array
+
+ * ##### res⛔️ 401 (не авторизирован)
+
+ * ##### res⛔️ 406 (неверная роль)
+
+--
+
+## Artist👩‍🎓
+
+<a name="artist_sketch_list"></a>
+
+#### sketch list👓 (GET `api/artist/sketchlist`)
+
+ * ##### res🆗 200
+
+       sketchList: Array
 
  * ##### res⛔️ 401 (не авторизирован)
 
