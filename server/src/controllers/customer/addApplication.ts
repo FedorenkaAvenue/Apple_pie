@@ -3,8 +3,9 @@ import { NextFunction, Request, Response } from 'express';
 import { IAccessTokenPayload } from '@interfaces/IToken';
 
 export default async function(req: Request, res: Response, next: NextFunction) {
+    const { userId } = res.locals.userTokenPayload as IAccessTokenPayload;
+    
     try {
-        const { userId } = res.locals.userTokenPayload as IAccessTokenPayload;
 
         try {
             // const { applications } = (await CUSTOMER_APPLICATIONS_QUERY(userId)).rows[0];

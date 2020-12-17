@@ -44,6 +44,7 @@ services:
       - JWT_SECRET_WORD=${JWT_SECRET_WORD}
       - SESSION_EXPIRE_TIME=${SESSION_EXPIRE_TIME}
       - ACCESS_TOKEN_EXPIRE_TIME=${ACCESS_TOKEN_EXPIRE_TIME}
+      - COOKIE_REFRESH_TOKEN_NAME=refresh_token
     depends_on:
       - postgres
       - redis

@@ -26,9 +26,7 @@ export async function CREATE_SESSION({ sessionKey, userId, refreshToken, ua, ip 
             );
         });
     } catch(err) {
-        console.log(err);
-
-        throw new Error('501');
+        throw new Error(err);
     }
 }
 
@@ -39,9 +37,7 @@ export async function GET_SESSION(sessionKey: string): Promise<ISession> {
             redisClient.hgetall(sessionKey, (err, session) => err ? reject(err) : resolve(session) );
         });
     } catch(err) {
-        console.error(err);
-
-        throw new Error('501');
+        throw new Error(err);
     }
 }
 
@@ -49,8 +45,6 @@ export function DELETE_SESSION(sessionKey: string): void {
     try {
         redisClient.del(sessionKey);
     } catch(err) {
-        console.error(err);
-
-        throw new Error('501');
+        throw new Error(err);
     }
 }

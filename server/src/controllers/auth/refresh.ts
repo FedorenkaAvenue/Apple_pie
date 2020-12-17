@@ -5,9 +5,11 @@ import { setRefreshToken } from '@crypto/cookie';
 import refreshSession from '@servises/sessions/refreshSession';
 import { IRefreshTOkenPayload } from '@interfaces/IToken';
 
+const { COOKIE_REFRESH_TOKEN_NAME } = process.env;
+
 export default async function(req: Request, res: Response, next: NextFunction) {
     try {
-        const currentRefreshToken: string = req.cookies['refresh_token'];
+        const currentRefreshToken: string = req.cookies[COOKIE_REFRESH_TOKEN_NAME as string];
 
         if (!currentRefreshToken) throw new Error();
 

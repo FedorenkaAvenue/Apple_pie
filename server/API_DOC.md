@@ -71,11 +71,8 @@
 
 <a name="signout"></a>
 
-#### sign out (POST `api/sign/signout`)
+#### sign out👓 (POST `api/sign/signout`)
 
- * ##### req
-
-       accessToken: String
  * ##### res🆗 200 (с удалением куки refresh токена)
 
 --
