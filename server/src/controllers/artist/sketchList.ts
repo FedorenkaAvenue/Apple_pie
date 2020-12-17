@@ -1,16 +1,15 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
-import { ARTIST_SKETCHES_QUERY } from '@db/postgres/queries/artist';
+import { ARTIST_SKETCH_LIST_QUERY } from '@db/postgres/queries/artist';
+import { IAccessTokenPayload } from '@interfaces/IToken';
 
-export default async function(req: Request, res: Response) {
+export default async function(req: Request, res: Response, next: NextFunction) {
     try {
-        const { userId } = res.locals.userTokenPayload;
-        const { sketches } = (await ARTIST_SKETCHES_QUERY(userId)).rows[0];
+        const { userId } = res.locals.userTokenPayload as IAccessTokenPayload;
+        const { sketches } = (await ARTIST_SKETCH_LIST_QUERY(userId)).rows[0];
         
         res.status(200).json({ sketchList: sketches });
     } catch(err) {
-        console.log(err);
-
-        res.sendStatus(501);
+        next(err);
     }
 }

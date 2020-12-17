@@ -5,18 +5,16 @@ import { IAccessTokenPayload } from '@interfaces/IToken';
 
 export default function(req: Request, res: Response, next: NextFunction) {
     try {
-        const accessToken = <string>req.header('Authorization')?.split('Bearer ')[1];
+        const accessToken = req.headers.authorization?.split(' ')[1];
 
         if (!accessToken) throw new Error();
 
-        try {
-            res.locals.userTokenPayload = validateToken(accessToken) as IAccessTokenPayload;
+        res.locals.userTokenPayload = validateToken(accessToken) as IAccessTokenPayload;
 
-            next();
-        } catch(err) {
-            res.sendStatus(401);
-        }
+        next();
     } catch(err) {
-        res.sendStatus(400);
+        console.log(err);
+
+        res.sendStatus(401);
     }
 }

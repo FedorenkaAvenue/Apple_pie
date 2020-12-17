@@ -13,6 +13,7 @@
  * ##### customer🧑‍💻
 
       - [application list](#customer_application_list)
+      - [add application](#add_application)
 
  * ##### artist👩‍🎓
 
@@ -109,6 +110,23 @@
 
  * ##### res⛔️ 406 (неверная роль)
 
+<a name="add_application"></a>
+
+#### add application👓 (POST `api/customer/addapp`)
+
+ * ##### req
+
+       appName: String
+       description: String
+       images: Array<Binary>
+       city: UNKNOWN // пока хз
+
+ * ##### res🆗 201
+
+ * ##### res⛔️ 401 (не авторизирован)
+
+ * ##### res⛔️ 406 (неверная роль)
+
 --
 
 ## Artist👩‍🎓
@@ -141,5 +159,3 @@
  * ##### res🆗 200
 
        exists: Boolean
-
---
