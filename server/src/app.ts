@@ -17,7 +17,7 @@ import checkRole from '@middleWares/checkRole';
 const app: Express = express();
 
 app.use(urlencoded({ extended: true })).
-    use(json()).
+    use(json()). // ? распределеть к отдельным роутам
     use((req, res, next) => {
         res.append('Access-Control-Allow-Origin', '*').
             append('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE').
