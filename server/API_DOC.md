@@ -1,5 +1,8 @@
 # RestAPI list
 
+📌 Last update: 18/12/2020 10:46
+📌 Эмоджи 👓 возле **API** указывает на требование предоставления **access** токена
+
  * ##### sign🔑
  
       - [sign up](#signup)
@@ -13,6 +16,7 @@
  * ##### customer🧑‍💻
 
       - [application list](#customer_application_list)
+      - [add application](#add_application)
 
  * ##### artist👩‍🎓
 
@@ -22,13 +26,12 @@
 
       - [exist](#exist) (проверить существующие данные юзеров)
 
-> <sup><sub>Эмоджи 👓 возле **API** указывает на требование предоставления **access** токена.</sub></sup>
-
 ## Sign🔑
 
 <a name="signup"></a>
 
-#### sign up (POST `api/sign/signup`)
+<details>
+<summary><b>sign up (POST <code>api/sign/signup</code>)</b></summary>
 
  * ##### req
 
@@ -49,11 +52,12 @@
 
        field: String (имя существующего поля)
 
---
+</details>
 
 <a name="signin"></a>
 
-#### sign in (POST `api/sign/signin`)
+<details>
+<summary><b>sign in (POST <code>api/sign/signin</code>)</b></summary>
 
  * ##### req
 
@@ -66,24 +70,23 @@
 
  * ##### res⛔️ 403 (неверные данные)
 
---
+</details>
 
 <a name="signout"></a>
 
-#### sign out (POST `api/sign/signout`)
+<details>
+<summary><b>sign out👓 (GET <code>api/sign/signout</code>)</b></summary>
 
- * ##### req
-
-       accessToken: String
  * ##### res🆗 200 (с удалением куки refresh токена)
 
---
+</details>
 
 ## Auth🔬
 
 <a name="refresh"></a>
 
-#### refresh token (GET `api/auth/refresh`)
+<details>
+<summary><b>refresh token (GET <code>api/auth/refresh</code>)</b></summary>
 
  * ##### res🆗 201 + cookie (refresh токен)
 
@@ -93,13 +96,14 @@
 
  * ##### res⛔️ 418 (взломаный токен)
 
---
+</details>
 
 ## Customer🧑‍💻
 
 <a name="customer_application_list"></a>
 
-#### application list👓 (GET `api/customer/applist`)
+<details>
+<summary><b>application list👓 (GET <code>api/customer/applist</code>)</b></summary>
 
  * ##### res🆗 200
 
@@ -109,13 +113,34 @@
 
  * ##### res⛔️ 406 (неверная роль)
 
---
+</details>
+
+<a name="add_application"></a>
+
+<details>
+<summary><b>add application👓 (POST <code>api/customer/addapp</code>)</b></summary>
+
+ * ##### req
+
+       appName: String
+       description: String
+       images: Array<Binary>
+       city: UNKNOWN // пока хз
+
+ * ##### res🆗 201
+
+ * ##### res⛔️ 401 (не авторизирован)
+
+ * ##### res⛔️ 406 (неверная роль)
+
+</details>
 
 ## Artist👩‍🎓
 
 <a name="artist_sketch_list"></a>
 
-#### sketch list👓 (GET `api/artist/sketchlist`)
+<details>
+<summary><b>sketch list👓 (GET <code>api/artist/sketchlist</code>)</b></summary>
 
  * ##### res🆗 200
 
@@ -125,13 +150,14 @@
 
  * ##### res⛔️ 406 (неверная роль)
 
---
+</details>
 
 ## User👥
 
 <a name="exist"></a>
 
-#### exist (GET `api/user/exist`)
+<details>
+<summary><b>exist (GET <code>api/user/exist</code>)</b></summary>
 
  * ##### query params (только один)
 
@@ -142,4 +168,4 @@
 
        exists: Boolean
 
---
+</details>

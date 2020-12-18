@@ -23,8 +23,6 @@ export default async function({ userId, role, ua, ip }: ICreateSession) {
 
         return ({ accessToken, refreshToken });
     } catch(err) {
-        console.log(err);
-
         throw new Error(err);
     }
 }

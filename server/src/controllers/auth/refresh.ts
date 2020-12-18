@@ -1,13 +1,15 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 import { validateToken } from '@crypto/jwt';
 import { setRefreshToken } from '@crypto/cookie';
-import { IRefreshTOkenPayload } from '@interfaces/IToken';
 import refreshSession from '@servises/sessions/refreshSession';
+import { IRefreshTOkenPayload } from '@interfaces/IToken';
 
-export default async function(req: Request, res: Response) {
+const { COOKIE_REFRESH_TOKEN_NAME } = process.env;
+
+export default async function(req: Request, res: Response, next: NextFunction) {
     try {
-        const currentRefreshToken: string = req.cookies['refresh_token'];
+        const currentRefreshToken: string = req.cookies[COOKIE_REFRESH_TOKEN_NAME as string];
 
         if (!currentRefreshToken) throw new Error();
 
@@ -16,11 +18,9 @@ export default async function(req: Request, res: Response) {
 
         setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });
     } catch(err) {
-        console.log(err);
-
         switch(err.message) {
             case '501':
-                return res.sendStatus(501);
+                return next(err);
             case '418':
                 return res.sendStatus(418); //TODO: сделать бан
             default:
