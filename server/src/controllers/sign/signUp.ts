@@ -5,6 +5,7 @@ import { CREATE_USER_QUERY, DELETE_USER_QUERY } from '@db/postgres/queries/user'
 import { getSaltedPassword } from '@crypto/satl';
 import createSession from '@servises/sessions/createSession';
 import { setRefreshToken } from '@crypto/cookie';
+import verifyEmail from '@servises/email/verifyEmail';
 
 type ISignUpBody = {
     name: string
@@ -19,7 +20,10 @@ export default async function signUpController(req: Request<any, any, ISignUpBod
 
     try {
         try {
-            await CREATE_USER_QUERY({ userId, name, password: getSaltedPassword(password), email, role });
+            await CREATE_USER_QUERY({
+                userId, name, email, role,
+                password: getSaltedPassword(password)
+            });
         } catch(err) {
             const { code, constraint } = err;
 
@@ -35,10 +39,12 @@ export default async function signUpController(req: Request<any, any, ISignUpBod
 
         const { accessToken, refreshToken } = await createSession({
             userId, role, ip,
-            ua: req.get('User-Agent') as string
+            ua: req.get('User-Agent') as string,
+            verify: false
         });
 
         setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });
+        verifyEmail();
     } catch(err) {
         DELETE_USER_QUERY(userId); // ? удаляем юзера, если сессия не сохранилась
         next(err);

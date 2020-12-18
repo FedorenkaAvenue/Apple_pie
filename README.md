@@ -26,7 +26,7 @@ Web app for searching tattoo artists tattoo's fans.
 
  - [server](./server/README.md)
 
-   * [REST api](./server/API_DOC.md)
+   * [Markdown API](./server/API_DOC.md) or [Swagger API](http://localhost/api/docs)
 
  - [redis](./redis/README.md)
 

@@ -23,11 +23,11 @@ export default async function(req: Request<any, any, ILogInBody>, res: Response,
 
             if (!rowCount) throw new Error();
 
-            const { userId, role }: IUserSchema = rows[0];
+            const { userId, role, verify }: IUserSchema = rows[0];
             
             try {
                 const { accessToken, refreshToken } = await createSession({
-                    userId, role, ip,
+                    userId, role, ip, verify,
                     ua: req.get('User-Agent') as string
                 });
 

@@ -9,8 +9,11 @@ export default function(req: Request, res: Response, next: NextFunction) {
 
         if (!accessToken) throw new Error();
 
-        res.locals.userTokenPayload = validateToken(accessToken) as IAccessTokenPayload;
+        const userPayload = validateToken(accessToken) as IAccessTokenPayload;
 
+        if (!userPayload.verify) return res.sendStatus(418);
+
+        res.locals.userTokenPayload = userPayload;
         next();
     } catch(err) {
         res.sendStatus(401);

@@ -11,6 +11,7 @@ services:
         - ./nginx/config:/etc/nginx/conf.d
     depends_on:
       - server
+      - client
 
   client:
     container_name: apple_pie_client

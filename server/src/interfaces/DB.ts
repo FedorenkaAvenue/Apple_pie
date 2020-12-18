@@ -13,6 +13,7 @@ export type IUserSchema = {
     email: string
     name: string
     password: string
-    applications: string
-    sketches: string
+    verify: boolean
+    applications?: string
+    sketches?: string
 }

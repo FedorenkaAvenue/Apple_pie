@@ -7,15 +7,16 @@ import { CREATE_SESSION } from '@db/redis/queries/sessions';
 type ICreateSession = {
     userId: string
     role: number
+    verify: boolean
     ua: string
     ip: string
 }
 
 const { SESSION_EXPIRE_TIME } = process.env;
 
-export default async function({ userId, role, ua, ip }: ICreateSession) {
+export default async function({ userId, role, ua, ip, verify }: ICreateSession) {
     const sessionKey = uuidv4();
-    const { accessToken, refreshToken } = generateTokenPair(userId, role, sessionKey);
+    const { accessToken, refreshToken } = generateTokenPair({ userId, role, sessionKey, verify });
     
     try {
         await CREATE_SESSION({ sessionKey, userId, ua, ip, refreshToken });
