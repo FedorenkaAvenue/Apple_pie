@@ -1,3 +1,4 @@
+// ? надо ли, если есть модель DB
 export interface IUser {
     userId: string
     name: string

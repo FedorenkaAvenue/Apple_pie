@@ -2,3 +2,4 @@ Dockerfile
 .dockerignore
 node_modules
 API_DOC.md
+README.md

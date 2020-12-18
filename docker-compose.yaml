@@ -30,6 +30,7 @@ services:
       - ./server/package.json:/app/package.json
       - ./server/yarn.lock:/app/yarn.lock
       - ./server/tsconfig.json:/app/tsconfig.json
+      - ./server/swagger.json:/app/swagger.json
     environment:
       - APP_PORT=80
       - PGUSER=${POSTGRES_USER}
@@ -44,6 +45,7 @@ services:
       - JWT_SECRET_WORD=${JWT_SECRET_WORD}
       - SESSION_EXPIRE_TIME=${SESSION_EXPIRE_TIME}
       - ACCESS_TOKEN_EXPIRE_TIME=${ACCESS_TOKEN_EXPIRE_TIME}
+      - COOKIE_REFRESH_TOKEN_NAME=refresh_token
     depends_on:
       - postgres
       - redis
