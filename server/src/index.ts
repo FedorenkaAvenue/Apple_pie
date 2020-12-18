@@ -1,4 +1,4 @@
-import 'module-alias/register'; // для алиасов путей TS
+import 'module-alias/register';
 
 import app from './app';
 

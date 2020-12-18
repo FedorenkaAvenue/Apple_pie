@@ -13,8 +13,6 @@ export default function(req: Request, res: Response, next: NextFunction) {
 
         next();
     } catch(err) {
-        console.log(err);
-
         res.sendStatus(401);
     }
 }

@@ -36,7 +36,7 @@ export default async function(req: Request<any, any, ILogInBody>, res: Response,
                 next(err);
             }
         } catch(err) {
-            res.sendStatus(403);
+            res.sendStatus(406);
         }
     } catch(err) {
         res.sendStatus(400);
