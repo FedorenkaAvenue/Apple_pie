@@ -37,6 +37,7 @@ export class RegistrationComponent implements OnInit {
   public onSubmit(): void {
     this._authService.signUp({...this.form.value, role: this.userRole}).subscribe(el => {
       console.log(el);
+      alert('ok')
     });
   }
 }
