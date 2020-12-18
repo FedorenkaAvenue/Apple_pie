@@ -1,0 +1,176 @@
+{
+  "swagger": "2.0",
+  "info": {
+      "version": "0.0.1",
+      "title": "@Apple_pie server API doc list",
+      "description": "last update: 18/12/2020 10:46"
+  },
+  "tags": [
+    {
+      "name": "sign",
+      "description": "Authentication"
+    },
+    {
+      "name": "auth",
+      "description": "Authorization"
+    }
+  ],
+  "paths": {
+    "/sign/signup": {
+      "post": {
+        "tags": [ "sign" ],
+        "summary": "registration",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "body",
+            "description": "user email",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "description": "user password",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "body",
+            "description": "user nickname",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "role",
+            "in": "body",
+            "description": "user role",
+            "required": true,
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "access token",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "accessToken": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Неверный формат поля",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Конфликт существующих данных",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "required": [
+        "userId",
+        "name",
+        "email",
+        "password",
+        "role"
+      ],
+      "properties": {
+        "userId": {
+          "type": "Number"
+        },
+        "name": {
+          "type": "String"
+        },
+        "email": {
+          "type": "String"
+        },
+        "password": {
+          "type": "String",
+          "description": "encrypted"
+        },
+        "role": {
+          "type": "Number",
+          "enum": [ "1", "2" ]
+        },
+        "applications": {
+          "$ref": "#/definitions/Application",
+          "default": null
+        },
+        "sketches": {
+          "$ref": "#/definitions/Sketch",
+          "default": null
+        }
+      }
+    },
+    "Application": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "Number"
+        },
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "Sketch": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "Number"
+        },
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "Session": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "String"
+        },
+        "refreshToken" : {
+          "type": "String"
+        },
+        "ua": {
+          "type": "String",
+          "description": "browser user agent"
+        },
+        "fingerprint": {
+          "type": "String"
+        },
+        "ip": {
+          "type": "String"
+        },
+        "createAt": {
+          "type":  "String"
+        }
+      }
+    }
+  }
+}

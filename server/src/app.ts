@@ -2,6 +2,8 @@ import express, { Express } from 'express';
 import { urlencoded, json } from 'body-parser';
 import cookieParser from 'cookie-parser';
 // import multer from 'multer';
+import { serve, setup } from 'swagger-ui-express';
+import swaggerDoc from '../swagger.json';
 
 // const upload = multer({ dest: 'uploads/' });
 
@@ -33,5 +35,7 @@ app.use('/api/sign', signRouter).
     use('/api/user', userRouter);
 
 app.use(errorHandler);
+
+app.use('/api/docs', serve, setup(swaggerDoc));
 
 export default app;

@@ -30,6 +30,7 @@ services:
       - ./server/package.json:/app/package.json
       - ./server/yarn.lock:/app/yarn.lock
       - ./server/tsconfig.json:/app/tsconfig.json
+      - ./server/swagger.json:/app/swagger.json
     environment:
       - APP_PORT=80
       - PGUSER=${POSTGRES_USER}
