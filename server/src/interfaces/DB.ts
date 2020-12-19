@@ -17,3 +17,8 @@ export type IUserSchema = {
     applications?: string
     sketches?: string
 }
+
+export type IVerifyEmailSchema = {
+    id: string
+    hash: string
+}

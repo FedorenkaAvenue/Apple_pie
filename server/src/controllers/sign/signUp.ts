@@ -44,7 +44,7 @@ export default async function signUpController(req: Request<any, any, ISignUpBod
         });
 
         setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });
-        verifyEmail();
+        verifyEmail(userId, email);
     } catch(err) {
         DELETE_USER_QUERY(userId); // ? удаляем юзера, если сессия не сохранилась
         next(err);

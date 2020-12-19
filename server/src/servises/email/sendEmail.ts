@@ -15,6 +15,7 @@ export default async function({ to, subject, html, text }: IMailOptions): Promis
             to, subject, text, html
         });
     } catch(err) {
+        //TODO: админить ошибки
         console.log(err);
     }
 }
