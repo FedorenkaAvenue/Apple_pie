@@ -35,6 +35,7 @@ services:
       - ./server/.dev.env:/app/.dev.env
       - ./server/swagger.json:/app/swagger.json
     environment:
+      - APP_DOMAIN=${APP_DOMAIN}
       - PGUSER=${POSTGRES_USER}
       - PGHOST=apple_pie_postgres
       - PGDATABASE=${POSTGRES_DB}
@@ -44,9 +45,11 @@ services:
       - REDIS_PORT=${REDIS_PORT}
       - REDIS_SESSION_DB_NUMBER=${REDIS_SESSION_DB_NUMBER}
       - REDIS_CASH_DB_NUMBER=${REDIS_CASH_DB_NUMBER}
-      - JWT_SECRET_WORD=${JWT_SECRET_WORD}
+      - JWT_AUTH_SECRET_WORD=${JWT_AUTH_SECRET_WORD}
+      - JWT_VERIFY_EMAIL_SECRET_WORD=${JWT_VERIFY_EMAIL_SECRET_WORD}
       - SESSION_EXPIRE_TIME=${SESSION_EXPIRE_TIME}
       - ACCESS_TOKEN_EXPIRE_TIME=${ACCESS_TOKEN_EXPIRE_TIME}
+      - FAKE_USER_EXPIRE_TIME=${FAKE_USER_EXPIRE_TIME}
     depends_on:
       - postgres
       - redis

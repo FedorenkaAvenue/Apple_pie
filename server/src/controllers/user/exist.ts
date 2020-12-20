@@ -1,8 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 
 import { EXIST_NAME_QUERY, EXIST_EMAIL_QUERY } from '@db/postgres/queries/user';
+import { IUserSchema } from "@interfaces/DB";
 
-export default async function(req: Request, res: Response, next: NextFunction) {
+export default async function(req: Request<any, any, any, IUserSchema>, res: Response, next: NextFunction) {
     try {
         const { name, email } = req.query;
 

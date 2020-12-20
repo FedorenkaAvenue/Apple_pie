@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 
-const { IS_DEV } = process.env;
+import { IS_DEV } from '@src/index';
 
 export default function(): void {
     config({ path: IS_DEV ? './.dev.env' : './.env' });

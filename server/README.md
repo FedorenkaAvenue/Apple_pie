@@ -1,4 +1,4 @@
-# Server for @Apple_pie project
+# Server for @Apple🥧pie project
 
 ## Params
 

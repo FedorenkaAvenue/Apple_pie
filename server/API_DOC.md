@@ -1,7 +1,8 @@
 # RestAPI list
 
-📌 Last update: *18/12/2020 10:46*    
+📌 Last update: *20/12/2020 10:05*    
 📌 Эмоджи 👓 возле **API** указывает на требование предоставления **access** токена    
+📌 Эмоджи 📟 возле **API** указывает, что **API** не доступна для клиента    
 
 --
 
@@ -42,6 +43,7 @@
  * ##### user👥
 
       - [exist](#exist) (проверить существующие данные юзеров)
+      - [verify](#verify) (подтвердить *email*)
 
 --
 
@@ -170,13 +172,30 @@
 <details>
 <summary><b>exist (GET <code>api/user/exist</code>)</b></summary>
 
- * ##### query params (только один)
+ * ##### query params (один из)
 
-    - name: String
-    - email: String
+       name: String
+       email: String
 
  * ##### res🆗 200
 
        exists: Boolean
+
+</details>
+
+<a name="verify"></a>
+
+<details>
+<summary><b>verify📟 (GET <code>api/user/verify</code>)</b></summary>
+
+ * ##### query params
+
+       key: String
+
+ * ##### res🆗 200 + redirect to (`/`)
+
+      * ##### res query paramns
+
+            verify_email: Boolean
 
 </details>

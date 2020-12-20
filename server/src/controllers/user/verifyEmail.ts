@@ -1,17 +1,31 @@
 import { NextFunction, Request, Response } from 'express';
 
-type IRequestQuery = {
-    hash: string
+import { UPDATE_USER_FIELD_QUERY } from '@db/postgres/queries/user';
+import { validateToken } from '@crypto/jwt';
+import { IVerifyEmailToken } from '@interfaces/IToken';
+
+const { JWT_VERIFY_EMAIL_SECRET_WORD } = process.env;
+
+type IRequestQueryParams = {
+    key: string
 }
 
-export default async function(req: Request<any, any, any, IRequestQuery>, res: Response, next: NextFunction) {
-    const { hash } = req.query;
+export default async function(req: Request<any, any, any, IRequestQueryParams>, res: Response, next: NextFunction) {
+    const { key } = req.query;
+    
+    if (!key) return res.sendStatus(400);
     
     try {
-        if (!hash) throw new Error('verify hash is undefined');
+        const { id } = validateToken(decodeURIComponent(key), JWT_VERIFY_EMAIL_SECRET_WORD) as IVerifyEmailToken;
 
-        res.redirect('/home');
+        try {
+            const { rowCount } = await UPDATE_USER_FIELD_QUERY(id, 'verify', true);
+
+            res.redirect(`/?verify_email=${Boolean(rowCount)}`);
+        } catch(err) {
+            next(err);
+        }
     } catch(err) {
-        next(err);
+        res.redirect('/verify_email=false');
     }
 }

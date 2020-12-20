@@ -12,3 +12,7 @@ export type ITokenPair = {
     accessToken: string
     refreshToken: string
 }
+
+export type IVerifyEmailToken = {
+    id: string
+}

@@ -1,26 +1,25 @@
-import { CREATE_VERIFY_ITEM_QUERY } from '@db/postgres/queries/verifyMail';
-import { getSaltedVerifyHash } from '@crypto/satl';
 import sendEmail from '@servises/email/sendEmail';
 import renderPug from '@utils/renderPugFile';
+import { generateAccessEmailVerifyToken } from '@crypto/jwt';
+
+const { APP_DOMAIN } = process.env;
 
 export default async function(userId: string, email: string) {
-    const verifyHash = getSaltedVerifyHash(userId);
+    const verifyHashToken = generateAccessEmailVerifyToken(userId);
 
     try {
-        await CREATE_VERIFY_ITEM_QUERY({ id: userId, hash: verifyHash });
-
         sendEmail({
             to: email,
-            subject: 'Подтверди свою почту, сука!',
+            subject: 'Подтверди свою почту, гнида!',
             html: renderPug(
                 'verifyEmail',
                 {
-                    verifyHref: `http://localhost/api/user/verify?hash=${verifyHash}`
+                    verifyHref: `${APP_DOMAIN}/api/user/verify?key=${encodeURIComponent(verifyHashToken)}`
                 }
             )
         });
     } catch(err) {
-        //TODO: подумать как обрабатывать ошибки
-        console.log(err);
+        //TODO: придумать как обрабатывать ошибки
+        console.log('ошибка отправки верификации почты: ',err);
     }
 }

@@ -23,7 +23,7 @@ export default async function(req: Request<any, any, ILogInBody>, res: Response,
 
             if (!rowCount) throw new Error();
 
-            const { userId, role, verify }: IUserSchema = rows[0];
+            const { id: userId, role, verify }: IUserSchema = rows[0];
             
             try {
                 const { accessToken, refreshToken } = await createSession({
