@@ -24,5 +24,6 @@ export type IApplicationSchema = {
     owner: string
     title: string
     descr: string
-    images: Array<File>
+    images: Array<string>
+    created_at: number
 }

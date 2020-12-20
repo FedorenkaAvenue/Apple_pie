@@ -1,6 +1,7 @@
 -- reset
 
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS applications;
 
 -- schema
 
@@ -14,4 +15,13 @@ CREATE TABLE users (
     verify BOOLEAN DEFAULT false,
     applications CHARACTER[] DEFAULT '{}',
     sketches CHARACTER[] DEFAULT '{}'
+);
+
+CREATE TABLE applications (
+    id CHARACTER(36) PRIMARY KEY UNIQUE,
+    owner CHARACTER(36) NOT NULL,
+    title TEXT NOT NULL,
+    descr TEXT NOT NULL,
+    images TEXT[] CONSTRAINT images NOT NULL,
+    created_at BIGINT NOT NULL
 );
