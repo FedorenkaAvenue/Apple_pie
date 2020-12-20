@@ -2,11 +2,13 @@
 
 |key         |type        |required|unique|condition                      |description                     |
 |:-:         |:-:         |:-:     |:-:   |--                             |--                              |
-|userId      |String      |+       |+     |length: **< 32**               |                                |
-|name        |String      |+       |+     |length: **3** - **20**         |                                |
-|password    |String      |+       |      |length: **< 50**               |                                |
+|id          |String      |+       |+     |                               |                                |
+|name        |String      |+       |+     |                               |                                |
+|password    |String      |+       |      |                               |                                |
 |email       |String      |        |+     |                               |                                |
 |role        |Number      |+       |      |                               |**1** customer<br/> **2** artist|
+|verify      |Bolean      |+       |      |                               |                                |
+|created_at  |Number      |+       |      |                               |                                |
 |applications|Array       |        |      |                               |                                |
 |sketches    |Array       |        |      |                               |                                |
 

@@ -4,7 +4,7 @@
 
 ## Description
 
-Web app for searching tattoo artists tattoo's fans.
+Web app for searching tattoo artists and customers.
 
 ## Deploy
 
@@ -26,7 +26,7 @@ Web app for searching tattoo artists tattoo's fans.
 
  - [server](./server/README.md)
 
-   * [Markdown API](./server/API_DOC.md) or [Swagger API](http://localhost/api/docs)
+   * [Markdown API](./server/API_DOC.md) or [Docker Swagger API](http://localhost/api/docs)
 
  - [redis](./redis/README.md)
 
