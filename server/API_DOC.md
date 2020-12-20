@@ -113,7 +113,7 @@
 
        accessToken: String
 
- * ##### res⛔️ 406 (простроченый refresh токен)
+ * ##### res⛔️ 406 (простроченый refresh токен или сессия не найдена)
 
 </details>
 
@@ -135,14 +135,13 @@
 <a name="add_application"></a>
 
 <details>
-<summary><b>add application👓 (POST <code>api/customer/addapp</code>)</b></summary>
+<summary><b>add application👓 (POST <code>api/customer/application</code>)</b></summary>
 
  * ##### req
 
-       appName: String
-       description: String
+       title: String
+       descr: String
        images: Array<Binary>
-       city: UNKNOWN // пока хз
 
  * ##### res🆗 201
 

@@ -1,22 +1,24 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { IAccessTokenPayload } from '@interfaces/IToken';
+import { IApplicationSchema } from '@interfaces/DB';
 
-export default async function(req: Request, res: Response, next: NextFunction) {
+type IRequestBody = IApplicationSchema & {};
+
+export default async function(req: Request<any, any, IRequestBody>, res: Response, next: NextFunction) {
     const { userId } = res.locals.userTokenPayload as IAccessTokenPayload;
+    const { files, body: { title, descr } } = req;
     
     try {
+        if (!files.length) throw new Error();
 
         try {
-            // const { applications } = (await CUSTOMER_APPLICATIONS_QUERY(userId)).rows[0];
             
-            res.sendStatus(201);
+            res.status(201).json({ files });
         } catch(err) {
             next(err);
         }
     } catch(err) {
-        console.log(err);
-
-        res.sendStatus(408);
+        res.sendStatus(400);
     }
 }

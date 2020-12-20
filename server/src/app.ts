@@ -1,11 +1,8 @@
 import express, { Express } from 'express';
 import { urlencoded, json } from 'body-parser';
 import cookieParser from 'cookie-parser';
-// import multer from 'multer';
 import { serve, setup } from 'swagger-ui-express';
 import swaggerDoc from '../swagger.json';
-
-// const upload = multer({ dest: 'uploads/' });
 
 import errorHandler from '@middleWares/errorHandler';
 import signRouter from '@routers/sign';

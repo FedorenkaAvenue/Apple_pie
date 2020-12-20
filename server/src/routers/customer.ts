@@ -1,11 +1,12 @@
 import { Router } from 'express';
 
-import appList from '@controllers/customer/appList';
-// import addApplication from '@controllers/customer/addApplication';
+import appListController from '@controllers/customer/appList';
+import addApplicationController from '@controllers/customer/addApplication';
+import { diskStorageFileUpload } from '@middleWares/parseFormDataFiles';
 
 const router: Router = Router();
 
-router.get('/applist', appList);
-// router.post('/addapp', addApplication);
+router.get('/applist', appListController);
+router.post('/application', diskStorageFileUpload(), addApplicationController);
 
 export default router;

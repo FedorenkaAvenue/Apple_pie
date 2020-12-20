@@ -6,9 +6,9 @@ services:
     build: ./nginx
     restart: unless-stopped
     ports:
-        - 80:80
+      - 80:80
     volumes:
-        - ./nginx/config:/etc/nginx/conf.d
+      - ./nginx/config:/etc/nginx/conf.d
     depends_on:
       - server
       - client

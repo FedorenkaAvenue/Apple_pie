@@ -6,13 +6,9 @@ import createSession from '@servises/sessions/createSession';
 import verifyEmail from '@servises/email/verifyEmail';
 import { setRefreshToken } from '@crypto/cookie';
 import { getSaltedPassword } from '@crypto/satl';
+import { IUserSchema } from '@interfaces/DB';
 
-type ISignUpBody = {
-    name: string
-    password: string
-    email: string
-    role: number
-}
+type ISignUpBody = IUserSchema & {}
 
 export default async function signUpController(req: Request<any, any, ISignUpBody>, res: Response, next: NextFunction) {
     const { body: { name, password, email, role }, ip } = req;

@@ -22,6 +22,6 @@ export default async function(currentRefreshToken: string, sessionKey: string): 
 
         return ({ accessToken, refreshToken });
     } catch(err) {
-        throw new Error(err);
+        throw new Error(err.message);
     }
 }

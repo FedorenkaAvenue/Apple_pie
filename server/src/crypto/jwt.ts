@@ -37,7 +37,6 @@ export function generateAccessEmailVerifyToken(id: string): string {
     );
 }
 
-// common JWT verify for all kind of tokens
 export function validateToken(
     token: string, secretWord = JWT_AUTH_SECRET_WORD
 ): IAccessTokenPayload | IRefreshTOkenPayload | IVerifyEmailToken {

@@ -18,3 +18,11 @@ export type IUserSchema = {
     applications?: string
     sketches?: string
 }
+
+export type IApplicationSchema = {
+    id: string
+    owner: string
+    title: string
+    descr: string
+    images: Array<File>
+}
