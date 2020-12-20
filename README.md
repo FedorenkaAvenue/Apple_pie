@@ -1,4 +1,4 @@
-# Apple pie
+# Apple pie🥧
 
 ![online](https://img.shields.io/website?url=https://bringmetheaugust.github.io/Apple_pie) ![license](https://img.shields.io/github/license/bringmetheaugust/Apple_pie) ![releaze](https://img.shields.io/github/v/release/bringmetheaugust/Apple_pie) ![realise date](https://img.shields.io/github/release-date/bringmetheaugust/Apple_pie) ![issues](https://img.shields.io/github/issues-raw/bringmetheaugust/Apple_pie) ![PR](https://img.shields.io/github/issues-pr-raw/bringmetheaugust/Apple_pie)
 
@@ -26,7 +26,7 @@ Web app for searching tattoo artists tattoo's fans.
 
  - [server](./server/README.md)
 
-   * [REST api](./server/API_DOC.md)
+   * [Markdown API](./server/API_DOC.md) or [Swagger API](http://localhost/api/docs)
 
  - [redis](./redis/README.md)
 

@@ -1,35 +1,54 @@
 import { sign, verify, TokenExpiredError, JsonWebTokenError } from 'jsonwebtoken';
 
-import { IAccessTokenPayload, IRefreshTOkenPayload, ITokenPair } from '@interfaces/IToken';
+import { IAccessTokenPayload, IRefreshTOkenPayload, ITokenPair, IVerifyEmailToken } from '@interfaces/IToken';
 
-const { JWT_SECRET_WORD, SESSION_EXPIRE_TIME, ACCESS_TOKEN_EXPIRE_TIME } = process.env;
+const {
+    JWT_AUTH_SECRET_WORD, SESSION_EXPIRE_TIME, ACCESS_TOKEN_EXPIRE_TIME,
+    JWT_VERIFY_EMAIL_SECRET_WORD, FAKE_USER_EXPIRE_TIME
+} = process.env;
 
-export function generateTokenPair(userId: string, role: number, sessionKey: string): ITokenPair {
+type IGenerateTokenPair = {
+    userId: string
+    role: number
+    sessionKey: string
+    verify: boolean
+}
+
+export function generateTokenPair({ userId, role, sessionKey, verify }: IGenerateTokenPair): ITokenPair {
     return ({
         accessToken: sign(
-            { userId, role } as IAccessTokenPayload,
-            JWT_SECRET_WORD as string,
+            { userId, role, verify } as IAccessTokenPayload,
+            JWT_AUTH_SECRET_WORD as string,
             { expiresIn: Number(ACCESS_TOKEN_EXPIRE_TIME) }
         ),
         refreshToken: sign(
-            { sessionKey, role } as IRefreshTOkenPayload,
-            JWT_SECRET_WORD as string,
+            { sessionKey } as IRefreshTOkenPayload,
+            JWT_AUTH_SECRET_WORD as string,
             { expiresIn: Number(SESSION_EXPIRE_TIME) }
         )
     });
 }
 
-export function validateToken(token: string): IAccessTokenPayload | IRefreshTOkenPayload {
-    try {
-        return <IRefreshTOkenPayload | IAccessTokenPayload>verify(token, JWT_SECRET_WORD as string);
-    } catch(err) {
-        console.log(err);
+export function generateAccessEmailVerifyToken(id: string): string {
+    return sign(
+        { id } as IVerifyEmailToken,
+        JWT_VERIFY_EMAIL_SECRET_WORD as string,
+        { expiresIn: FAKE_USER_EXPIRE_TIME }
+    );
+}
 
+// common JWT verify for all kind of tokens
+export function validateToken(
+    token: string, secretWord = JWT_AUTH_SECRET_WORD
+): IAccessTokenPayload | IRefreshTOkenPayload | IVerifyEmailToken {
+    try {
+        return verify(token, secretWord as string) as IRefreshTOkenPayload | IAccessTokenPayload | IVerifyEmailToken;
+    } catch(err) {
         switch(true) {
             // case err instanceof TokenExpiredError:
             //     throw new Error('406');
             case err instanceof JsonWebTokenError:
-                throw new Error('418');
+                throw new Error('451');
             default:
                 throw new Error(err);
         }
