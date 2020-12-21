@@ -6,11 +6,13 @@ services:
     build: ./nginx
     restart: unless-stopped
     ports:
-        - 80:80
+      - 80:80
     volumes:
-        - ./nginx/config:/etc/nginx/conf.d
+      - image_hosting:/var/www/images
+      - ./nginx/config:/etc/nginx/conf.d
     depends_on:
-      - root_server
+      - server
+      - client
 
   client:
     container_name: apple_pie_client
@@ -19,46 +21,38 @@ services:
     volumes:
       - ./client:/app
     depends_on:
-      - root_server
+      - server
 
-  root_server:
-    container_name: apple_pie_root_server
-    build: ./root_server
+  server:
+    container_name: apple_pie_server
+    build: ./server
     restart: unless-stopped
     volumes:
-      - ./root_server/src:/app/src
-      - ./root_server/package.json:/app/package.json
-      - ./root_server/yarn.lock:/app/yarn.lock
-      - ./root_server/tsconfig.json:/app/tsconfig.json
+      - image_hosting:/var/www/images
+      - ./server/src:/app/src
+      - ./server/package.json:/app/package.json
+      - ./server/yarn.lock:/app/yarn.lock
+      - ./server/.env:/app/.env
+      - ./server/.dev.env:/app/.dev.env
+      - ./server/swagger.yaml:/app/swagger.yaml
     environment:
-      - APP_PORT=80
-      - AUTH_SERVER_DOMAIN=http://apple_pie_auth_server
-      - PGUSER=postgres
+      - APP_DOMAIN=${APP_DOMAIN}
+      - PGUSER=${POSTGRES_USER}
       - PGHOST=apple_pie_postgres
-      - PGDATABASE=postgres
-      - PGPASSWORD=2700
-      - PGPORT=${PG_PORT}
-      - JWT_SECRET_WORD=${JWT_SECRET_WORD}
-    depends_on:
-      - postgres
-      - redis
-
-  auth_server:
-    container_name: apple_pie_auth_server
-    build: ./auth_server
-    restart: unless-stopped
-    volumes:
-      - ./auth_server/src:/app/src
-      - ./auth_server/package.json:/app/package.json
-      - ./auth_server/yarn.lock:/app/yarn.lock
-    environment:
-      - APP_PORT=80
+      - PGDATABASE=${POSTGRES_DB}
+      - PGPASSWORD=${POSTGRES_PASSWORD}
+      - PGPORT=${POSTGRES_PORT}
       - REDIS_HOST=${REDIS_HOST}
       - REDIS_PORT=${REDIS_PORT}
-      - REDIS_DB_NUMBER=0
-      - JWT_SECRET_WORD=${JWT_SECRET_WORD}
+      - REDIS_SESSION_DB_NUMBER=${REDIS_SESSION_DB_NUMBER}
+      - REDIS_CASH_DB_NUMBER=${REDIS_CASH_DB_NUMBER}
+      - JWT_AUTH_SECRET_WORD=${JWT_AUTH_SECRET_WORD}
+      - JWT_VERIFY_EMAIL_SECRET_WORD=${JWT_VERIFY_EMAIL_SECRET_WORD}
       - SESSION_EXPIRE_TIME=${SESSION_EXPIRE_TIME}
+      - ACCESS_TOKEN_EXPIRE_TIME=${ACCESS_TOKEN_EXPIRE_TIME}
+      - FAKE_USER_EXPIRE_TIME=${FAKE_USER_EXPIRE_TIME}
     depends_on:
+      - postgres
       - redis
 
   postgres:
@@ -66,11 +60,12 @@ services:
     build: ./postgres
     restart: unless-stopped
     volumes:
+      - ./postgres/postgresql.conf:/app/postgresql.conf
       - ./postgres/schema.sql:/app/schema.sql
     ports:
-      - ${PG_PORT}:${PG_PORT} # только для GUI базы
+      - ${POSTGRES_PORT}:${POSTGRES_PORT} # только для GUI базы
     environment:
-      - POSTGRES_PASSWORD=2700
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
   redis:
     container_name: apple_pie_redis
@@ -80,3 +75,6 @@ services:
       - ${REDIS_PORT}:${REDIS_PORT} # только для GUI базы
     volumes:
       - ./redis/redis.conf:/app/redis.conf
+
+volumes:
+  image_hosting:

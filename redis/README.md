@@ -1,4 +1,4 @@
-# Redis DB for @Apple_pie project
+# Redis DB for @Apple🥧pie project
 
 ## Params
 

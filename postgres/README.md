@@ -1,4 +1,4 @@
-# PostgreSQL DB for @Apple_pie project
+# PostgreSQL DB for @Apple🥧pie project
 
 ## Params
 
@@ -15,7 +15,7 @@
 
  * ##### Schema
 
-   * `bash schema_update.sh` update schema
+   * `bash schema_deploy.sh` update schema
 
  * ##### Dump
 

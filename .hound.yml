@@ -1,8 +1,0 @@
-tslint:
-  enabled: true
-
-jshint:
-  esversion: 6
-
-scss:
-  enabled: true
