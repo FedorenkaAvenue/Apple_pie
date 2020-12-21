@@ -21,7 +21,7 @@ export type IUserSchema = {
 
 export type IApplicationSchema = {
     id: string
-    owner: string
+    author: string
     title: string
     descr: string
     images: Array<string>

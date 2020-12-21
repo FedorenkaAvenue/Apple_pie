@@ -141,7 +141,7 @@
 
        title: String
        descr: String
-       images: Array<Binary>
+       images: Array<File>
 
  * ##### res🆗 201
 

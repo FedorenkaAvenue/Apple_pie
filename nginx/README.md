@@ -9,7 +9,12 @@
 ## Params
 
    * **Docker open HTTP/HTTPS port**: `80`
-   * **/var/www/images**: images hosting folder (inside container)
+   * **images hosting folder (container)**: `/var/www/images`
+   * **images hosting folder (local)**: `/var/lib/docker/volumes/apple_pie_image_hosting`
+   * **images hosting tree (`/var/www/images`)**:
+      * **applications**: `/appl`
+      * **sketches**: `/sketch`
+      * **users**: `/user`
 
 ## Tools
 

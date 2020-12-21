@@ -12,6 +12,7 @@ import artistRouter from '@routers/artist';
 import userRouter from '@routers/user';
 import checkAuth from '@middleWares/checkAuth';
 import checkRole from '@middleWares/checkRole';
+import { IS_DEV } from '@src/index';
 
 const app: Express = express();
 
@@ -33,6 +34,6 @@ app.use('/api/sign', signRouter).
 
 app.use(errorHandler);
 
-app.use('/api/docs', serve, setup(swaggerDoc));
+if (IS_DEV) app.use('/api/docs', serve, setup(swaggerDoc));
 
 export default app;

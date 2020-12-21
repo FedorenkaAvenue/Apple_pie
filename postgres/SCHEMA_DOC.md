@@ -12,13 +12,13 @@
 |applications|Array       |        |      |                               |                                |
 |sketches    |Array       |        |      |                               |                                |
 
-<!-- ## applications
+## applications
 
 |key         |type        |required|unique|condition                      |description                 |
 |:-:         |:-:         |:-:     |:-:   |--                             |--                          |
 |id          |String      |+       |+     |                               |                            |
-|author      |String      |+       |      |                               |                            |
+|author      |String      |+       |      |                               |user id                     |
 |title       |String      |+       |      |                               |                            |
 |descr       |String      |        |      |                               |                            |
-|images      |Array       |        |      |                               |                            |
-|offers      |Array       |        |      |                               |                            | -->
+|images      |Array       |        |      |                               |array of image's paths      |
+|created_at  |Number      |        |      |                               |                            |

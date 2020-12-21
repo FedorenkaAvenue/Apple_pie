@@ -7,9 +7,9 @@ export default async function(req: Request, res: Response, next: NextFunction) {
     const { userId } = res.locals.userTokenPayload as IAccessTokenPayload;
     
     try {
-        const { applications } = (await CUSTOMER_APPLICATION_LIST_QUERY(userId)).rows[0];
+        const { rows } = (await CUSTOMER_APPLICATION_LIST_QUERY(userId));
         
-        res.status(200).json({ appList: applications });
+        res.status(200).json({ appList: rows });
     } catch(err) {
         next(err);
     }

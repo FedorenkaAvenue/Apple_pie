@@ -28,7 +28,7 @@ export default async function(req: Request<any, any, IRequestBody>, res: Respons
 
             await ADD_APPLICATION_QUERY({
                 id: applId,
-                owner: userId,
+                author: userId,
                 images: imageHrefArr,
                 created_at: Date.now(),
                 title, descr
