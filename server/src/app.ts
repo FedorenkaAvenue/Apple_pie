@@ -1,11 +1,8 @@
 import express, { Express } from 'express';
 import { urlencoded, json } from 'body-parser';
 import cookieParser from 'cookie-parser';
-// import multer from 'multer';
 import { serve, setup } from 'swagger-ui-express';
 import swaggerDoc from '../swagger.json';
-
-// const upload = multer({ dest: 'uploads/' });
 
 import errorHandler from '@middleWares/errorHandler';
 import signRouter from '@routers/sign';
@@ -15,6 +12,7 @@ import artistRouter from '@routers/artist';
 import userRouter from '@routers/user';
 import checkAuth from '@middleWares/checkAuth';
 import checkRole from '@middleWares/checkRole';
+import { IS_DEV } from '@src/index';
 
 const app: Express = express();
 
@@ -36,6 +34,6 @@ app.use('/api/sign', signRouter).
 
 app.use(errorHandler);
 
-app.use('/api/docs', serve, setup(swaggerDoc));
+if (IS_DEV) app.use('/api/docs', serve, setup(swaggerDoc));
 
 export default app;

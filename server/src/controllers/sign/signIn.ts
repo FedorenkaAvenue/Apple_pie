@@ -6,10 +6,7 @@ import createSession from '@servises/sessions/createSession';
 import { setRefreshToken } from '@crypto/cookie';
 import { IUserSchema } from '@interfaces/DB';
 
-type ILogInBody = {
-    password: string
-    email: string
-}
+type ILogInBody = IUserSchema & {}
 
 export default async function(req: Request<any, any, ILogInBody>, res: Response, next: NextFunction) {
     try {

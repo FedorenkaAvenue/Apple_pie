@@ -4,7 +4,7 @@ import { generateAccessEmailVerifyToken } from '@crypto/jwt';
 
 const { APP_DOMAIN } = process.env;
 
-export default async function(userId: string, email: string) {
+export default async function(userId: string, email: string): Promise<void> {
     const verifyHashToken = generateAccessEmailVerifyToken(userId);
 
     try {

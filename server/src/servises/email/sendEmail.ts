@@ -3,7 +3,7 @@ import Mail from 'nodemailer/lib/mailer';
 import { emailTransporter, MAILING_ACCOUNT} from '@servises/email/index';
 import { IS_DEV } from '@src/index';
 
-interface IMailOptions extends Mail.Options {
+type IMailOptions = Mail.Options & {
     to: string | Array<string>
 }
 

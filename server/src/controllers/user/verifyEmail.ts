@@ -6,11 +6,11 @@ import { IVerifyEmailToken } from '@interfaces/IToken';
 
 const { JWT_VERIFY_EMAIL_SECRET_WORD } = process.env;
 
-type IRequestQueryParams = {
+type IRequestQuery = {
     key: string
 }
 
-export default async function(req: Request<any, any, any, IRequestQueryParams>, res: Response, next: NextFunction) {
+export default async function(req: Request<any, any, any, IRequestQuery>, res: Response, next: NextFunction) {
     const { key } = req.query;
     
     if (!key) return res.sendStatus(400);

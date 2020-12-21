@@ -6,9 +6,10 @@ services:
     build: ./nginx
     restart: unless-stopped
     ports:
-        - 80:80
+      - 80:80
     volumes:
-        - ./nginx/config:/etc/nginx/conf.d
+      - image_hosting:/var/www/images
+      - ./nginx/config:/etc/nginx/conf.d
     depends_on:
       - server
       - client
@@ -27,6 +28,7 @@ services:
     build: ./server
     restart: unless-stopped
     volumes:
+      - image_hosting:/var/www/images
       - ./server/src:/app/src
       - ./server/package.json:/app/package.json
       - ./server/yarn.lock:/app/yarn.lock
@@ -74,3 +76,6 @@ services:
       - ${REDIS_PORT}:${REDIS_PORT} # только для GUI базы
     volumes:
       - ./redis/redis.conf:/app/redis.conf
+
+volumes:
+  image_hosting:
