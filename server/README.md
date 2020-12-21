@@ -12,4 +12,4 @@
 
 ## Docs
 
- * [Markdown RestAPI](./API_DOC.md) or [Swagger RestAPI](http://localhost/api/docs)   
+ * [Swagger RestAPI](http://localhost/api/docs) (local)   

@@ -26,7 +26,7 @@ Web app for searching tattoo artists and customers.
 
  - [server](./server/README.md)
 
-   * [Markdown API](./server/API_DOC.md) or [Docker Swagger API](http://localhost/api/docs)
+   * [Swagger API](http://localhost/api/docs) (local)
 
  - [redis](./redis/README.md)
 

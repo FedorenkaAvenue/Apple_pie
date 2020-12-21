@@ -32,10 +32,9 @@ services:
       - ./server/src:/app/src
       - ./server/package.json:/app/package.json
       - ./server/yarn.lock:/app/yarn.lock
-      - ./server/tsconfig.json:/app/tsconfig.json
       - ./server/.env:/app/.env
       - ./server/.dev.env:/app/.dev.env
-      - ./server/swagger.json:/app/swagger.json
+      - ./server/swagger.yaml:/app/swagger.yaml
     environment:
       - APP_DOMAIN=${APP_DOMAIN}
       - PGUSER=${POSTGRES_USER}
