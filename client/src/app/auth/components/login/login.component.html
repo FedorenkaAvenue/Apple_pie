@@ -1,1 +1,32 @@
-<div>login</div>
+<div *ngIf="form">
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="on">
+        <div class="form-control">
+          <label for="email">
+            email
+            <span class="">* </span>
+          </label>
+          <input
+            type="string"
+            formControlName="email"
+            id="email"
+          />
+          <!--<span class="validation error"></span>-->
+        </div>
+      <div class="form-control">
+        <label for="password">
+          password
+          <span class="">* </span>
+        </label>
+        <input
+          type="string"
+          formControlName="password"
+          id="password"
+        />
+        <!--<span class="validation error"></span>-->
+      </div>
+      <div class="form-btn">
+        <button type="submit" [disabled]="form.invalid">login</button>
+      </div>
+    </form>
+  </div>
+  

@@ -11,6 +11,8 @@ import { AppModule } from './app.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { StateTransferInitializerModule } from '@nguniversal/common';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { InlineStyleModule } from './inline-style/inline-style.module';
+import { InlineStyleComponent } from './inline-style/inline-style.component';
 
 // import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -20,7 +22,7 @@ export function getRequest(): any {
 }
 
 @NgModule({
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent, InlineStyleComponent],
   imports: [
     AppModule,
     StateTransferInitializerModule,
@@ -28,6 +30,7 @@ export function getRequest(): any {
     TranslatesBrowserModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: false }),
     NoopAnimationsModule,
+    InlineStyleModule,
   ],
   providers: [
     {

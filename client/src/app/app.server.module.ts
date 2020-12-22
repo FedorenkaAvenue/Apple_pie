@@ -8,6 +8,8 @@ import { TranslatesServerModule } from '@shared/translates/translates-server';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 import { CookieService, CookieBackendService } from '@gorniv/ngx-universal';
+import { InlineStyleModule } from './inline-style/inline-style.module';
+import { InlineStyleComponent } from './inline-style/inline-style.component';
 
 @NgModule({
   imports: [
@@ -16,9 +18,11 @@ import { CookieService, CookieBackendService } from '@gorniv/ngx-universal';
     ServerModule,
     NoopAnimationsModule,
     ServerTransferStateModule,
-    TranslatesServerModule
+    TranslatesServerModule,
+    InlineStyleModule,
+
 ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent, InlineStyleComponent],
   providers: [
     { provide: CookieService, useClass: CookieBackendService },
   ],
