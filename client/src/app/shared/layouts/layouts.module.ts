@@ -7,10 +7,11 @@ import { FooterComponent } from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { WrapperComponent } from './wrapper/wrapper.component';
-import {MatIconModule} from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { IsAuthorizedModule } from '@shared/directives/is-authorized/is-authorized.module';
 @NgModule({
-  imports: [CommonModule, RouterModule, TranslateModule, MatToolbarModule, MatIconModule],
+  imports: [CommonModule, RouterModule, TranslateModule, MatToolbarModule, MatIconModule, IsAuthorizedModule],
   declarations: [FooterComponent, SidebarComponent, ToolbarComponent, WrapperComponent],
   exports: [FooterComponent, SidebarComponent, ToolbarComponent, WrapperComponent],
 })

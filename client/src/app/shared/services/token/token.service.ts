@@ -12,8 +12,10 @@ export class TokenService {
   setToken(token: any): void {
     this._token = token
   }
-  
+
   getToken(): any {
     return this._token;
   }
+
+  
 }

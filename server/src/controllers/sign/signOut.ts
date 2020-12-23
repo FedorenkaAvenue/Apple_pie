@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
 
 export default function(req: Request, res: Response) {
-    res.redirect('/api/auth/signout');
+    res.redirect(307, '/api/auth/signout');
 }
