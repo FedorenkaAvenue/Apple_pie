@@ -6,8 +6,8 @@ import signOutController from '@controllers/sign/signOut';
 
 const router: Router = Router();
 
-router.post('/signup', signUpController);
-router.post('/signin', signInController);
-router.get('/signout', signOutController);
+router.post('/up', signUpController);
+router.post('/in', signInController);
+router.get('/out', signOutController);
 
 export default router;

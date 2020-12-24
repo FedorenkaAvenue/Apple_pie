@@ -11,16 +11,18 @@ import { IUserSchema } from '@interfaces/DB';
 type ISignUpBody = IUserSchema & {}
 
 export default async function signUpController(req: Request<any, any, ISignUpBody>, res: Response, next: NextFunction) {
-    const { body: { name, password, email, role }, ip } = req;
+    const { body: { password, email, role }, ip } = req;
     const userId: string = uuidv4();
+    const userName = email.trim().split('@')[0];
 
     try {
         try {
             await CREATE_USER_QUERY({
                 id: userId,
+                name: userName,
                 password: getSaltedPassword(password),
                 created_at: Date.now(),
-                name, email, role
+                email, role
             });
         } catch(err) {
             const { code, constraint } = err;

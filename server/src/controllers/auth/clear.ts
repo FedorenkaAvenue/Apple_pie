@@ -16,8 +16,12 @@ export default async function(req: Request, res: Response, next: NextFunction) {
         const { sessionKey } = validateToken(currentRefreshToken) as IRefreshTOkenPayload;
 
         clearRefreshToken.call(res).sendStatus(200);
-        deleteSession(sessionKey);
+        try {
+            deleteSession(sessionKey);
+        } catch(err) {
+            next(err);
+        }
     } catch(err) {
-        next(err);
+        res.sendStatus(406);
     }
 }
