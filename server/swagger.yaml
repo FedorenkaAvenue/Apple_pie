@@ -3,7 +3,7 @@ swagger: '2.0'
 info:
   version: 0.0.1
   title: "@Apple_pie server API doc list"
-  description: 'last update: 21/12/2020 17:57'
+  description: 'last update: 24/12/2020 15:43'
 tags:
 - name: sign
   description: Authentication
@@ -16,7 +16,7 @@ tags:
 - name: user
   description: common user info
 paths:
-  "/sign/signup":
+  "/sign/up":
     post:
       tags:
       - sign
@@ -30,11 +30,6 @@ paths:
       - name: password
         in: body
         description: user password
-        required: true
-        type: string
-      - name: name
-        in: body
-        description: user nickname
         required: true
         type: string
       - name: role
@@ -68,7 +63,7 @@ paths:
             properties:
               field:
                 type: string
-  "/sign/signin":
+  "/sign/in":
     post:
       tags:
       - sign
@@ -94,13 +89,13 @@ paths:
                 type: string
         '406':
           description: Неверныe данные
-  "/sign/signout":
+  "/sign/out":
     get:
       tags:
       - sign
       summary: log out
       responses:
-        '201':
+        '200':
           description: OK
   "/auth/refresh":
     get:
