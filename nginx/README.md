@@ -1,4 +1,4 @@
-# HTTP server (Nginx) for @Apple_pie project
+# HTTP server (Nginx) for @Apple🥧pie project
 
 ## Proxy
 
@@ -8,8 +8,13 @@
 
 ## Params
 
-   * **open HTTP/HTTPS port**: `80`
-   * **/var/www/images**: images hosting folder (inside container)
+   * **Docker open HTTP/HTTPS port**: `80`
+   * **images hosting folder (container)**: `/var/www/images`
+   * **images hosting folder (local)**: `/var/lib/docker/volumes/apple_pie_image_hosting`
+   * **images hosting tree (`/var/www/images`)**:
+      * **applications**: `/appl`
+      * **sketches**: `/sketch`
+      * **users**: `/user`
 
 ## Tools
 

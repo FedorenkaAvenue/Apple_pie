@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
 import refreshTokenController from '@controllers/auth/refresh';
-import signOutController from '@controllers/auth/signOut';
+import clearSessionController from '@controllers/auth/clear';
 
 const router = Router();
 
 router.get('/refresh', refreshTokenController);
-router.get('/signout', signOutController);
+router.get('/clear', clearSessionController);
 
 export default router;

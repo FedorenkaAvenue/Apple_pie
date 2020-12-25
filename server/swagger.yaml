@@ -1,0 +1,268 @@
+---
+swagger: '2.0'
+info:
+  version: 0.0.1
+  title: "@Apple_pie server API doc list"
+  description: 'last update: 24/12/2020 15:43'
+tags:
+- name: sign
+  description: Authentication
+- name: auth
+  description: Authorization
+- name: customer
+  description: customer acts
+- name: artist
+  description: artist acts
+- name: user
+  description: common user info
+paths:
+  "/sign/up":
+    post:
+      tags:
+      - sign
+      summary: registration
+      parameters:
+      - name: email
+        in: body
+        description: user email
+        required: true
+        type: string
+      - name: password
+        in: body
+        description: user password
+        required: true
+        type: string
+      - name: role
+        in: body
+        description: user role
+        required: true
+        schema:
+          type: number
+          enum:
+          - 1
+          - 2
+      responses:
+        '201':
+          description: created
+          schema:
+            type: object
+            properties:
+              accessToken:
+                type: string
+        '406':
+          description: Неверный формат поля
+          schema:
+            type: object
+            properties:
+              field:
+                type: string
+        '409':
+          description: Конфликт существующих данных
+          schema:
+            type: object
+            properties:
+              field:
+                type: string
+  "/sign/in":
+    post:
+      tags:
+      - sign
+      summary: log in
+      parameters:
+      - name: email
+        in: body
+        description: user email
+        required: true
+        type: string
+      - name: password
+        in: body
+        description: user password
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              accessToken:
+                type: string
+        '406':
+          description: Неверныe данные
+  "/sign/out":
+    get:
+      tags:
+      - sign
+      summary: log out
+      responses:
+        '200':
+          description: OK
+  "/auth/refresh":
+    get:
+      tags:
+      - auth
+      summary: get new acccess & refresh tokens
+      responses:
+        '201':
+          description: created
+          schema:
+            type: object
+            properties:
+              accessToken:
+                type: string
+        '406':
+          description: Просроченный или отсутствующий refresh токен
+  "/customer/applist":
+    get:
+      tags:
+      - customer
+      summary: get application list
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/Application"
+        '403':
+          description: Неверная роль
+  "/customer/application":
+    post:
+      tags:
+      - customer
+      summary: create new application
+      consumes:
+      - multipart/form-data
+      parameters:
+      - name: title
+        in: formData
+        description: application title
+        required: true
+        type: string
+      - name: descr
+        in: formData
+        description: application description
+        required: true
+        type: string
+      - name: images
+        in: formData
+        required: true
+        type: array
+        items:
+          type: file
+      responses:
+        '201':
+          description: Created
+        '403':
+          description: Неверная роль
+  "/artist/sketchlist":
+    get:
+      tags:
+      - artist
+      summary: get artist's sketch list
+      responses:
+        '200':
+          description: OK
+        '403':
+          description: Неверная роль
+  "/user/exist":
+    post:
+      tags:
+      - user
+      summary: check existed user data
+      parameters:
+      - name: name
+        in: query
+        description: check if name is existed in DB
+        type: string
+      - name: email
+        in: query
+        description: check if email is existed in DB
+        type: string
+      responses:
+        '200':
+          schema:
+            type: object
+            properties:
+              exists:
+                type: boolean
+definitions:
+  User:
+    type: object
+    properties:
+      id:
+        type: string
+        description: string in uuid format
+        required: true
+      name:
+        type: string
+        required: true
+      email:
+        type: string
+        required: true
+      password:
+        type: string
+        description: encrypted
+        required: true
+      role:
+        type: number
+        enum:
+        - 1
+        - 2
+        required: true
+      created_at:
+        type: number
+        description: user create date
+        required: true
+      applications:
+        type: array
+        items: string
+        description: array of application's id
+        default:
+      sketches:
+        type: array
+        items: string
+        description: array of sketches's id
+        default:
+  Application:
+    type: object
+    properties:
+      id:
+        type: string
+        description: string id in uuid format
+        required: true
+      author:
+        type: string
+        description: user id
+        required: true
+      title:
+        type: string
+        required: true
+      descr:
+        type: string
+        required: true
+      images:
+        type: array
+        items:
+          type: string
+          description: image path
+        required: true
+      created_at:
+        type: string
+        required: true
+  Session:
+    type: object
+    properties:
+      userId:
+        type: String
+      refreshToken:
+        type: String
+      ua:
+        type: String
+        description: browser user agent
+      fingerprint:
+        type: String
+      ip:
+        type: String
+      createAt:
+        type: String

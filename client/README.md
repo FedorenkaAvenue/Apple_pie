@@ -1,6 +1,6 @@
-# Client for @Apple_pie project
+# Web client for @Apple🥧pie project
 
-## How to start
+## Deploy
 - `yarn` or `npm install`
 - `yarn start` or `npm run start` - for client rendering
 - `yarn ssr` or `npm run ssr` - for server-side rendering

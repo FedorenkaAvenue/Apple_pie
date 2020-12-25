@@ -6,10 +6,7 @@ import createSession from '@servises/sessions/createSession';
 import { setRefreshToken } from '@crypto/cookie';
 import { IUserSchema } from '@interfaces/DB';
 
-type ILogInBody = {
-    password: string
-    email: string
-}
+type ILogInBody = IUserSchema & {}
 
 export default async function(req: Request<any, any, ILogInBody>, res: Response, next: NextFunction) {
     try {
@@ -23,11 +20,11 @@ export default async function(req: Request<any, any, ILogInBody>, res: Response,
 
             if (!rowCount) throw new Error();
 
-            const { userId, role }: IUserSchema = rows[0];
+            const { id: userId, role, verify }: IUserSchema = rows[0];
             
             try {
                 const { accessToken, refreshToken } = await createSession({
-                    userId, role, ip,
+                    userId, role, ip, verify,
                     ua: req.get('User-Agent') as string
                 });
 
@@ -36,7 +33,7 @@ export default async function(req: Request<any, any, ILogInBody>, res: Response,
                 next(err);
             }
         } catch(err) {
-            res.sendStatus(403);
+            res.sendStatus(406);
         }
     } catch(err) {
         res.sendStatus(400);

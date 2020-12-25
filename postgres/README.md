@@ -1,4 +1,4 @@
-# PostgreSQL DB for @Apple_pie project
+# PostgreSQL DB for @Apple🥧pie project
 
 ## Params
 

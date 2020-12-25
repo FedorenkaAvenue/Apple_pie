@@ -2,21 +2,23 @@
 
 |key         |type        |required|unique|condition                      |description                     |
 |:-:         |:-:         |:-:     |:-:   |--                             |--                              |
-|userId      |String      |+       |+     |length: **< 32**               |                                |
-|name        |String      |+       |+     |length: **3** - **20**         |                                |
-|password    |String      |+       |      |length: **< 50**               |                                |
+|id          |String      |+       |+     |                               |                                |
+|name        |String      |+       |+     |                               |                                |
+|password    |String      |+       |      |                               |                                |
 |email       |String      |        |+     |                               |                                |
 |role        |Number      |+       |      |                               |**1** customer<br/> **2** artist|
+|verify      |Bolean      |+       |      |                               |                                |
+|created_at  |Number      |+       |      |                               |                                |
 |applications|Array       |        |      |                               |                                |
 |sketches    |Array       |        |      |                               |                                |
 
-<!-- ## applications
+## applications
 
 |key         |type        |required|unique|condition                      |description                 |
 |:-:         |:-:         |:-:     |:-:   |--                             |--                          |
 |id          |String      |+       |+     |                               |                            |
-|author      |String      |+       |      |                               |                            |
+|author      |String      |+       |      |                               |user id                     |
 |title       |String      |+       |      |                               |                            |
 |descr       |String      |        |      |                               |                            |
-|images      |Array       |        |      |                               |                            |
-|offers      |Array       |        |      |                               |                            | -->
+|images      |Array       |        |      |                               |array of image's paths      |
+|created_at  |Number      |        |      |                               |                            |

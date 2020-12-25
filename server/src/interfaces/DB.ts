@@ -8,11 +8,22 @@ export type ISession = {
 }
 
 export type IUserSchema = {
-    userId: string
+    id: string
     role: number
     email: string
     name: string
     password: string
-    applications: string
-    sketches: string
+    created_at: number
+    verify: boolean
+    applications?: string
+    sketches?: string
+}
+
+export type IApplicationSchema = {
+    id: string
+    author: string
+    title: string
+    descr: string
+    images: Array<string>
+    created_at: number
 }

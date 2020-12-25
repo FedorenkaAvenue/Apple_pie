@@ -1,8 +1,9 @@
-# Server for @Apple_pie project
+# Server for @Apple🥧pie project
 
-## Join
+## Params
 
- * **local Docker**: http://localhost (проксирование *Nginx*)
+ * **test mailer account**: `apple_pie_test@outlook.com`
+ * **test mailer password**: `apple_pie_2700`
 
 ## Tools
 
@@ -11,6 +12,4 @@
 
 ## Docs
 
- * [RestAPI](./API_DOC.md)    
- * [Postgres DB schema](../postgres/SCHEMA_DOC.md)    
- * [Redis DB schema (models)](../redis/SCHEMA_DOC.md)    
+ * [Swagger RestAPI](http://localhost/api/docs) (local)   

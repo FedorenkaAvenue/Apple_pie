@@ -6,11 +6,13 @@ services:
     build: ./nginx
     restart: unless-stopped
     ports:
-        - 80:80
+      - 80:80
     volumes:
-        - ./nginx/config:/etc/nginx/conf.d
+      - image_hosting:/var/www/images
+      - ./nginx/config:/etc/nginx/conf.d
     depends_on:
       - server
+      - client
 
   client:
     container_name: apple_pie_client
@@ -26,13 +28,15 @@ services:
     build: ./server
     restart: unless-stopped
     volumes:
+      - image_hosting:/var/www/images
       - ./server/src:/app/src
       - ./server/package.json:/app/package.json
       - ./server/yarn.lock:/app/yarn.lock
-      - ./server/tsconfig.json:/app/tsconfig.json
-      - ./server/swagger.json:/app/swagger.json
+      - ./server/.env:/app/.env
+      - ./server/.dev.env:/app/.dev.env
+      - ./server/swagger.yaml:/app/swagger.yaml
     environment:
-      - APP_PORT=80
+      - APP_DOMAIN=${APP_DOMAIN}
       - PGUSER=${POSTGRES_USER}
       - PGHOST=apple_pie_postgres
       - PGDATABASE=${POSTGRES_DB}
@@ -40,12 +44,13 @@ services:
       - PGPORT=${POSTGRES_PORT}
       - REDIS_HOST=${REDIS_HOST}
       - REDIS_PORT=${REDIS_PORT}
-      - REDIS_SESSION_DB_NUMBER=0
-      - REDIS_CASH_DB_NUMBER=1
-      - JWT_SECRET_WORD=${JWT_SECRET_WORD}
+      - REDIS_SESSION_DB_NUMBER=${REDIS_SESSION_DB_NUMBER}
+      - REDIS_CASH_DB_NUMBER=${REDIS_CASH_DB_NUMBER}
+      - JWT_AUTH_SECRET_WORD=${JWT_AUTH_SECRET_WORD}
+      - JWT_VERIFY_EMAIL_SECRET_WORD=${JWT_VERIFY_EMAIL_SECRET_WORD}
       - SESSION_EXPIRE_TIME=${SESSION_EXPIRE_TIME}
       - ACCESS_TOKEN_EXPIRE_TIME=${ACCESS_TOKEN_EXPIRE_TIME}
-      - COOKIE_REFRESH_TOKEN_NAME=refresh_token
+      - FAKE_USER_EXPIRE_TIME=${FAKE_USER_EXPIRE_TIME}
     depends_on:
       - postgres
       - redis
@@ -70,3 +75,6 @@ services:
       - ${REDIS_PORT}:${REDIS_PORT} # только для GUI базы
     volumes:
       - ./redis/redis.conf:/app/redis.conf
+
+volumes:
+  image_hosting:
