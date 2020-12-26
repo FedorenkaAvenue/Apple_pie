@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  nginx:
+    container_name: apple_pie_nginx
+    build: ./nginx
+    ports:
+      - 80:80
+
+  client:
+    container_name: apple_pie_client
+    build: ./client
+
+  server:
+    container_name: apple_pie_server
+    build: ./server
+    environment:
+      - PGUSER=${POSTGRES_USER}
+      - PGHOST=apple_pie_postgres
+      - PGDATABASE=${POSTGRES_DB}
+      - PGPASSWORD=${POSTGRES_PASSWORD}
+      - PGPORT=${POSTGRES_PORT}
+      - REDIS_HOST=${REDIS_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_SESSION_DB_NUMBER
+      - REDIS_CASH_DB_NUMBER
+      - JWT_AUTH_SECRET_WORD
+      - JWT_VERIFY_EMAIL_SECRET_WORD
+      - SESSION_EXPIRE_TIME
+      - ACCESS_TOKEN_EXPIRE_TIME
+      - FAKE_USER_EXPIRE_TIME
+
+  postgres:
+    container_name: apple_pie_postgres
+    build: ./postgres
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT} # только для GUI базы
+    environment:
+      - POSTGRES_PASSWORD
+
+  redis:
+    container_name: apple_pie_redis
+    build: ./redis
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT} # только для GUI базы
+
+volumes:
+  image_hosting:

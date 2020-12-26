@@ -2,30 +2,18 @@ version: '3.8'
 
 services:
   nginx:
-    container_name: apple_pie_nginx
-    build: ./nginx
     restart: unless-stopped
-    ports:
-      - 80:80
     volumes:
       - image_hosting:/var/www/images
       - ./nginx/config:/etc/nginx/conf.d
-    depends_on:
-      - server
-      - client
 
   client:
-    container_name: apple_pie_client
-    build: ./client
     restart: unless-stopped
     volumes:
       - ./client:/app
-    depends_on:
-      - server
+    command: npm run start
 
   server:
-    container_name: apple_pie_server
-    build: ./server
     restart: unless-stopped
     volumes:
       - image_hosting:/var/www/images
@@ -34,48 +22,19 @@ services:
       - ./server/yarn.lock:/app/yarn.lock
       - ./server/swagger.yaml:/app/swagger.yaml
     environment:
-      - IS_DEV=${IS_DEV}
-      - APP_DOMAIN=${APP_DOMAIN}
-      - PGUSER=${POSTGRES_USER}
-      - PGHOST=apple_pie_postgres
-      - PGDATABASE=${POSTGRES_DB}
-      - PGPASSWORD=${POSTGRES_PASSWORD}
-      - PGPORT=${POSTGRES_PORT}
-      - REDIS_HOST=${REDIS_HOST}
-      - REDIS_PORT=${REDIS_PORT}
-      - REDIS_SESSION_DB_NUMBER=${REDIS_SESSION_DB_NUMBER}
-      - REDIS_CASH_DB_NUMBER=${REDIS_CASH_DB_NUMBER}
-      - JWT_AUTH_SECRET_WORD=${JWT_AUTH_SECRET_WORD}
-      - JWT_VERIFY_EMAIL_SECRET_WORD=${JWT_VERIFY_EMAIL_SECRET_WORD}
-      - SESSION_EXPIRE_TIME=${SESSION_EXPIRE_TIME}
-      - ACCESS_TOKEN_EXPIRE_TIME=${ACCESS_TOKEN_EXPIRE_TIME}
-      - FAKE_USER_EXPIRE_TIME=${FAKE_USER_EXPIRE_TIME}
-      - MAILING_ACCOUNT=${MAILING_ACCOUNT}
-      - MAILING_ACCOUNT_PASSWORD=${MAILING_ACCOUNT_PASSWORD}
-    depends_on:
-      - postgres
-      - redis
+      - IS_DEV=true
+      - APP_DOMAIN=http://localhost
+      - MAILING_ACCOUNT=apple_pie_test@outlook.com
+      - MAILING_ACCOUNT_PASSWORD=apple_pie_2700
+    command: yarn dev
 
   postgres:
-    container_name: apple_pie_postgres
-    build: ./postgres
     restart: unless-stopped
     volumes:
       - ./postgres/postgresql.conf:/app/postgresql.conf
       - ./postgres/schema.sql:/app/schema.sql
-    ports:
-      - ${POSTGRES_PORT}:${POSTGRES_PORT} # только для GUI базы
-    environment:
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
   redis:
-    container_name: apple_pie_redis
-    build: ./redis
     restart: unless-stopped
-    ports:
-      - ${REDIS_PORT}:${REDIS_PORT} # только для GUI базы
     volumes:
       - ./redis/redis.conf:/app/redis.conf
-
-volumes:
-  image_hosting:
