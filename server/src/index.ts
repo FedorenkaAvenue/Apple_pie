@@ -1,7 +1,6 @@
-import 'module-alias/register';
-
 export const { IS_DEV } = process.env; // ! определять перед импортом app
 
+import './_moduleAliases';
 import app from './app';
 
 try {
