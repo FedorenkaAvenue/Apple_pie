@@ -6,4 +6,4 @@ COPY . .
 
 RUN npm install
 
-CMD [ "build", "universal" ]
+CMD [ "npm", "run", "build:universal" ]
