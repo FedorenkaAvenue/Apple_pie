@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "universal-demo": {
+    "apple_pie_client": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -72,22 +72,22 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "universal-demo:build",
+            "browserTarget": "apple_pie_client:build",
             "proxyConfig": "proxy.config.json"
           },
           "configurations": {
             "dev": {
-              "browserTarget": "universal-demo:build:dev"
+              "browserTarget": "apple_pie_client:build:dev"
             },
             "production": {
-              "browserTarget": "universal-demo:build:production"
+              "browserTarget": "apple_pie_client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "universal-demo:build"
+            "browserTarget": "apple_pie_client:build"
           }
         },
         "test": {
@@ -157,25 +157,25 @@
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
           "options": {
-            "browserTarget": "universal-demo:build",
-            "serverTarget": "universal-demo:server"
+            "browserTarget": "apple_pie_client:build",
+            "serverTarget": "apple_pie_client:server"
           },
           "configurations": {
             "production": {
-              "browserTarget": "universal-demo:build:production",
-              "serverTarget": "universal-demo:server:production"
+              "browserTarget": "apple_pie_client:build:production",
+              "serverTarget": "apple_pie_client:server:production"
             },
             "dev": {
-              "browserTarget": "universal-demo:build:dev",
-              "serverTarget": "universal-demo:server:dev"
+              "browserTarget": "apple_pie_client:build:dev",
+              "serverTarget": "apple_pie_client:server:dev"
             }
           }
         },
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "browserTarget": "universal-demo:build:production",
-            "serverTarget": "universal-demo:server:production",
+            "browserTarget": "apple_pie_client:build:production",
+            "serverTarget": "apple_pie_client:server:production",
             "routes": [
               "/"
             ]
@@ -186,7 +186,7 @@
         }
       }
     },
-    "universal-demo-e2e": {
+    "apple_pie_client-e2e": {
       "root": "",
       "sourceRoot": "",
       "projectType": "application",
@@ -195,7 +195,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "universal-demo:serve"
+            "devServerTarget": "apple_pie_client:serve"
           }
         },
         "lint": {
@@ -212,7 +212,7 @@
       }
     }
   },
-  "defaultProject": "universal-demo",
+  "defaultProject": "apple_pie_client",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
