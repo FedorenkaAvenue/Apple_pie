@@ -7,7 +7,8 @@ COPY yarn.lock ./
 COPY typingModules.d.ts ./
 COPY tsconfig.json ./
 
-ENV APP_PORT=80
-ENV COOKIE_REFRESH_TOKEN_NAME=refresh_token
+ENV APP_PORT=80 COOKIE_REFRESH_TOKEN_NAME=refresh_token
 
 RUN yarn
+
+CMD [ "yarn", "dev" ]
