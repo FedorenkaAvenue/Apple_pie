@@ -8,7 +8,7 @@ export function metaFactory(translate: TranslateService): MetaLoader {
     callback: (key: string): Observable<string | Object> => translate.get(key),
     pageTitlePositioning: PageTitlePositioning.PrependPageTitle,
     pageTitleSeparator: ' | ',
-    applicationName: 'loik-proj',
+    applicationName: 'apple_pie_client',
     defaults: {
       title: 'Default page title',
       description: 'Default description',

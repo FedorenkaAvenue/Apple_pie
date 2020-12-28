@@ -1,7 +1,8 @@
 FROM nginx:1.14
 
-COPY config/ /etc/nginx/conf.d/
+RUN rm /etc/nginx/conf.d/default.conf && \
+    mkdir -p /var/www/images/appl && \
+    mkdir -p /var/www/images/sketch && \
+    mkdir -p /var/www/images/user
 
-RUN mkdir -p /var/www/images/appl
-RUN mkdir -p /var/www/images/sketch
-RUN mkdir -p /var/www/images/user
+COPY config/ /etc/nginx/conf.d/
