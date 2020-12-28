@@ -1,0 +1,30 @@
+name: Deploy remote test project
+
+on:
+  push:
+    branches: [test]
+
+jobs:
+  deploy:
+    runs-on: debian
+    steps:
+      - name: Fetch test branch
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{ secrets.TEST_SERVER_HOST }}
+          username: root
+          password: ${{ secrets.TEST_SERVER_SSH_PASSWORD }}
+          script: |
+            cd /apple_pie
+            git reset --hard HEAD
+            git pull origin test
+      - name: Rebuild && up containers
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{ secrets.TEST_SERVER_HOST }}
+          username: root
+          password: ${{ secrets.TEST_SERVER_SSH_PASSWORD }}
+          script: |
+            cd /apple_pie
+            docker-compose down -v
+            docker-compose -f docker-compose.test.yaml up --build -d
