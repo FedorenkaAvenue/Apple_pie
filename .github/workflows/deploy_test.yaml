@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: debian
+    runs-on: linux
     steps:
       - name: Fetch test branch
         uses: appleboy/ssh-action@v0.1.2
