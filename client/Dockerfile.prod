@@ -7,4 +7,4 @@ COPY . .
 RUN npm install && \
 npm run build:universal
 
-CMD [ "dist/main.js" ]
+CMD [ "dist-server/main.js" ]
