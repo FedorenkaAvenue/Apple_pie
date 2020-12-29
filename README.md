@@ -30,7 +30,7 @@ Web app for searching tattoo artists and customers.
 
  - [server](./server/README.md)
 
-   * [Swagger API](http://localhost/api/docs) (local)
+   * [Swagger API](http://185.253.218.139/api/docs) (via remote test server)
 
  - [redis](./redis/README.md)
 

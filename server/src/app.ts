@@ -28,8 +28,6 @@ app.use(urlencoded({ extended: true })).
         next();
     });
 
-app.use('/api/test', (req, res) => res.status(200).json('test 1'));
-
 app.use('/api/sign', signRouter).
     use('/api/auth', cookieParser(), authRouter).
     use('/api/customer', checkAuth, checkRole(1), customerRouter).
