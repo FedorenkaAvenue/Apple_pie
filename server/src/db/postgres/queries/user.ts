@@ -1,20 +1,17 @@
 import { poolDB } from '@db/postgres/index';
 
 import { IUserSchema } from '@interfaces/DB';
+import { QueryResult } from 'pg';
 
-// ! решить как умно переопределить
-//@ts-ignore
-interface ICreateUser extends IUserSchema {
-    verify?: any
-}
+type ICreateUser = Omit<IUserSchema, "verify">;
 
 export const CREATE_USER_QUERY = ({ id, name, password, email, role, created_at }: ICreateUser) => poolDB.query({
     text: 'INSERT INTO users VALUES ($1, $2, $3, $4, $5, $6);',
     values: [ id, name, password, email, role, created_at ]
 });
 
-export const GET_USER_QUERY = (userId: string) => poolDB.query({
-    text: 'SELECT * FROM users WHERE id = $1;',
+export const GET_USER_QUERY = (userId: string) => <Promise<QueryResult<IUserSchema>>>poolDB.query({
+    text: 'SELECT name, role, created_at, verify FROM users WHERE id = $1;',
     values: [ userId ]
 });
 
