@@ -1,7 +1,7 @@
-import { poolDB } from '@db/postgres/index';
-
-import { IUserSchema } from '@interfaces/DB';
 import { QueryResult } from 'pg';
+
+import { poolDB } from '@db/postgres/index';
+import { IUserSchema } from '@interfaces/DB';
 
 type ICreateUser = Omit<IUserSchema, "verify">;
 
@@ -10,10 +10,10 @@ export const CREATE_USER_QUERY = ({ id, name, password, email, role, created_at 
     values: [ id, name, password, email, role, created_at ]
 });
 
-export const GET_USER_QUERY = (userId: string) => <Promise<QueryResult<IUserSchema>>>poolDB.query({
+export const GET_USER_QUERY = (userId: string) => poolDB.query({
     text: 'SELECT name, role, created_at, verify FROM users WHERE id = $1;',
     values: [ userId ]
-});
+}) as Promise<QueryResult<IUserSchema>>;
 
 export const DELETE_USER_QUERY = (userId: string) => poolDB.query({
     text: 'DELETE FROM users WHERE id = $1;',

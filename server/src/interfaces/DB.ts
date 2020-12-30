@@ -27,3 +27,12 @@ export type IApplicationSchema = {
     images: Array<string>
     created_at: number
 }
+
+export type ISketchSchema = {
+    id: string
+    author: string
+    title: string
+    descr: string
+    images: Array<string>
+    created_at: number
+}

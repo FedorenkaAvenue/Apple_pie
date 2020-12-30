@@ -7,9 +7,9 @@ export default async function(req: Request, res: Response, next: NextFunction) {
     const { userId } = res.locals.userTokenPayload as IAccessTokenPayload;
     
     try {
-        const { sketches } = (await ARTIST_SKETCH_LIST_QUERY(userId)).rows[0];
+        const { rows } = (await ARTIST_SKETCH_LIST_QUERY(userId));
         
-        res.status(200).json({ sketchList: sketches });
+        res.status(200).json({ sketchList: rows });
     } catch(err) {
         next(err);
     }

@@ -8,9 +8,7 @@ import { IAccessTokenPayload } from '@interfaces/IToken';
 import { IApplicationSchema } from '@interfaces/DB';
 import { IMulterFile } from '@middleWares/parseFormDataFiles';
 
-type IRequestBody = IApplicationSchema & {};
-
-export default async function(req: Request<any, any, IRequestBody>, res: Response, next: NextFunction) {
+export default async function(req: Request<any, any, IApplicationSchema>, res: Response, next: NextFunction) {
     const { userId } = res.locals.userTokenPayload as IAccessTokenPayload;
     const applId = uuidv4();
     
