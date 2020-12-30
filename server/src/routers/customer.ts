@@ -6,7 +6,8 @@ import { memoryStorageFileUpload } from '@middleWares/parseFormDataFiles';
 
 const router: Router = Router();
 
-router.get('/applist', applListController);
-router.post('/application', memoryStorageFileUpload(), addApplicationController);
+router
+    .get('/applist', applListController)
+    .post('/application', memoryStorageFileUpload(), addApplicationController);
 
 export default router;

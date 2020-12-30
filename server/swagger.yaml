@@ -3,24 +3,26 @@ swagger: '2.0'
 info:
   version: 0.0.1
   title: "@Apple_pie server API doc list"
-  description: 'last update: 24/12/2020 15:43'
+  description: |
+    last update: 31/12/2020 00:06
+    все API сервера начинаются с /api роута
 tags:
 - name: sign
-  description: Authentication
+  description: Аутентификация
 - name: auth
-  description: Authorization
+  description: Авторизация
 - name: customer
-  description: customer acts
+  description: Для потребителя
 - name: artist
-  description: artist acts
+  description: Для тату мастера
 - name: user
-  description: common user info
+  description: Общие данные о пользователях
 paths:
   "/sign/up":
     post:
       tags:
       - sign
-      summary: registration
+      summary: регистрация
       parameters:
       - name: email
         in: body
@@ -101,7 +103,7 @@ paths:
     get:
       tags:
       - auth
-      summary: get new acccess & refresh tokens
+      summary: получить новый access и refresh токены
       responses:
         '201':
           description: created
@@ -116,7 +118,7 @@ paths:
     get:
       tags:
       - customer
-      summary: get application list
+      summary: получить список всех заявок потребителя
       responses:
         '200':
           description: OK
@@ -130,7 +132,7 @@ paths:
     post:
       tags:
       - customer
-      summary: create new application
+      summary: создать заявку
       consumes:
       - multipart/form-data
       parameters:
@@ -159,17 +161,30 @@ paths:
     get:
       tags:
       - artist
-      summary: get artist's sketch list
+      summary: получить все эскизы тату мастера
       responses:
         '200':
           description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/Sketch"
         '403':
           description: Неверная роль
+  "/user/profile":
+    get:
+      tags:
+      - user
+      summary: получить все данные авторизированого пользователя
+      responses:
+        '200':
+          schema:
+            $ref: "#/definitions/User"
   "/user/exist":
     post:
       tags:
       - user
-      summary: check existed user data
+      summary: проверить существуют ли такие данные в DB
       parameters:
       - name: name
         in: query
@@ -216,15 +231,43 @@ definitions:
         required: true
       applications:
         type: array
-        items: string
+        items:
+          $ref: "#/definitions/Application"
         description: array of application's id
-        default:
+        default: []
       sketches:
         type: array
-        items: string
+        items:
+          $ref: "#/definitions/Sketch"
         description: array of sketches's id
-        default:
+        default: []
   Application:
+    type: object
+    properties:
+      id:
+        type: string
+        description: string id in uuid format
+        required: true
+      author:
+        type: string
+        description: user id
+        required: true
+      title:
+        type: string
+        required: true
+      descr:
+        type: string
+        required: true
+      images:
+        type: array
+        items:
+          type: string
+          description: image path
+        required: true
+      created_at:
+        type: string
+        required: true
+  Sketch:
     type: object
     properties:
       id:
