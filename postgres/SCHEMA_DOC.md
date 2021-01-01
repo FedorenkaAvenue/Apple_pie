@@ -9,6 +9,7 @@
 |role        |Number      |+       |      |                               |**1** customer<br/> **2** artist|
 |verify      |Bolean      |+       |      |                               |                                |
 |created_at  |Number      |+       |      |                               |                                |
+|photo       |String      |        |      |                               |user photo url                  |
 |applications|Array       |        |      |                               |                                |
 |sketches    |Array       |        |      |                               |                                |
 

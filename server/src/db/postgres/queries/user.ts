@@ -11,7 +11,12 @@ export const CREATE_USER_QUERY = ({ id, name, password, email, role, created_at 
 });
 
 export const GET_USER_QUERY = (userId: string) => poolDB.query({
-    text: 'SELECT name, role, created_at, verify FROM users WHERE id = $1;',
+    text: 'SELECT * FROM users WHERE id = $1;',
+    values: [ userId ]
+}) as Promise<QueryResult<IUserSchema>>;
+
+export const GET_USER_PREVIEW_QUERY = (userId: string) => poolDB.query({
+    text: 'SELECT id, name, photo FROM users WHERE id = $1;',
     values: [ userId ]
 }) as Promise<QueryResult<IUserSchema>>;
 
