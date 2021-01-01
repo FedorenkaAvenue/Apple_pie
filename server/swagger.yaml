@@ -4,7 +4,7 @@ info:
   version: 0.0.1
   title: "@Apple_pie server API doc list"
   description: |
-    last update: 31/12/2020 00:06
+    last update: 02/01/2021 00:043
     все API сервера начинаются с /api роута
 tags:
 - name: sign
@@ -219,9 +219,6 @@ definitions:
         description: string in uuid format
         required: true
       name:
-        type: string
-        required: true
-      email:
         type: string
         required: true
       role:

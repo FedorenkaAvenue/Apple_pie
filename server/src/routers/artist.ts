@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
-import sketchList from '@controllers/artist/sketchList';
+import sketchListController from '@controllers/artist/sketchList';
 
 const router: Router = Router();
 
-router.get('/sketchlist', sketchList);
+router.get('/sketchlist', sketchListController);
 
 export default router;

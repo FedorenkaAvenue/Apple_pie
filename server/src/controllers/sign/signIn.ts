@@ -26,7 +26,7 @@ export default async function(req: Request<any, any, IUserSchema>, res: Response
                     ua: req.get('User-Agent') as string
                 });
 
-                setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });
+                setRefreshToken.call(res, refreshToken).status(200).send({ accessToken });
             } catch(err) {
                 next(err);
             }

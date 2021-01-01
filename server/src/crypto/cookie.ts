@@ -1,4 +1,4 @@
-import { Response } from "express";
+import { Response } from 'express';
 
 const { SESSION_EXPIRE_TIME, COOKIE_REFRESH_TOKEN_NAME } = process.env;
 const COOKIE_REFRESH_TOKEN_PATH = '/api/auth';
