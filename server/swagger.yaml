@@ -225,6 +225,10 @@ definitions:
         - 1
         - 2
         required: true
+      verify:
+        type: boolean
+        description: user is verified by email
+        required: true
       created_at:
         type: number
         description: user create date
