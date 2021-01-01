@@ -180,6 +180,15 @@ paths:
         '200':
           schema:
             $ref: "#/definitions/User"
+  "/user/preview":
+    get:
+      tags:
+      - user
+      summary: получить преью данные авторизированого пользователя
+      responses:
+        '200':
+          schema:
+            $ref: "#/definitions/UserPreview"
   "/user/exist":
     post:
       tags:
@@ -215,10 +224,6 @@ definitions:
       email:
         type: string
         required: true
-      password:
-        type: string
-        description: encrypted
-        required: true
       role:
         type: number
         enum:
@@ -233,6 +238,9 @@ definitions:
         type: number
         description: user create date
         required: true
+      photo:
+        type: string
+        description: image photo url
       applications:
         type: array
         items:
@@ -245,6 +253,19 @@ definitions:
           $ref: "#/definitions/Sketch"
         description: array of sketches's id
         default: []
+  UserPreview:
+    type: object
+    properties:
+      id:
+        type: string
+        description: string in uuid format
+        required: true
+      name:
+        type: string
+        required: true
+      photo:
+        type: string
+        description: image photo url
   Application:
     type: object
     properties:
