@@ -4,7 +4,7 @@ info:
   version: 0.0.1
   title: "@Apple_pie server API doc list"
   description: |
-    last update: 02/01/2021 00:043
+    last update: 02/01/2021 13:11
     все API сервера начинаются с /api роута
 tags:
 - name: sign
@@ -171,6 +171,17 @@ paths:
               "$ref": "#/definitions/Sketch"
         '403':
           description: Неверная роль
+  "/user/profile/:id":
+    get:
+      tags:
+      - user
+      summary: получить все данные пользователя
+      responses:
+        '200':
+          schema:
+            $ref: "#/definitions/User"
+        '404':
+          description: юзер не найден
   "/user/profile":
     get:
       tags:

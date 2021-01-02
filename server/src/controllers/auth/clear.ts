@@ -7,9 +7,9 @@ import { IRefreshTOkenPayload } from '@interfaces/IToken';
 
 const { COOKIE_REFRESH_TOKEN_NAME } = process.env;
 
-export default async function(req: Request, res: Response, next: NextFunction) {
+export default async function({ cookies }: Request, res: Response, next: NextFunction) {
     try {
-        const currentRefreshToken: string = req.cookies[COOKIE_REFRESH_TOKEN_NAME as string];
+        const currentRefreshToken: string = cookies[COOKIE_REFRESH_TOKEN_NAME as string];
 
         if (!currentRefreshToken) throw new Error('refresh token not found');
 
