@@ -3,11 +3,9 @@ import { NextFunction, Request, Response } from 'express';
 import { EXIST_NAME_QUERY, EXIST_EMAIL_QUERY } from '@db/postgres/queries/user';
 import { IUserSchema } from "@interfaces/DB";
 
-type IRequestQuery = IUserSchema & {}
-
-export default async function(req: Request<any, any, any, IRequestQuery>, res: Response, next: NextFunction) {
+export default async function({ query }: Request<any, any, any, IUserSchema>, res: Response, next: NextFunction) {
     try {
-        const { name, email } = req.query;
+        const { name, email } = query;
 
         switch (true) {
             case typeof name !== 'undefined': {

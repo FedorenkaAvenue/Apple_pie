@@ -171,6 +171,17 @@ paths:
               "$ref": "#/definitions/Sketch"
         '403':
           description: Неверная роль
+  "/user/profile/:id":
+    get:
+      tags:
+      - user
+      summary: получить все данные пользователя
+      responses:
+        '200':
+          schema:
+            $ref: "#/definitions/User"
+        '404':
+          description: юзер не найден
   "/user/profile":
     get:
       tags:
