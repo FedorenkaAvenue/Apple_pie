@@ -2,9 +2,9 @@
 swagger: '2.0'
 info:
   version: 0.0.1
-  title: "@Apple_pie server API doc list"
+  title: '@Apple_pie server API doc list'
   description: |
-    last update: 02/01/2021 13:11
+    last update: 02/01/2021 14:05
     все API сервера начинаются с /api роута
 tags:
 - name: sign
@@ -18,7 +18,7 @@ tags:
 - name: user
   description: Общие данные о пользователях
 paths:
-  "/sign/up":
+  '/sign/up':
     post:
       tags:
       - sign
@@ -65,7 +65,7 @@ paths:
             properties:
               field:
                 type: string
-  "/sign/in":
+  '/sign/in':
     post:
       tags:
       - sign
@@ -91,7 +91,7 @@ paths:
                 type: string
         '406':
           description: Неверныe данные
-  "/sign/out":
+  '/sign/out':
     get:
       tags:
       - sign
@@ -99,7 +99,7 @@ paths:
       responses:
         '200':
           description: OK
-  "/auth/refresh":
+  '/auth/refresh':
     get:
       tags:
       - auth
@@ -114,21 +114,23 @@ paths:
                 type: string
         '406':
           description: Просроченный или отсутствующий refresh токен
-  "/customer/applist":
+  '/customer/applist':
     get:
       tags:
       - customer
       summary: получить список всех заявок потребителя
+      security:
+        - BearerAuth: []
       responses:
         '200':
           description: OK
           schema:
             type: array
             items:
-              "$ref": "#/definitions/Application"
+              '$ref': '#/definitions/Application'
         '403':
           description: Неверная роль
-  "/customer/application":
+  '/customer/application':
     post:
       tags:
       - customer
@@ -152,26 +154,30 @@ paths:
         type: array
         items:
           type: file
+      security:
+        - BearerAuth: []
       responses:
         '201':
           description: Created
         '403':
           description: Неверная роль
-  "/artist/sketchlist":
+  '/artist/sketchlist':
     get:
       tags:
       - artist
       summary: получить все эскизы тату мастера
+      security:
+        - BearerAuth: []
       responses:
         '200':
           description: OK
           schema:
             type: array
             items:
-              "$ref": "#/definitions/Sketch"
+              '$ref': '#/definitions/Sketch'
         '403':
           description: Неверная роль
-  "/user/profile/:id":
+  '/user/profile/:id':
     get:
       tags:
       - user
@@ -179,28 +185,32 @@ paths:
       responses:
         '200':
           schema:
-            $ref: "#/definitions/User"
+            $ref: '#/definitions/User'
         '404':
           description: юзер не найден
-  "/user/profile":
+  '/user/profile':
     get:
       tags:
       - user
       summary: получить все данные авторизированого пользователя
+      security:
+        - BearerAuth: []
       responses:
         '200':
           schema:
-            $ref: "#/definitions/User"
-  "/user/preview":
+            $ref: '#/definitions/User'
+  '/user/preview':
     get:
       tags:
       - user
       summary: получить преью данные авторизированого пользователя
+      security:
+        - BearerAuth: []
       responses:
         '200':
           schema:
-            $ref: "#/definitions/UserPreview"
-  "/user/exist":
+            $ref: '#/definitions/UserPreview'
+  '/user/exist':
     post:
       tags:
       - user
@@ -252,13 +262,13 @@ definitions:
       applications:
         type: array
         items:
-          $ref: "#/definitions/Application"
+          $ref: '#/definitions/Application'
         description: array of application's id
         default: []
       sketches:
         type: array
         items:
-          $ref: "#/definitions/Sketch"
+          $ref: '#/definitions/Sketch'
         description: array of sketches's id
         default: []
   UserPreview:
@@ -342,3 +352,26 @@ definitions:
         type: String
       createAt:
         type: String
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+    # ApiKeyAuth:
+    #   type: apiKey
+    #   in: header
+    #   name: X-API-Key
+    # OpenID:
+    #   type: openIdConnect
+    #   openIdConnectUrl: https://example.com/.well-known/openid-configuration
+    # OAuth2:
+    #   type: oauth2
+    #   flows:
+    #     authorizationCode:
+    #       authorizationUrl: https://example.com/oauth/authorize
+    #       tokenUrl: https://example.com/oauth/token
+    #       scopes:
+    #         read: Grants read access
+    #         write: Grants write access
+    #         admin: Grants access to admin operations
