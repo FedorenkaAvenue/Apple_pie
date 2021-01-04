@@ -37,3 +37,10 @@ services:
     volumes:
       - image_hosting:/var/www/images
       - ./nginx/config:/etc/nginx/conf.d
+
+  z:
+    container_name: apple_pie_z
+    build: ./z
+    restart: unless-stopped
+    volumes:
+      - ./z:/app
