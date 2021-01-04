@@ -5,10 +5,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // libs
-import { CookieService, CookieModule } from '@gorniv/ngx-universal';
+import { CookieService, CookieModule, TransferHttpModule } from '@gorniv/ngx-universal';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 // shared
-import { SharedModule } from '@shared/shared.module';
 import { TranslatesService } from '@shared/translates';
 // components
 import { AppRoutes } from './app.routing';
@@ -17,6 +16,8 @@ import { UniversalStorage } from '@shared/storage/universal.storage';
 // interceptors
 import { TokenInterceptor } from '@shared/interceptors/token.interceptor';
 import { ErrorInterceptor } from '@shared/interceptors/error.interceptor';
+import { LayoutsModule } from '@shared/layouts/layouts.module';
+import { SharedMetaModule } from '@shared/shared-meta';
 
 export function initLanguage(translateService: TranslatesService): Function {
   return (): Promise<any> => translateService.initLanguage();
@@ -31,7 +32,10 @@ export function initLanguage(translateService: TranslatesService): Function {
     AppRoutes,
     BrowserAnimationsModule,
     CookieModule.forRoot(),
-    SharedModule.forRoot(),
+    LayoutsModule,
+    SharedMetaModule,
+    TransferHttpModule
+    // SharedModule.forRoot(),
   ],
   declarations: [AppComponent],
   providers: [

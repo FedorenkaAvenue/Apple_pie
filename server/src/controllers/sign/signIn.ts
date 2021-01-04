@@ -6,9 +6,7 @@ import createSession from '@servises/sessions/createSession';
 import { setRefreshToken } from '@crypto/cookie';
 import { IUserSchema } from '@interfaces/DB';
 
-type ILogInBody = IUserSchema & {}
-
-export default async function(req: Request<any, any, ILogInBody>, res: Response, next: NextFunction) {
+export default async function(req: Request<any, any, IUserSchema>, res: Response, next: NextFunction) {
     try {
         const { body: { email, password }, ip } = req;
         const saltedPassword = getSaltedPassword(password);
@@ -20,7 +18,7 @@ export default async function(req: Request<any, any, ILogInBody>, res: Response,
 
             if (!rowCount) throw new Error();
 
-            const { id: userId, role, verify }: IUserSchema = rows[0];
+            const { id: userId, role, verify } = rows[0];
             
             try {
                 const { accessToken, refreshToken } = await createSession({
@@ -28,7 +26,7 @@ export default async function(req: Request<any, any, ILogInBody>, res: Response,
                     ua: req.get('User-Agent') as string
                 });
 
-                setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });
+                setRefreshToken.call(res, refreshToken).status(200).send({ accessToken });
             } catch(err) {
                 next(err);
             }

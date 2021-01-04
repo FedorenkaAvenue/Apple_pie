@@ -8,14 +8,12 @@ import { IAccessTokenPayload } from '@interfaces/IToken';
 import { IApplicationSchema } from '@interfaces/DB';
 import { IMulterFile } from '@middleWares/parseFormDataFiles';
 
-type IRequestBody = IApplicationSchema & {};
-
-export default async function(req: Request<any, any, IRequestBody>, res: Response, next: NextFunction) {
+export default async function({ files, body }: Request<any, any, IApplicationSchema>, res: Response, next: NextFunction) {
     const { userId } = res.locals.userTokenPayload as IAccessTokenPayload;
     const applId = uuidv4();
     
     try {
-        const { files, body: { title, descr } } = req;
+        const { title, descr } = body;
         
         if (!files.length && !title && !descr) throw new Error();
 

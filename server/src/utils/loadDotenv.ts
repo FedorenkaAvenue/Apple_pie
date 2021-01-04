@@ -1,7 +1,7 @@
-import { config } from 'dotenv';
+// import { config } from 'dotenv';
 
-import { IS_DEV } from '@src/index';
+// import { IS_DEV } from '@src/index';
 
-export default function(): void {
-    config({ path: IS_DEV ? './.dev.env' : './.env' });
-}
+// export default function(): void {
+//     config({ path: IS_DEV ? './.dev.env' : './.env' });
+// }

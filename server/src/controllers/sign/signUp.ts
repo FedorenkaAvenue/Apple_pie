@@ -8,9 +8,7 @@ import { setRefreshToken } from '@crypto/cookie';
 import { getSaltedPassword } from '@crypto/satl';
 import { IUserSchema } from '@interfaces/DB';
 
-type ISignUpBody = IUserSchema & {}
-
-export default async function signUpController(req: Request<any, any, ISignUpBody>, res: Response, next: NextFunction) {
+export default async function signUpController(req: Request<any, any, IUserSchema>, res: Response, next: NextFunction) {
     const { body: { password, email, role }, ip } = req;
     const userId: string = uuidv4();
     const userName = email.trim().split('@')[0];

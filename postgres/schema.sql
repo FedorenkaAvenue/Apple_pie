@@ -13,6 +13,7 @@ CREATE TABLE users (
     role INTEGER CONSTRAINT role CHECK (role > 0 AND role < 3) NOT NULL,
     created_at BIGINT NOT NULL,
     verify BOOLEAN DEFAULT false,
+    photo TEXT DEFAULT null,
     applications CHARACTER(36)[] DEFAULT '{}',
     sketches CHARACTER(36)[] DEFAULT '{}'
 );

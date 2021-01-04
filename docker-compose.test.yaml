@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  postgres:
+    extends:
+      file: docker-compose.override.yaml
+      service: postgres
+    restart: on-failure:5
+
+  redis:
+    extends:
+      file: docker-compose.override.yaml
+      service: redis
+    restart: on-failure:5
+
+  client:
+    extends:
+      file: docker-compose.override.yaml
+      service: client
+    build:
+      context: ./client
+      dockerfile: Dockerfile.prod
+    restart: on-failure:5
+
+  server:
+    extends:
+      file: docker-compose.override.yaml
+      service: server
+    build:
+      context: ./server
+      dockerfile: Dockerfile.prod
+    restart: on-failure:5
+    environment:
+      - IS_DEV=true
+      - APP_DOMAIN=http://185.253.218.139
+      - MAILING_ACCOUNT=apple_pie_test@outlook.com
+      - MAILING_ACCOUNT_PASSWORD=apple_pie_2700
+
+  nginx:
+    extends:
+      file: docker-compose.override.yaml
+      service: nginx
+    restart: on-failure:5

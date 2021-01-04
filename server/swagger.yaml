@@ -2,25 +2,27 @@
 swagger: '2.0'
 info:
   version: 0.0.1
-  title: "@Apple_pie server API doc list"
-  description: 'last update: 24/12/2020 15:43'
+  title: '@Apple_pie server API doc list'
+  description: |
+    last update: 02/01/2021 14:05
+    все API сервера начинаются с /api роута
 tags:
 - name: sign
-  description: Authentication
+  description: Аутентификация
 - name: auth
-  description: Authorization
+  description: Авторизация
 - name: customer
-  description: customer acts
+  description: Для потребителя
 - name: artist
-  description: artist acts
+  description: Для тату мастера
 - name: user
-  description: common user info
+  description: Общие данные о пользователях
 paths:
-  "/sign/up":
+  '/sign/up':
     post:
       tags:
       - sign
-      summary: registration
+      summary: регистрация
       parameters:
       - name: email
         in: body
@@ -63,7 +65,7 @@ paths:
             properties:
               field:
                 type: string
-  "/sign/in":
+  '/sign/in':
     post:
       tags:
       - sign
@@ -89,7 +91,7 @@ paths:
                 type: string
         '406':
           description: Неверныe данные
-  "/sign/out":
+  '/sign/out':
     get:
       tags:
       - sign
@@ -97,11 +99,11 @@ paths:
       responses:
         '200':
           description: OK
-  "/auth/refresh":
+  '/auth/refresh':
     get:
       tags:
       - auth
-      summary: get new acccess & refresh tokens
+      summary: получить новый access и refresh токены
       responses:
         '201':
           description: created
@@ -112,25 +114,27 @@ paths:
                 type: string
         '406':
           description: Просроченный или отсутствующий refresh токен
-  "/customer/applist":
+  '/customer/applist':
     get:
       tags:
       - customer
-      summary: get application list
+      summary: получить список всех заявок потребителя
+      security:
+        - BearerAuth: []
       responses:
         '200':
           description: OK
           schema:
             type: array
             items:
-              "$ref": "#/definitions/Application"
+              '$ref': '#/definitions/Application'
         '403':
           description: Неверная роль
-  "/customer/application":
+  '/customer/application':
     post:
       tags:
       - customer
-      summary: create new application
+      summary: создать заявку
       consumes:
       - multipart/form-data
       parameters:
@@ -150,26 +154,67 @@ paths:
         type: array
         items:
           type: file
+      security:
+        - BearerAuth: []
       responses:
         '201':
           description: Created
         '403':
           description: Неверная роль
-  "/artist/sketchlist":
+  '/artist/sketchlist':
     get:
       tags:
       - artist
-      summary: get artist's sketch list
+      summary: получить все эскизы тату мастера
+      security:
+        - BearerAuth: []
       responses:
         '200':
           description: OK
+          schema:
+            type: array
+            items:
+              '$ref': '#/definitions/Sketch'
         '403':
           description: Неверная роль
-  "/user/exist":
+  '/user/profile/:id':
+    get:
+      tags:
+      - user
+      summary: получить все данные пользователя
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/User'
+        '404':
+          description: юзер не найден
+  '/user/profile':
+    get:
+      tags:
+      - user
+      summary: получить все данные авторизированого пользователя
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/User'
+  '/user/preview':
+    get:
+      tags:
+      - user
+      summary: получить преью данные авторизированого пользователя
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/UserPreview'
+  '/user/exist':
     post:
       tags:
       - user
-      summary: check existed user data
+      summary: проверить существуют ли такие данные в DB
       parameters:
       - name: name
         in: query
@@ -197,34 +242,75 @@ definitions:
       name:
         type: string
         required: true
-      email:
-        type: string
-        required: true
-      password:
-        type: string
-        description: encrypted
-        required: true
       role:
         type: number
         enum:
         - 1
         - 2
         required: true
+      verify:
+        type: boolean
+        description: user is verified by email
+        required: true
       created_at:
         type: number
         description: user create date
         required: true
+      photo:
+        type: string
+        description: image photo url
       applications:
         type: array
-        items: string
+        items:
+          $ref: '#/definitions/Application'
         description: array of application's id
-        default:
+        default: []
       sketches:
         type: array
-        items: string
+        items:
+          $ref: '#/definitions/Sketch'
         description: array of sketches's id
-        default:
+        default: []
+  UserPreview:
+    type: object
+    properties:
+      id:
+        type: string
+        description: string in uuid format
+        required: true
+      name:
+        type: string
+        required: true
+      photo:
+        type: string
+        description: image photo url
   Application:
+    type: object
+    properties:
+      id:
+        type: string
+        description: string id in uuid format
+        required: true
+      author:
+        type: string
+        description: user id
+        required: true
+      title:
+        type: string
+        required: true
+      descr:
+        type: string
+        required: true
+      images:
+        type: array
+        items:
+          type: string
+          description: image path
+        required: true
+      created_at:
+        type: string
+        required: true
+  Sketch:
     type: object
     properties:
       id:
@@ -266,3 +352,26 @@ definitions:
         type: String
       createAt:
         type: String
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+    # ApiKeyAuth:
+    #   type: apiKey
+    #   in: header
+    #   name: X-API-Key
+    # OpenID:
+    #   type: openIdConnect
+    #   openIdConnectUrl: https://example.com/.well-known/openid-configuration
+    # OAuth2:
+    #   type: oauth2
+    #   flows:
+    #     authorizationCode:
+    #       authorizationUrl: https://example.com/oauth/authorize
+    #       tokenUrl: https://example.com/oauth/token
+    #       scopes:
+    #         read: Grants read access
+    #         write: Grants write access
+    #         admin: Grants access to admin operations

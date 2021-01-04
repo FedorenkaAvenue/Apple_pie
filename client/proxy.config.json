@@ -1,6 +1,6 @@
 {
     "/api/*": {
-        "target": "https://apple-pie-server.herokuapp.com",
+        "target": "/",
         "secure": false,
         "changeOrigin": true,
         "logLevel": "debug"
