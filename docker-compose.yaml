@@ -38,9 +38,9 @@ services:
       - image_hosting:/var/www/images
       - ./nginx/config:/etc/nginx/conf.d
 
-  z:
-    container_name: apple_pie_z
-    build: ./z
+  v2:
+    container_name: apple_pie_v2
+    build: ./v2
     restart: unless-stopped
     volumes:
-      - ./z:/app
+      - ./v2:/app
