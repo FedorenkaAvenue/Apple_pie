@@ -3,6 +3,7 @@
 ## Proxy
 
    * `/` client
+   * `/v2` test client
    * `/api` server
    * `/images` image hosting
 
