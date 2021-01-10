@@ -36,6 +36,8 @@ services:
       - SESSION_EXPIRE_TIME
       - ACCESS_TOKEN_EXPIRE_TIME
       - FAKE_USER_EXPIRE_TIME
+      - GOOGLE_OAUTH_ID
+      - GOOGLE_OAUTH_KEY
 
   nginx:
     container_name: apple_pie_nginx
