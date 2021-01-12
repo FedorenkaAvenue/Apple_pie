@@ -42,3 +42,5 @@ services:
     restart: unless-stopped
     volumes:
       - ./v2:/app
+    environment:
+      - IS_DEV=true
