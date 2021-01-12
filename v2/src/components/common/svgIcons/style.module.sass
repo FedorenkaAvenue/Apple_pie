@@ -1,0 +1,52 @@
+@import '../../../styles/_variables'
+@import '../../../styles/_mixins'
+    
+.button
+    position: relative
+    +flex()
+
+    .title
+        +absolute($bottom: -14px)
+        font-size: 12px
+        font-weight: bold
+
+    @media only screen and (max-width: 1024px)
+        .title
+            font-size: 10px
+
+.circle
+    fill: none
+    stroke: $white-color
+    stroke-width: 5px
+
+.triangle
+    fill: $white-color
+
+.square
+    fill: $white-color
+
+.cross line
+    fill: none
+    stroke: $white-color
+    stroke-width: 28
+    stroke-linecap: round
+    stroke-linejoin: round
+    stroke-miterlimit: 2.6131
+
+.photo > *
+    fill: none
+    stroke: $white-color
+    stroke-linecap: round
+    stroke-linejoin: round
+    stroke-miterlimit: 10
+    stroke-width: 10
+
+.preloader
+    pointer-events: none
+    z-index: -1
+    +absolute($top: calc(50% - 20px), $left: calc(50% - 20px))
+    fill: $white-color
+    
+.with-drop-shadow
+    filter: drop-shadow(0 0 0 transparent)
+    transition: filter .3s
