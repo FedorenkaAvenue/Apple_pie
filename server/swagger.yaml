@@ -4,7 +4,7 @@ info:
   version: 0.0.1
   title: '@Apple_pie server API doc list'
   description: |
-    last update: 02/01/2021 14:05
+    last update: 13/01/2021 00:41
     все API сервера начинаются с /api роута
 tags:
 - name: sign
@@ -18,11 +18,11 @@ tags:
 - name: user
   description: Общие данные о пользователях
 paths:
-  '/sign/up':
+  '/sign/up/email':
     post:
       tags:
       - sign
-      summary: регистрация
+      summary: регистрация через email
       parameters:
       - name: email
         in: body
@@ -39,10 +39,7 @@ paths:
         description: user role
         required: true
         schema:
-          type: number
-          enum:
-          - 1
-          - 2
+          '$ref': '#/definitions/UserType'
       responses:
         '201':
           description: created
@@ -65,11 +62,11 @@ paths:
             properties:
               field:
                 type: string
-  '/sign/in':
+  '/sign/in/email':
     post:
       tags:
       - sign
-      summary: log in
+      summary: log in через email
       parameters:
       - name: email
         in: body
@@ -352,6 +349,11 @@ definitions:
         type: String
       createAt:
         type: String
+  UserType:
+    type: number
+    enum:
+      - 1
+      - 2
 
 components:
   securitySchemes:
