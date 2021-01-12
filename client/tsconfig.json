@@ -8,6 +8,7 @@
         "app/shared/*"
       ]
     },
+    "types": ["gapi.auth2"],
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,

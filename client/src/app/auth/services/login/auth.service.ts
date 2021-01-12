@@ -19,7 +19,7 @@ export class AuthService {
   ) { }
 
   signUp(signUpDTO: any): Observable<any> {
-    return this._http.post(`${this.apiUrl}/signup`, signUpDTO)
+    return this._http.post(`${this.apiUrl}/up`, signUpDTO)
     .pipe(
       tap(token => {
         this._localStorageService.setItem('auth-token', token);
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   signIn(signInDTO: any): Observable<any> {
-    return this._http.post(`${this.apiUrl}/signin`, signInDTO)
+    return this._http.post(`${this.apiUrl}/in`, signInDTO)
     .pipe(
       tap(token => this.doLoginUser(token)),
       catchError(error => {
