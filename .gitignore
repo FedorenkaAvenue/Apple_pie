@@ -1,6 +1,5 @@
 # common
 node_modules
-v2/
 
 # client
 # See http://help.github.com/ignore-files/ for more about ignoring files.
@@ -16,3 +15,6 @@ client/prerender.js
 # server
 server/API_DOC.md
 server/build
+
+# v2
+v2/.next

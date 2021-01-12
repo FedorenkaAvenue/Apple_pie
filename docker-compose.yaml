@@ -39,8 +39,6 @@ services:
       - ./nginx/config:/etc/nginx/conf.d
 
   v2:
-    container_name: apple_pie_v2
-    build: ./v2
     restart: unless-stopped
     volumes:
       - ./v2:/app

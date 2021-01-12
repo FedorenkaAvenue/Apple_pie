@@ -45,5 +45,12 @@ services:
     ports:
       - 80:80
 
+  v2:
+    container_name: apple_pie_v2
+    build: ./v2
+    environment:
+      - GOOGLE_OAUTH_ID
+      - GOOGLE_OAUTH_KEY
+
 volumes:
   image_hosting:

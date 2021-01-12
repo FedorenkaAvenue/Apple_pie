@@ -36,6 +36,17 @@ services:
       - MAILING_ACCOUNT=apple_pie_test@outlook.com
       - MAILING_ACCOUNT_PASSWORD=apple_pie_2700
 
+  v2:
+    extends:
+      file: docker-compose.override.yaml
+      service: v2
+    build:
+      context: ./v2
+      dockerfile: Dockerfile.prod
+    restart: on-failure:5
+    environment:
+      - IS_DEV=true
+
   nginx:
     extends:
       file: docker-compose.override.yaml
