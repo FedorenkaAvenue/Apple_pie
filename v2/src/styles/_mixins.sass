@@ -1,0 +1,37 @@
+=bi($url: none, $bs: cover, $bp: center center)
+	background-image: url($url)
+	background-size: $bs
+	background-position: $bp
+	background-repeat: no-repeat
+
+=flex($jc: center, $ai: center, $dir: row)
+	display: flex
+	justify-content: $jc
+	align-items: $ai
+	flex-direction: $dir
+
+=grid($gpx: 0, $gaf: column)
+	display: grid
+	grid-gap: $gpx
+	grid-auto-flow: $gaf
+
+=absolute($top :null, $bottom :null, $left :null, $right :null)
+	position: absolute
+	top: $top
+	bottom: $bottom
+	left: $left
+	right: $right
+
+=relative($top :null, $bottom :null, $left :null, $right :null)
+	position: relative
+	top: $top
+	bottom: $bottom
+	left: $left
+	right: $right
+
+=fixed($top :null, $bottom :null, $left :null, $right :null)
+	position: fixed
+	top: $top
+	bottom: $bottom
+	left: $left
+	right: $right
