@@ -12,4 +12,4 @@
 
 ## Docs
 
- * [Swagger RestAPI](http://localhost/api/docs) (local)   
+ * [Swagger RestAPI](http://apple-pie.fun/api/docs)    

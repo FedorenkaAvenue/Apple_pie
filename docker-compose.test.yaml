@@ -32,9 +32,11 @@ services:
     restart: on-failure:5
     environment:
       - IS_DEV=true
-      - APP_DOMAIN=http://185.253.218.139
+      - APP_DOMAIN=http://apple-pie.fun
       - MAILING_ACCOUNT=apple_pie_test@outlook.com
       - MAILING_ACCOUNT_PASSWORD=apple_pie_2700
+      - GOOGLE_OAUTH_ID=535551783086-ptn15am3ih5s790gq3fhiqd7ij2eg1nk.apps.googleusercontent.com
+      - GOOGLE_OAUTH_KEY=07Dwh0gkfMz-lkesy4K7YxW8
 
   nginx:
     extends:
