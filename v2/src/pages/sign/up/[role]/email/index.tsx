@@ -5,8 +5,9 @@ import { useRouter } from 'next/router';
 import css from './index.module.sass';
 import TextInput from '@components/common/InputText';
 import Button from '@components/common/Button';
-import { signUpEmail } from '@actions/sign';
+// import { signUp } from '@actions/sign';
 import getUserTypeByName from '@utils/getUserTypeByName';
+import SIGN_TYPE from '@constants/signType';
 
 type IFormState = {
     email: string
@@ -21,7 +22,16 @@ export default function SignUpEmail() {
     const sign = useCallback((e: FormEvent) => {
         e.preventDefault();
         
-        dispatch(signUpEmail(form.email, form.password, getUserTypeByName(query.role as string)));
+        // dispatch(
+        //     // signUp(
+        //     //     SIGN_TYPE.EMAIL,
+        //     //     {
+        //     //         email: form.email,
+        //     //         password: form.password,
+        //     //         role: getUserTypeByName(query.role as string)
+        //     //     }
+        //     // )
+        // );
     }, [form]);
 
     return (

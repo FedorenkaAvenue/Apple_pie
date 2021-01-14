@@ -1,12 +1,11 @@
 import { all, takeLatest } from 'redux-saga/effects';
 
-import { signUpEmailSaga } from './saga/sign';
 // import { loadProfileSaga } from './saga/profile';
-import { SIGN_ACTION, PROFILE_ACTION } from '@constants/actionTypes';
+// import { SIGN_ACTION, PROFILE_ACTION } from '@constants/actionTypes';
 
 export default function* rootSaga() {
     yield all([
-        takeLatest(SIGN_ACTION.SIGN_UP_EMAIL, signUpEmailSaga),
+        // takeLatest(SIGN_ACTION.SIGN_UP, signUpSaga),
         // takeLatest(PROFILE_ACTION.LOAD_PROFILE_SAGA, loadProfileSaga)
     ]);
 }
