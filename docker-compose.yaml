@@ -42,5 +42,6 @@ services:
     restart: unless-stopped
     volumes:
       - ./v2:/app
+      - ./ssl:/ssl
     environment:
       - IS_DEV=true

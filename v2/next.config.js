@@ -1,6 +1,7 @@
 module.exports = {
     env:  {
-        GOOGLE_OAUTH_ID: process.env.GOOGLE_OAUTH_ID
+        GOOGLE_OAUTH_ID: process.env.GOOGLE_OAUTH_ID,
+        FACEBOOK_OAUTH_ID: process.env.FACEBOOK_OAUTH_ID
     },
     async redirects() {
         return [
