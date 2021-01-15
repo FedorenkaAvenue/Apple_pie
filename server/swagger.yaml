@@ -24,6 +24,11 @@ paths:
       - sign
       summary: регистрация через email
       parameters:
+      - name: name
+        in: body
+        description: user name
+        required: true
+        type: string
       - name: email
         in: body
         description: user email
@@ -48,12 +53,42 @@ paths:
             properties:
               accessToken:
                 type: string
-        '406':
-          description: Неверный формат поля
+        '409':
+          description: Конфликт существующих данных
           schema:
             type: object
             properties:
               field:
+                type: string
+  '/sign/up/google':
+    post:
+      tags:
+      - sign
+      summary: регистрация через google
+      parameters:
+      - name: name
+        in: body
+        description: user name
+        required: false
+        type: string
+      - name: credentials
+        in: body
+        description: google tokenId
+        required: true
+        type: string
+      - name: role
+        in: body
+        description: user role
+        required: true
+        schema:
+          '$ref': '#/definitions/UserType'
+      responses:
+        '201':
+          description: created
+          schema:
+            type: object
+            properties:
+              accessToken:
                 type: string
         '409':
           description: Конфликт существующих данных
@@ -86,8 +121,29 @@ paths:
             properties:
               accessToken:
                 type: string
-        '406':
+        '403':
           description: Неверныe данные
+  '/sign/in/google':
+    post:
+      tags:
+      - sign
+      summary: log in через google
+      parameters:
+      - name: credentials
+        in: body
+        description: google tokenId
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              accessToken:
+                type: string
+        '403':
+          description: Пользователь не зарегистрирован
   '/sign/out':
     get:
       tags:

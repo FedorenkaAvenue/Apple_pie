@@ -3,7 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { validateToken } from '@crypto/jwt';
 import { clearRefreshToken } from '@crypto/cookie';
 import deleteSession from '@servises/sessions/deleteSession';
-import { IRefreshTOkenPayload } from '@interfaces/IToken';
+import { IRefreshTOkenPayload } from '@interfaces/Token';
 
 const { COOKIE_REFRESH_TOKEN_NAME } = process.env;
 

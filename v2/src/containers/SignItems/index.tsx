@@ -1,17 +1,16 @@
 import { useCallback } from 'react';
 import { useRouter } from 'next/router';
-import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin, GoogleLoginResponse } from 'react-google-login';
 
 import css from './index.module.sass';
 import Link from '@components/common/Link';
 import Button from '@components/common/Button';
+import { IProps } from './interface';
 
-export default function SignItems() {
+export default function SignItems({ googleHandler }: IProps) {
     const { asPath } = useRouter();
 
-    const googleRes = useCallback(response => {
-        console.log(response);
-    }, []);
+    const googleRes = useCallback((response: GoogleLoginResponse) => googleHandler(response), []);
 
     return (
         <div className={css.index}>

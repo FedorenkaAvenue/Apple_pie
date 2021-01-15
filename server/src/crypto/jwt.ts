@@ -1,6 +1,6 @@
 import { sign, verify, TokenExpiredError, JsonWebTokenError } from 'jsonwebtoken';
 
-import { IAccessTokenPayload, IRefreshTOkenPayload, ITokenPair, IVerifyEmailToken } from '@interfaces/IToken';
+import { IAccessTokenPayload, IRefreshTOkenPayload, ITokenPair, IVerifyEmailToken } from '@interfaces/Token';
 
 const {
     JWT_AUTH_SECRET_WORD, SESSION_EXPIRE_TIME, ACCESS_TOKEN_EXPIRE_TIME,

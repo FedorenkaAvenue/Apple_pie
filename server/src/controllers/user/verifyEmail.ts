@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 
 import { UPDATE_USER_FIELD_QUERY } from '@db/postgres/queries/user';
 import { validateToken } from '@crypto/jwt';
-import { IVerifyEmailToken } from '@interfaces/IToken';
+import { IVerifyEmailToken } from '@interfaces/Token';
 
 const { JWT_VERIFY_EMAIL_SECRET_WORD } = process.env;
 

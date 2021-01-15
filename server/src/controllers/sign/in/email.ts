@@ -1,20 +1,20 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { LOGIN_QUERY } from '@db/postgres/queries/sign';
+import { SIGN_IN_EMAIL_QUERY } from '@db/postgres/queries/sign';
 import { getSaltedPassword } from '@crypto/satl';
 import createSession from '@servises/sessions/createSession';
 import { setRefreshToken } from '@crypto/cookie';
-import { IUserSchema } from '@interfaces/DB';
+import IUser from '@interfaces/User';
 
-export default async function(req: Request<any, any, IUserSchema>, res: Response, next: NextFunction) {
+export default async function(req: Request<any, any, IUser>, res: Response, next: NextFunction) {
     try {
         const { body: { email, password }, ip } = req;
-        const saltedPassword = getSaltedPassword(password);
+        const saltedPassword = getSaltedPassword(password as string);
 
         if (!email && !password) throw new Error();
 
         try {
-            const { rows, rowCount } = await LOGIN_QUERY(email, saltedPassword);
+            const { rows, rowCount } = await SIGN_IN_EMAIL_QUERY(email, saltedPassword);
 
             if (!rowCount) throw new Error();
 
@@ -31,7 +31,7 @@ export default async function(req: Request<any, any, IUserSchema>, res: Response
                 next(err);
             }
         } catch(err) {
-            res.sendStatus(406);
+            res.sendStatus(403);
         }
     } catch(err) {
         res.sendStatus(400);

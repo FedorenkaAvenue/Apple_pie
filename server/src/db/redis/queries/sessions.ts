@@ -1,5 +1,5 @@
 import redisClient from '@db/redis/index';
-import { ISession } from '@interfaces/DB';
+import ISession from '@interfaces/Session';
 
 type ICreateSessionArgs = {
     sessionKey: string

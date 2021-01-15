@@ -7,13 +7,14 @@ DROP TABLE IF EXISTS applications CASCADE;
 
 CREATE TABLE users (
     id CHARACTER(36) PRIMARY KEY UNIQUE,
+    acc_type INTEGER CHECK (acc_type > 0 AND acc_type < 4) NOT NULL,
     name CHARACTER VARYING(20) CONSTRAINT name NOT NULL,
-    password CHARACTER VARYING(50) NOT NULL,
+    password CHARACTER VARYING(50) DEFAULT NULL,
     email CHARACTER VARYING(30) CONSTRAINT email UNIQUE,
     role INTEGER CONSTRAINT role CHECK (role > 0 AND role < 3) NOT NULL,
     created_at BIGINT NOT NULL,
     verify BOOLEAN DEFAULT false,
-    photo TEXT DEFAULT null,
+    photo TEXT DEFAULT NULL,
     applications CHARACTER(36)[] DEFAULT '{}',
     sketches CHARACTER(36)[] DEFAULT '{}'
 );

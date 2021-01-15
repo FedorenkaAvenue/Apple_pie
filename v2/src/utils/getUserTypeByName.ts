@@ -1,6 +1,6 @@
 import UserTypes from '@constants/userTypes';
 
-export default function(userType: string): number {
+export default function getUserTypeByName(userType: string): number {
     switch(userType) {
         case 'customer':
             return UserTypes.CUSTOMER_TYPE;
