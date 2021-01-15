@@ -7,8 +7,9 @@ DROP TABLE IF EXISTS applications CASCADE;
 
 CREATE TABLE users (
     id CHARACTER(36) PRIMARY KEY UNIQUE,
+    acc_type INTEGER CONSTRAINT acc_type CHECK (acc_type > 0 AND acc_type < 4) NOT NULL,
     name CHARACTER VARYING(20) CONSTRAINT name NOT NULL,
-    password CHARACTER VARYING(50) NOT NULL,
+    password CHARACTER VARYING(50) CHECK (acc_type = 1) DEFAULT NULL,
     email CHARACTER VARYING(30) CONSTRAINT email UNIQUE,
     role INTEGER CONSTRAINT role CHECK (role > 0 AND role < 3) NOT NULL,
     created_at BIGINT NOT NULL,

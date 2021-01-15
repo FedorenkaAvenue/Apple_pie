@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 
 import { validateToken } from '@crypto/jwt';
-import { IAccessTokenPayload } from '@interfaces/IToken';
+import { IAccessTokenPayload } from '@interfaces/Token';
 
 export default function(req: Request, res: Response, next: NextFunction): void {
     try {

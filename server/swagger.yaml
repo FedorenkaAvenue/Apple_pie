@@ -24,6 +24,11 @@ paths:
       - sign
       summary: регистрация через email
       parameters:
+      - name: name
+        in: body
+        description: user name
+        required: true
+        type: string
       - name: email
         in: body
         description: user email

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { ARTIST_SKETCH_LIST_QUERY } from '@db/postgres/queries/artist';
-import { IAccessTokenPayload } from '@interfaces/IToken';
+import { IAccessTokenPayload } from '@interfaces/Token';
 
 export default async function(req: Request, res: Response, next: NextFunction) {
     const { userId } = res.locals.userTokenPayload as IAccessTokenPayload;

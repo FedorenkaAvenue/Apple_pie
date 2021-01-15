@@ -13,8 +13,8 @@ Web app for searching tattoo artists and customers.
 ## Deploy
 
  * ![Docker](https://img.shields.io/badge/-Docker-000?&logo=docker)
-    - `docker-compose up --no-start -d` to deploy containers
-    - `docker-compose start` to up containers
+    - `docker-compose up --build -d` to deploy and up containers
+    - `docker-compose stop` to stop containers
 
 ## Tools
 

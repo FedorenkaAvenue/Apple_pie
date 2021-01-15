@@ -1,31 +1,35 @@
 import { QueryResult } from 'pg';
 
 import { poolDB } from '@db/postgres/index';
-import { IUserSchema } from '@interfaces/DB';
+import IUser from '@interfaces/User';
 
-type ICreateUser = Omit<IUserSchema, "verify">;
+type ICreateUser = Omit<IUser, "verify">;
 
-export const CREATE_USER_QUERY = ({ id, name, password, email, role, created_at }: ICreateUser) => poolDB.query({
-    text: 'INSERT INTO users VALUES ($1, $2, $3, $4, $5, $6);',
-    values: [ id, name, password, email, role, created_at ]
+export const CREATE_USER_QUERY = ({ id, acc_type, name, password, email, role, created_at }: ICreateUser) => poolDB.query({
+    text: `
+        INSERT INTO users
+        (id, acc_type, name, password, email, role, created_at)
+        VALUES ($1, $2, $3, $4, $5, $6, $7);
+    `,
+    values: [ id, acc_type, name, password, email, role, created_at ]
 });
 
 export const GET_USER_QUERY = (userId: string) => poolDB.query({
     text: 'SELECT * FROM users WHERE id = $1;',
     values: [ userId ]
-}) as Promise<QueryResult<IUserSchema>>;
+}) as Promise<QueryResult<IUser>>;
 
 export const GET_USER_PREVIEW_QUERY = (userId: string) => poolDB.query({
     text: 'SELECT id, name, photo FROM users WHERE id = $1;',
     values: [ userId ]
-}) as Promise<QueryResult<IUserSchema>>;
+}) as Promise<QueryResult<IUser>>;
 
 export const DELETE_USER_QUERY = (userId: string) => poolDB.query({
     text: 'DELETE FROM users WHERE id = $1;',
     values: [ userId ]
 });
 
-export const UPDATE_USER_FIELD_QUERY = (userId: string, field: keyof IUserSchema, value: any) => poolDB.query({
+export const UPDATE_USER_FIELD_QUERY = (userId: string, field: keyof IUser, value: any) => poolDB.query({
     text: `UPDATE ONLY users SET ${field} = $2 WHERE id = $1 AND NOT ${field} = $2;`,
     values: [ userId, value ]
 });

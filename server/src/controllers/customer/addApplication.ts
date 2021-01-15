@@ -4,11 +4,11 @@ import { v4 as uuidv4 } from 'uuid';
 import postHostingItem from '@servises/image/postHostingItem';
 import { ADD_APPLICATION_QUERY } from '@db/postgres/queries/application';
 import { FolderTypes } from '@servises/image/index';
-import { IAccessTokenPayload } from '@interfaces/IToken';
-import { IApplicationSchema } from '@interfaces/DB';
+import { IAccessTokenPayload } from '@interfaces/Token';
+import IApplication from '@interfaces/Application';
 import { IMulterFile } from '@middleWares/parseFormDataFiles';
 
-export default async function({ files, body }: Request<any, any, IApplicationSchema>, res: Response, next: NextFunction) {
+export default async function({ files, body }: Request<any, any, IApplication>, res: Response, next: NextFunction) {
     const { userId } = res.locals.userTokenPayload as IAccessTokenPayload;
     const applId = uuidv4();
     

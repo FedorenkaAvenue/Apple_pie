@@ -4,9 +4,9 @@ import { LOGIN_QUERY } from '@db/postgres/queries/sign';
 import { getSaltedPassword } from '@crypto/satl';
 import createSession from '@servises/sessions/createSession';
 import { setRefreshToken } from '@crypto/cookie';
-import { IUserSchema } from '@interfaces/DB';
+import IUser from '@interfaces/User';
 
-export default async function(req: Request<any, any, IUserSchema>, res: Response, next: NextFunction) {
+export default async function(req: Request<any, any, IUser>, res: Response, next: NextFunction) {
     try {
         const { body: { email, password }, ip } = req;
         const saltedPassword = getSaltedPassword(password);
