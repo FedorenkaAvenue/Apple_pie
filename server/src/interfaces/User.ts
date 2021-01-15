@@ -4,9 +4,10 @@ type IUser = {
     role: number
     email: string
     name: string
-    password: string
     created_at: number
     verify: boolean
+    photo?: string
+    password?: string
     applications?: string
     sketches?: string
 }

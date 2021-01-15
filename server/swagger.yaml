@@ -53,12 +53,42 @@ paths:
             properties:
               accessToken:
                 type: string
-        '406':
-          description: Неверный формат поля
+        '409':
+          description: Конфликт существующих данных
           schema:
             type: object
             properties:
               field:
+                type: string
+  '/sign/up/google':
+    post:
+      tags:
+      - sign
+      summary: регистрация через google
+      parameters:
+      - name: name
+        in: body
+        description: user name
+        required: false
+        type: string
+      - name: credentials
+        in: body
+        description: google tokenId
+        required: true
+        type: string
+      - name: role
+        in: body
+        description: user role
+        required: true
+        schema:
+          '$ref': '#/definitions/UserType'
+      responses:
+        '201':
+          description: created
+          schema:
+            type: object
+            properties:
+              accessToken:
                 type: string
         '409':
           description: Конфликт существующих данных

@@ -5,13 +5,15 @@ import IUser from '@interfaces/User';
 
 type ICreateUser = Omit<IUser, "verify">;
 
-export const CREATE_USER_QUERY = ({ id, acc_type, name, password, email, role, created_at }: ICreateUser) => poolDB.query({
+export const CREATE_USER_QUERY = ({
+    id, acc_type, name, password, email, role, photo, created_at
+}: ICreateUser) => poolDB.query({
     text: `
         INSERT INTO users
-        (id, acc_type, name, password, email, role, created_at)
-        VALUES ($1, $2, $3, $4, $5, $6, $7);
+        (id, acc_type, name, password, email, role, photo, created_at)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8);
     `,
-    values: [ id, acc_type, name, password, email, role, created_at ]
+    values: [ id, acc_type, name, password, email, role, photo, created_at ]
 });
 
 export const GET_USER_QUERY = (userId: string) => poolDB.query({

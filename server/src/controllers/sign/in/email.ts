@@ -9,7 +9,7 @@ import IUser from '@interfaces/User';
 export default async function(req: Request<any, any, IUser>, res: Response, next: NextFunction) {
     try {
         const { body: { email, password }, ip } = req;
-        const saltedPassword = getSaltedPassword(password);
+        const saltedPassword = getSaltedPassword(password as string);
 
         if (!email && !password) throw new Error();
 

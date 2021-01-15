@@ -37,9 +37,9 @@ export default async function signUpController(req: Request<any, any, IUser>, re
             }
 
             const { accessToken, refreshToken } = await createSession({
-                userId, role, ip,
                 ua: req.get('User-Agent') as string,
-                verify: false
+                verify: false,
+                userId, role, ip
             });
 
             setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });

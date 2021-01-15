@@ -14,7 +14,7 @@ export default function SignUpRole() {
             headers: {
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify({ credentials: res.tokenId })
+            body: JSON.stringify({ credentials: res.tokenId, role: 1 })
         });
 
     }, []);
