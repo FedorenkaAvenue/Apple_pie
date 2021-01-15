@@ -121,8 +121,29 @@ paths:
             properties:
               accessToken:
                 type: string
-        '406':
+        '403':
           description: Неверныe данные
+  '/sign/in/google':
+    post:
+      tags:
+      - sign
+      summary: log in через google
+      parameters:
+      - name: credentials
+        in: body
+        description: google tokenId
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              accessToken:
+                type: string
+        '403':
+          description: Пользователь не зарегистрирован
   '/sign/out':
     get:
       tags:
