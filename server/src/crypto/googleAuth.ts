@@ -5,6 +5,7 @@ const clientOAuth = new OAuth2Client(GOOGLE_OAUTH_ID);
 
 type ICustomPayload = TokenPayload & {
     email: string
+    id: string
 }
 
 export default async function verifyUser(token: string): Promise<ICustomPayload> {
@@ -13,7 +14,7 @@ export default async function verifyUser(token: string): Promise<ICustomPayload>
         audience: GOOGLE_OAUTH_ID
     });
 
-    return ticket.getPayload() as ICustomPayload;
+    return ({ ...ticket.getPayload(), id: ticket.getUserId() }) as ICustomPayload;
 }
 
 // https://oauth2.googleapis.com/tokeninfo?id_token=XYZ123 ? мб понадобиться дополнительно проверять подленость юзера

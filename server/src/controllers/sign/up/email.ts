@@ -23,6 +23,7 @@ export default async function signUpController(req: Request<any, any, IUser>, re
                     acc_type: ACCOUNT_TYPE.EMAIL,
                     password: getSaltedPassword(password),
                     created_at: Date.now(),
+                    verify: false,
                     email, role, name
                 });
             } catch(err) {

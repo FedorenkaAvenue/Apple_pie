@@ -18,6 +18,7 @@ export default function SignUpRole() {
     }, []);
 
     const signUpFacebook = useCallback(async (res) => {
+        console.log(res);
         await fetch('/api/sign/up/facebook', {
             method: 'POST',
             headers: {

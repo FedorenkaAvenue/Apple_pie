@@ -13,7 +13,7 @@ CREATE TABLE users (
     email CHARACTER VARYING(30) CONSTRAINT email UNIQUE,
     role INTEGER CONSTRAINT role CHECK (role > 0 AND role < 3) NOT NULL,
     created_at BIGINT NOT NULL,
-    verify BOOLEAN DEFAULT false,
+    verify BOOLEAN DEFAULT true,
     photo TEXT DEFAULT NULL,
     applications CHARACTER(36)[] DEFAULT '{}',
     sketches CHARACTER(36)[] DEFAULT '{}'

@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-import { v4 as uuidv4 } from 'uuid';
 
 import googleAuth from '@crypto/googleAuth';
 import { CREATE_USER_QUERY } from '@db/postgres/queries/user';
@@ -9,21 +8,19 @@ import ACCOUNT_TYPE from '../../../constants/accountTypes'; // ! провери�
 
 export default async function(req: Request, res: Response, next: NextFunction) {
     const { body: { credentials, name, role }, ip } = req;
-    const userId: string = uuidv4();
 
     try {
         if (!credentials || !role) throw new Error();
 
-        const { name: googleName, email, picture: photo } = await googleAuth(credentials);
+        const { name: googleName, email, picture: photo, id } = await googleAuth(credentials);
 
         try {
             try {
                 await CREATE_USER_QUERY({
-                    id: userId,
                     acc_type: ACCOUNT_TYPE.GOOGLE,
                     name: name || googleName,
                     created_at: Date.now(),
-                    email, role, photo
+                    email, role, photo, id
                 });
             } catch(err) {
                 const { code, constraint } = err;
@@ -41,7 +38,8 @@ export default async function(req: Request, res: Response, next: NextFunction) {
             const { accessToken, refreshToken } = await createSession({
                 ua: req.get('User-Agent') as string,
                 verify: true,
-                userId, role, ip
+                userId: id,
+                role, ip
             });
 
             setRefreshToken.call(res, refreshToken).status(201).send({ accessToken });

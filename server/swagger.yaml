@@ -97,6 +97,43 @@ paths:
             properties:
               field:
                 type: string
+  '/sign/up/facebook':
+    post:
+      tags:
+      - sign
+      summary: регистрация через facebook
+      parameters:
+      - name: name
+        in: body
+        description: user name
+        required: false
+        type: string
+      - name: credentials
+        in: body
+        description: facebook accessToken
+        required: true
+        type: string
+      - name: role
+        in: body
+        description: user role
+        required: true
+        schema:
+          '$ref': '#/definitions/UserType'
+      responses:
+        '201':
+          description: created
+          schema:
+            type: object
+            properties:
+              accessToken:
+                type: string
+        '409':
+          description: Конфликт существующих данных
+          schema:
+            type: object
+            properties:
+              field:
+                type: string
   '/sign/in/email':
     post:
       tags:
