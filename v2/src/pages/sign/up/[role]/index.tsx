@@ -8,19 +8,23 @@ export default function SignUpRole() {
     const router = useRouter();
 
     const signUpGoogle = useCallback(async res => {
-        console.log(res);
-        const result = await fetch('/api/sign/up/google', {
+        await fetch('/api/sign/up/google', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json'
             },
             body: JSON.stringify({ credentials: res.tokenId, role: 1 })
         });
-
     }, []);
 
-    const signUpFacebook = useCallback((res) => {
-        console.log(res);
+    const signUpFacebook = useCallback(async (res) => {
+        await fetch('/api/sign/up/facebook', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({ credentials: res.accessToken, role: 1 })
+        });
     }, []);
 
     return (
