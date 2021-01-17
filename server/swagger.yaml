@@ -4,7 +4,7 @@ info:
   version: 0.0.1
   title: '@Apple_pie server API doc list'
   description: |
-    last update: 13/01/2021 00:41
+    last update: 17/01/2021 22:37
     все API сервера начинаются с /api роута
 tags:
 - name: sign
@@ -169,6 +169,27 @@ paths:
       - name: credentials
         in: body
         description: google tokenId
+        required: true
+        type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+            properties:
+              accessToken:
+                type: string
+        '403':
+          description: Пользователь не зарегистрирован
+  '/sign/in/facebook':
+    post:
+      tags:
+      - sign
+      summary: log in через facebook
+      parameters:
+      - name: credentials
+        in: body
+        description: facebook tokenId
         required: true
         type: string
       responses:

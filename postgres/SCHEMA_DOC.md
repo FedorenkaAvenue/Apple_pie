@@ -3,8 +3,9 @@
 |key         |type        |required|unique|condition                      |description                                                              |
 |:-:         |:-:         |:-:     |:-:   |--                             |--                                                                       |
 |id          |String      |+       |+     |                               |                                                                         |
-|acc_type    |Number      |+       |+     |                               |**1** email<br /> **2** google<br /> **3** facebook                      |
-|name        |String      |+       |+     |                               |                                                                         |
+|open_id     |Number      |+       |      |                               |ID from social net (OPEN ID)                                             |
+|acc_type    |Number      |+       |      |                               |**1** email<br /> **2** google<br /> **3** facebook                      |
+|name        |String      |+       |      |                               |                                                                         |
 |password    |String      |        |      |                               |                                                                         |
 |email       |String      |        |+     |                               |                                                                         |
 |role        |Number      |+       |      |                               |**1** customer<br/> **2** artist                                         |
