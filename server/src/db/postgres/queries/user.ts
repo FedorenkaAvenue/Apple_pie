@@ -8,14 +8,14 @@ type ICreateUser = Omit<IUser, "verify"> & {
 }
 
 export const CREATE_USER_QUERY = ({
-    id, acc_type, name, password, email, role, photo, created_at, verify
+    id, open_id, acc_type, name, password, email, role, photo, created_at, verify
 }: ICreateUser) => poolDB.query({
     text: `
         INSERT INTO users
-        (id, acc_type, name, password, email, role, photo, created_at, verify)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);
+        (id, open_id, acc_type, name, password, email, role, photo, created_at, verify)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
     `,
-    values: [ id, acc_type, name, password, email, role, photo, created_at, verify ]
+    values: [ id, open_id, acc_type, name, password, email, role, photo, created_at, verify ]
 }) as Promise<QueryResult<IUser>>;
 
 export const GET_USER_QUERY = (userId: string) => poolDB.query({

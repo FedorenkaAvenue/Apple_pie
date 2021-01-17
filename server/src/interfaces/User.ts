@@ -1,5 +1,6 @@
 type IUser = {
     id: string
+    open_id?: string
     acc_type: number
     role: number
     email: string
