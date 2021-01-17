@@ -5,7 +5,7 @@ import { CREATE_USER_QUERY } from '@db/postgres/queries/user';
 import { setRefreshToken } from '@crypto/cookie';
 import createSession from '@servises/sessions/createSession';
 import facebookAuth from '@crypto/facebookAuth';
-import ACCOUNT_TYPE from '../../../constants/accountTypes'; // ! проверить ШО ЗА ХУЙНЯ с алиасом @constants
+import ACCOUNT_TYPE from '@constants/accountTypes';
 
 export default async function(req: Request, res: Response, next: NextFunction) {
     const { body: { credentials, name, role }, ip } = req;

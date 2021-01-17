@@ -7,7 +7,7 @@ import verifyEmail from '@servises/email/verifyEmail';
 import { setRefreshToken } from '@crypto/cookie';
 import { getSaltedPassword } from '@crypto/satl';
 import IUser from '@interfaces/User';
-import ACCOUNT_TYPE from '../../../constants/accountTypes'; // ! проверить ШО ЗА ХУЙНЯ с алиасом @constants
+import ACCOUNT_TYPE from '@constants/accountTypes';
 
 export default async function signUpController(req: Request<any, any, IUser>, res: Response, next: NextFunction) {
     const { body: { password, email, role, name }, ip } = req;
