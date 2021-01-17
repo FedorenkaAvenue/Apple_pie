@@ -1,35 +1,26 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { SIGN_IN_GOOGLE_QUERY } from '@db/postgres/queries/sign';
+import { SIGN_IN_SOCIAL_QUERY } from '@db/postgres/queries/sign';
 import googleAuth from '@crypto/googleAuth';
-import createSession from '@servises/sessions/createSession';
-import { setRefreshToken } from '@crypto/cookie';
+import ACCOUNT_TYPE from '@constants/accountTypes';
 
 export default async function(req: Request, res: Response, next: NextFunction) {
-    const { body: { credentials }, ip } = req;
+    const { credentials } = req.body;
 
     try {
         if (!credentials) throw new Error();
 
-        const { email } = await googleAuth(credentials);
+        const { id } = await googleAuth(credentials);
 
         try {
-            const { rows, rowCount } = await SIGN_IN_GOOGLE_QUERY(email);
+            const { rows, rowCount } = await SIGN_IN_SOCIAL_QUERY(id, ACCOUNT_TYPE.GOOGLE);
 
             if (!rowCount) throw new Error();
 
             const { id: userId, role, verify } = rows[0];
-            
-            try {
-                const { accessToken, refreshToken } = await createSession({
-                    userId, role, ip, verify,
-                    ua: req.get('User-Agent') as string
-                });
 
-                setRefreshToken.call(res, refreshToken).status(200).send({ accessToken });
-            } catch(err) {
-                next(err);
-            }
+            res.locals = { verify, userId, role };
+            next();
         } catch(err) {
             res.sendStatus(403);
         }
