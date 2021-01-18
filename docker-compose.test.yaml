@@ -52,3 +52,6 @@ services:
       file: docker-compose.override.yaml
       service: nginx
     restart: on-failure:5
+
+volumes:
+  image_hosting:
