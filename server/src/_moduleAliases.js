@@ -5,6 +5,7 @@ addAliases({
     "@interfaces": __dirname + "//interfaces",
     "@routers": __dirname + "//routers",
     "@controllers": __dirname + "//controllers",
+    "@constants": __dirname + "//constants",
     "@db": __dirname + "//db",
     "@crypto": __dirname + "//crypto",
     "@utils": __dirname + "//utils",

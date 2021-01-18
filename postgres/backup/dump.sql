@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.0
--- Dumped by pg_dump version 13.0
+-- Dumped from database version 13.1
+-- Dumped by pg_dump version 13.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -20,20 +20,17 @@ SET row_security = off;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.users (id, name, password, email, role) FROM stdin;
-160443305	Anie	9321932slk	bri@maill.ru	1
-160443308	Ani	9321932slk	bri@mail.ru	1
-160444900	Anikk	9321932slk	bring@mail.ru	1
-160444901	Anikka	9321932slk	bringme@mail.ru	1
-160445390	Anikuuu	9321932slk	bringme@mail.ruUU	1
+COPY public.users (id, open_id, acc_type, name, password, email, role, created_at, verify, photo, applications, sketches) FROM stdin;
+695628b3-43ce-47c7-80b2-f2714e06d8fd	\N	1	lolka	Y7z1LZYrKt4Fop36kkG+h5ghA03vMtbFqjEz+TsDGb4=	bringmetheaugust@gmail.com	1	1610915534229	f	\N	{}	{}
 \.
 
 
 --
--- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Data for Name: applications; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, false);
+COPY public.applications (id, author, title, descr, images, created_at) FROM stdin;
+\.
 
 
 --

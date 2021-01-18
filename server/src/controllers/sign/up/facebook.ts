@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import googleAuth from '@crypto/googleAuth';
+import facebookAuth from '@crypto/facebookAuth';
 import ACCOUNT_TYPE from '@constants/accountTypes';
 
 export default async function(req: Request, res: Response, next: NextFunction) {
@@ -9,14 +9,14 @@ export default async function(req: Request, res: Response, next: NextFunction) {
     try {
         if (!credentials || !role) throw new Error();
 
-        const { name: googleName, email, picture: photo, id } = await googleAuth(credentials);
-        const name = userName || googleName;
+        const { facebookName, email, photo, id } = await facebookAuth(credentials);
+        const name = userName || facebookName;
 
         res.locals = {
-            accountType: ACCOUNT_TYPE.GOOGLE,
+            accountType: ACCOUNT_TYPE.FACEBOOK,
             email, role, name, photo, id
         }
-
+       
         next();
     } catch(err) {
         res.sendStatus(400);

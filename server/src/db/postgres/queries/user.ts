@@ -3,18 +3,20 @@ import { QueryResult } from 'pg';
 import { poolDB } from '@db/postgres/index';
 import IUser from '@interfaces/User';
 
-type ICreateUser = Omit<IUser, "verify">;
+type ICreateUser = Omit<IUser, "verify"> & {
+    verify?: boolean
+}
 
 export const CREATE_USER_QUERY = ({
-    id, acc_type, name, password, email, role, photo, created_at
+    id, open_id, acc_type, name, password, email, role, photo, created_at, verify
 }: ICreateUser) => poolDB.query({
     text: `
         INSERT INTO users
-        (id, acc_type, name, password, email, role, photo, created_at)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8);
+        (id, open_id, acc_type, name, password, email, role, photo, created_at, verify)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
     `,
-    values: [ id, acc_type, name, password, email, role, photo, created_at ]
-});
+    values: [ id, open_id, acc_type, name, password, email, role, photo, created_at, verify ]
+}) as Promise<QueryResult<IUser>>;
 
 export const GET_USER_QUERY = (userId: string) => poolDB.query({
     text: 'SELECT * FROM users WHERE id = $1;',

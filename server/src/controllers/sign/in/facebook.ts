@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { SIGN_IN_SOCIAL_QUERY } from '@db/postgres/queries/sign';
-import googleAuth from '@crypto/googleAuth';
+import facebookAuth from '@crypto/facebookAuth';
 import ACCOUNT_TYPE from '@constants/accountTypes';
 
 export default async function(req: Request, res: Response, next: NextFunction) {
@@ -10,15 +10,15 @@ export default async function(req: Request, res: Response, next: NextFunction) {
     try {
         if (!credentials) throw new Error();
 
-        const { id } = await googleAuth(credentials);
+        const { id } = await facebookAuth(credentials);
 
         try {
-            const { rows, rowCount } = await SIGN_IN_SOCIAL_QUERY(id, ACCOUNT_TYPE.GOOGLE);
+            const { rows, rowCount } = await SIGN_IN_SOCIAL_QUERY(id, ACCOUNT_TYPE.FACEBOOK);
 
             if (!rowCount) throw new Error();
 
             const { id: userId, role, verify } = rows[0];
-
+            
             res.locals = { verify, userId, role };
             next();
         } catch(err) {
