@@ -29,7 +29,7 @@ Web app for searching tattoo artists and customers.
 
  - [server](./server/README.md)
 
-   * [Swagger API](http://apple-pie.fun/api/docs) (via remote test server)
+   * [Swagger API](http://apple-pie.fun/docs) (via remote test server)
 
  - [redis](./redis/README.md)
 

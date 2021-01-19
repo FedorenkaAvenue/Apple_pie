@@ -10,13 +10,8 @@ import artistRouter from '@routers/artist';
 import userRouter from '@routers/user';
 import checkAuth from '@middleWares/checkAuth';
 import checkRole from '@middleWares/checkRole';
-import { IS_DEV } from '@src/index';
 
 const app: Express = express();
-
-if (IS_DEV) {
-    import('@utilsDev/loadSwagger');
-}
 
 app.use(urlencoded({ extended: true })).
     use(json()). // ? распределеть к отдельным роутам

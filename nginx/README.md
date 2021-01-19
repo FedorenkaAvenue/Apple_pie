@@ -6,6 +6,7 @@
    * `/v2` test client
    * `/api` server
    * `/images` image hosting
+   * `/docs` Swagger
 
 ## Params
 

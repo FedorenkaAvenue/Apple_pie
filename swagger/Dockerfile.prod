@@ -1,0 +1,3 @@
+FROM swaggerapi/swagger-ui:v3.40.0
+
+COPY ./swagger.yaml /usr/share/nginx/html/swagger/
