@@ -4,7 +4,7 @@ info:
   version: 0.0.1
   title: '@Apple_pie server API doc list'
   description: |
-    last update: 17/01/2021 22:37
+    last update: 19/01/2021 09:03
     все API сервера начинаются с /api роута
 tags:
 - name: sign
@@ -322,7 +322,7 @@ paths:
           schema:
             $ref: '#/definitions/UserPreview'
   '/user/exist':
-    post:
+    get:
       tags:
       - user
       summary: проверить существуют ли такие данные в DB
