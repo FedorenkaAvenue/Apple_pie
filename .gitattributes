@@ -1,5 +1,2 @@
 *.sql linguist-detectable=true
 *.sql linguist-language=SQL
-
-*.yaml linguist-detectable=true
-*.yaml linguist-language=Dockerfile
