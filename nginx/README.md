@@ -2,21 +2,25 @@
 
 ## Proxy
 
-   * `/` client
-   * `/v2` test client
-   * `/api` server
+   * `/` [client](../client/README.md)
+   * `/v2` [test client](../v2/README.md)
+   * `/api` [server](../server/README.md)
    * `/images` image hosting
-   * `/docs` Swagger
+   * `/docs` [Swagger](../swagger/README.md)
 
-## Params
+## Image Hosting
 
-   * **Docker open HTTP/HTTPS port**: `80`
-   * **images hosting folder (container)**: `/var/www/images`
-   * **images hosting folder (local)**: `/var/lib/docker/volumes/apple_pie_image_hosting`
-   * **images hosting tree (`/var/www/images`)**:
-      * **applications**: `/appl`
-      * **sketches**: `/sketch`
-      * **users**: `/user`
+   * **folder tree**
+
+      * `/var/www/images/appl` applications
+      * `/var/www/images/sketch` sketches
+      * `/var/www/images/user` user data
+
+   * **resizing**
+
+      * `$IMAGE_URL/400`
+      * `$IMAGE_URL/1024`
+      * `$IMAGE_URL/1920`
 
 ## Tools
 
