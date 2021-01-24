@@ -1,4 +1,4 @@
-FROM redis:6.0.9-alpine
+FROM redis:alpine
 
 WORKDIR /app
 
