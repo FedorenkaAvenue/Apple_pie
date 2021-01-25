@@ -9,7 +9,7 @@
 - `yarn build:prerender` or `npm run build:prerender` - to generate static by `static.paths.ts`
 - for watch with ssr - `npm run ssr:watch`
 
-## Tools
+## Tools🐳
 
  - `docker exec -it apple_pie_client bash` enter container
  - `docker logs apple_pie_client -f` watch logs

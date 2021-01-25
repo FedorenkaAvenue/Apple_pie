@@ -10,31 +10,25 @@ Web app for searching tattoo artists and customers.
 
  * **test domain**: http://apple-pie.fun (185.253.218.139 **IP**)
 
-## Deploy
+## Deploy🐳
 
- * ![Docker](https://img.shields.io/badge/-Docker-000?&logo=docker)
-    - `docker-compose up --build -d` to deploy and up containers
-    - `docker-compose stop` to stop containers
+  - `docker-compose up --build -d` to deploy and up containers
+  - `docker-compose stop` to stop containers
 
-## Tools
+## Tools🐳
 
- * ![Docker](https://img.shields.io/badge/-Docker-000?&logo=docker)
-    - `docker-compose logs -f` all logs
+  - `docker-compose logs -f` all logs
 
 ## Docs
 
- - [nginx](./nginx/README.md)
+ - [![Swagger](https://img.shields.io/badge/-SwaggerAPI-000?&logo=swagger)](http://apple-pie.fun/docs)
 
- - [client](./client/README.md)
+ - [![Nginx](https://img.shields.io/badge/-Nginx-000?&logo=nginx)](./nginx/README.md)
 
- - [server](./server/README.md)
+ - [![client](https://img.shields.io/badge/-client-000?&logo=angular)](./client/README.md)
 
-   * [Swagger API](http://apple-pie.fun/docs) (via remote test server)
+ - [![server](https://img.shields.io/badge/-server-000?&logo=Node.js)](./server/README.md)
 
- - [redis](./redis/README.md)
+ - [![Redis](https://img.shields.io/badge/-Redis-000?&logo=redis)](./redis/README.md) 
 
-   * [DB schema (models)](./redis/SCHEMA_DOC.md)  
-
- - [postgres](./postgres/README.md)
-
-   * [DB schema](./postgres/SCHEMA_DOC.md)
+ - [![PostgreSQL](https://img.shields.io/badge/-PostreSQL-000?&logo=postgresql)](./postgres/README.md)
