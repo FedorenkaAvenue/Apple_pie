@@ -22,7 +22,7 @@
       * `$IMAGE_URL/1024`
       * `$IMAGE_URL/1920`
 
-## Tools
+## Tools🐳
 
    * `docker exec -it apple_pie_nginx bash` enter container
    * `docker logs -f apple_pie_nginx` watch logs

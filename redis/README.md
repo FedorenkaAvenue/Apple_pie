@@ -8,7 +8,7 @@
    * **port**: `6379`
    * **database**: ``
 
-## Tools
+## Tools🐳
 
  * `docker exec -it apple_pie_redis sh` enter container
  * `docker logs -f apple_pie_redis` watch logs
