@@ -17,12 +17,12 @@
 
  * ##### Schema
 
-   * `bash schema_deploy.sh` update schema
+   * `make schema_deploy` update schema
 
  * ##### Dump
 
-    * `bash dump_deploy.sh` to restore dump
-    * `bash dump_pull.sh` to refresh dump
+    * `make dump_deploy.sh` to restore dump
+    * `make dump_pull.sh` to refresh dump
 
 ## Docs
 
