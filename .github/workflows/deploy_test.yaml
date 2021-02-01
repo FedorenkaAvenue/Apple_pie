@@ -15,7 +15,7 @@ jobs:
           username: root
           password: ${{ secrets.TEST_SERVER_SSH_KEY }}
           script: |
-            cd /apple_pie
+            cd /Apple_pie
             git reset --hard HEAD
             git pull origin test
       - name: Rebuild && up containers

@@ -45,8 +45,6 @@ services:
   nginx:
     container_name: apple_pie_nginx
     build: ./nginx
-    ports:
-      - 80:80
     volumes:
       - image_hosting:/var/www/images
 

@@ -9,6 +9,7 @@ Web app for searching tattoo artists and customers.
 ## Join
 
  * **test domain**: http://apple-pie.fun
+ * **local**: http://localhost:80
 
 ## Deploy
 

@@ -53,6 +53,8 @@ services:
       file: docker-compose.override.yaml
       service: nginx
     restart: on-failure:5
+    ports:
+      - 81:80
 
 volumes:
   image_hosting:
