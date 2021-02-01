@@ -13,7 +13,7 @@ jobs:
         with:
           host: ${{ secrets.TEST_SERVER_HOST }}
           username: root
-          password: ${{ secrets.TEST_SERVER_SSH_PASSWORD }}
+          password: ${{ secrets.TEST_SERVER_SSH_KEY }}
           script: |
             cd /apple_pie
             git reset --hard HEAD
@@ -23,8 +23,8 @@ jobs:
         with:
           host: ${{ secrets.TEST_SERVER_HOST }}
           username: root
-          password: ${{ secrets.TEST_SERVER_SSH_PASSWORD }}
+          password: ${{ secrets.TEST_SERVER_SSH_KEY }}
           script: |
-            cd /apple_pie
+            cd /Apple_pie
             docker-compose down -v
             docker-compose -f docker-compose.test.yaml up --build -d

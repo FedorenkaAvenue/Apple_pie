@@ -58,11 +58,5 @@ services:
       - GOOGLE_OAUTH_KEY
       - FACEBOOK_OAUTH_ID
 
-  swagger:
-    container_name: apple_pie_swagger
-    environment:
-      - API_URL=swagger/swagger.yaml
-      - BASE_URL=/docs
-
 volumes:
   image_hosting:
