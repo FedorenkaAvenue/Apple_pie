@@ -11,7 +11,7 @@ export default async function(currentRefreshToken: string, sessionKey: string): 
         const session = await GET_SESSION(sessionKey);
         const { userId, refreshToken: currentSessionRefreshToken } = session;
 
-        if (currentRefreshToken !== currentSessionRefreshToken) throw new Error();
+        if (currentRefreshToken !== currentSessionRefreshToken) throw Error;
 
         const { role, verify } = await (await GET_USER_QUERY(userId)).rows[0] as IUser;
         const newSessionKey = uuidv4();

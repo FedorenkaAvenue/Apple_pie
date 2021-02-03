@@ -11,7 +11,7 @@ export default async function({ cookies }: Request, res: Response, next: NextFun
     try {
         const currentRefreshToken: string = cookies[COOKIE_REFRESH_TOKEN_NAME as string];
 
-        if (!currentRefreshToken) throw new Error();
+        if (!currentRefreshToken) throw Error;
 
         const { sessionKey } = validateToken(currentRefreshToken) as IRefreshTOkenPayload;
         const { accessToken, refreshToken } = await refreshSession(currentRefreshToken, sessionKey);

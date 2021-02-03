@@ -1,6 +1,6 @@
 # Apple pie🥧
 
-![online](https://img.shields.io/website?url=http://apple-pie.fun) ![releaze](https://img.shields.io/github/v/release/FedorenkaAvenue/Apple_pie) ![realise date](https://img.shields.io/github/release-date/FedorenkaAvenue/Apple_pie) ![issues](https://img.shields.io/github/issues-raw/FedorenkaAvenue/Apple_pie) ![PR](https://img.shields.io/github/issues-pr-raw/FedorenkaAvenue/Apple_pie)
+![online](https://img.shields.io/website?url=http://apple.fedorenka.online) ![releaze](https://img.shields.io/github/v/release/FedorenkaAvenue/Apple_pie) ![realise date](https://img.shields.io/github/release-date/FedorenkaAvenue/Apple_pie) ![issues](https://img.shields.io/github/issues-raw/FedorenkaAvenue/Apple_pie) ![PR](https://img.shields.io/github/issues-pr-raw/FedorenkaAvenue/Apple_pie)
 
 ## Description
 
@@ -8,7 +8,7 @@ Web app for searching tattoo artists and customers.
 
 ## Join
 
- * **test domain**: http://apple-pie.fun
+ * **test domain**: http://apple.fedorenka.online
  * **local**: http://localhost:80
 
 ## Deploy
@@ -25,4 +25,4 @@ Web app for searching tattoo artists and customers.
 ## Docs
 
 [![Nginx](https://img.shields.io/badge/-Nginx-000?&logo=nginx)](./nginx/README.md) [![client](https://img.shields.io/badge/-client-000?&logo=angular)](./client/README.md) [![server](https://img.shields.io/badge/-server-000?&logo=Node.js)](./server/README.md) [![Redis](https://img.shields.io/badge/-Redis-000?&logo=redis)](./redis/README.md) [![PostgreSQL](https://img.shields.io/badge/-PostreSQL-000?&logo=postgresql)](./postgres/README.md)    
-[Swagger API docs](http://apple-pie.fun/docs).    
+[Swagger API docs](http://docs.fedorenka.online/?urls.primaryName=Apple%20pie).    

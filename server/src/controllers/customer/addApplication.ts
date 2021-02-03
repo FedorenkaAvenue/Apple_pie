@@ -14,7 +14,7 @@ export default async function({ files, body }: Request<any, any, IApplication>, 
     try {
         const { title, descr } = body;
         
-        if (!files.length && !title && !descr) throw new Error();
+        if (!files.length && !title && !descr) throw Error;
 
         try {
             const imageHrefArr = await postHostingItem(

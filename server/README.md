@@ -12,4 +12,4 @@
 
 ## Docs
 
- * [Swagger RestAPI](http://apple-pie.fun/api/docs)    
+ * [Swagger RestAPI](http://docs.fedorenka.online/?urls.primaryName=Apple%20pie)    

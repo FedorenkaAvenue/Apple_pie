@@ -8,7 +8,7 @@ export default async function({ params }: Request, res: Response, next: NextFunc
     try {
         const userData = await (await GET_USER_QUERY(userId)).rows[0];
         
-        if (!userData) throw new Error();
+        if (!userData) throw Error;
 
         try {
             const { password, email, ...filteredUserData } = userData;

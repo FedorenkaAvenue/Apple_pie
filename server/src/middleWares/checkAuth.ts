@@ -7,7 +7,7 @@ export default function(req: Request, res: Response, next: NextFunction) {
     try {
         const accessToken = req.headers.authorization?.split(' ')[1];
 
-        if (!accessToken) throw new Error();
+        if (!accessToken) throw Error;
 
         const userPayload = validateToken(accessToken) as IAccessTokenPayload;
 

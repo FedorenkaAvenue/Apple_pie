@@ -8,14 +8,14 @@ export default async function(req: Request, res: Response, next: NextFunction) {
     const { credentials } = req.body;
 
     try {
-        if (!credentials) throw new Error();
+        if (!credentials) throw Error;
 
         const { id } = await facebookAuth(credentials);
 
         try {
             const { rows, rowCount } = await SIGN_IN_SOCIAL_QUERY(id, ACCOUNT_TYPE.FACEBOOK);
 
-            if (!rowCount) throw new Error();
+            if (!rowCount) throw Error;
 
             const { id: userId, role, verify } = rows[0];
             

@@ -7,7 +7,7 @@ export default async function(req: Request, res: Response, next: NextFunction) {
     const { credentials, role, name: userName } = req.body;
 
     try {
-        if (!credentials || !role) throw new Error();
+        if (!credentials || !role) throw Error;
 
         const { name: googleName, email, picture: photo, id } = await googleAuth(credentials);
         const name = userName || googleName;

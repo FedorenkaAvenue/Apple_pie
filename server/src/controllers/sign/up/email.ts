@@ -6,7 +6,7 @@ export default async function signUpController(req: Request, res: Response, next
     const { password, email, role, name } = req.body;
 
     try {
-        if (!password || !email || !role || !name) throw new Error();
+        if (!password || !email || !role || !name) throw Error;
 
         res.locals = {
             accountType: ACCOUNT_TYPE.EMAIL,

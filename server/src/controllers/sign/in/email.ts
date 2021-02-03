@@ -8,13 +8,13 @@ export default async function(req: Request<any, any, IUser>, res: Response, next
     try {
         const { email, password } = req.body;
 
-        if (!email || !password) throw new Error();
+        if (!email || !password) throw Error;
 
         try {
             const saltedPassword = getSaltedPassword(password as string);
             const { rows, rowCount } = await SIGN_IN_EMAIL_QUERY(email, saltedPassword);
 
-            if (!rowCount) throw new Error();
+            if (!rowCount) throw Error;
 
             const { id: userId, role, verify } = rows[0];
             
