@@ -5,9 +5,9 @@ services:
     container_name: apple_pie_postgres
     build: ./postgres
     ports:
-      - ${POSTGRES_PORT}:${POSTGRES_PORT} # только для GUI базы
+      - ${PGPORT}:${PGPORT} # только для GUI базы
     environment:
-      - POSTGRES_PASSWORD
+      - PGPASSWORD
 
   redis:
     container_name: apple_pie_redis
@@ -24,11 +24,11 @@ services:
     volumes:
       - image_hosting:/var/www/images
     environment:
-      - PGUSER=${POSTGRES_USER}
-      - PGHOST=apple_pie_postgres
-      - PGDATABASE=${POSTGRES_DB}
-      - PGPASSWORD=${POSTGRES_PASSWORD}
-      - PGPORT=${POSTGRES_PORT}
+      - PGUSER
+      - PGHOST
+      - PGDATABASE
+      - PGPASSWORD
+      - PGPORT
       - REDIS_HOST=${REDIS_HOST}
       - REDIS_PORT=${REDIS_PORT}
       - REDIS_SESSION_DB_NUMBER

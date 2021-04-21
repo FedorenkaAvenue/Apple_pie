@@ -12,5 +12,6 @@ addAliases({
     "@utilsDev": __dirname + "//utilsDev",
     "@servises": __dirname + "//servises",
     "@middleWares": __dirname + "//middleWares",
-    "@static": __dirname + "//static"
+    "@static": __dirname + "//static",
+    "@models": __dirname + "//models"
 });
