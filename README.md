@@ -1,6 +1,6 @@
 # Apple pie🥧
 
-![online](https://img.shields.io/website?url=http://apple.fedorenka.online) ![releaze](https://img.shields.io/github/v/release/FedorenkaAvenue/Apple_pie) ![realise date](https://img.shields.io/github/release-date/FedorenkaAvenue/Apple_pie) ![issues](https://img.shields.io/github/issues-raw/FedorenkaAvenue/Apple_pie) ![PR](https://img.shields.io/github/issues-pr-raw/FedorenkaAvenue/Apple_pie)
+![online](https://img.shields.io/website?url=http://apple.fedorenka.online) ![issues](https://img.shields.io/github/issues-raw/FedorenkaAvenue/Apple_pie) ![PR](https://img.shields.io/github/issues-pr-raw/FedorenkaAvenue/Apple_pie)
 
 ## Description
 
@@ -8,17 +8,16 @@ Web app for searching tattoo artists and customers.
 
 ## Join
 
- * **test domain**: http://apple.fedorenka.online
- * **local**: http://localhost:80
+ * **local🐳**: http://localhost:80
+ * **remote test server🌐**: http://apple.fedorenka.online
 
 ## Deploy
 
-  * ##### local🐳
+  * #### local🐳
 
     - `docker-compose up --build -d` to deploy and up containers
-    - `docker-compose stop` to stop containers
 
-  * ##### remote test server
+  * #### remote test server🌐
 
     - push changes to **test** branch and check [action](https://github.com/FedorenkaAvenue/Apple_pie/actions) result
 
