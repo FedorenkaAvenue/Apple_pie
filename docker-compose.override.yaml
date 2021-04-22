@@ -29,8 +29,8 @@ services:
       - PGDATABASE
       - PGPASSWORD
       - PGPORT
-      - REDIS_HOST=${REDIS_HOST}
-      - REDIS_PORT=${REDIS_PORT}
+      - REDIS_HOST
+      - REDIS_PORT
       - REDIS_SESSION_DB_NUMBER
       - REDIS_CASH_DB_NUMBER
       - JWT_AUTH_SECRET_WORD

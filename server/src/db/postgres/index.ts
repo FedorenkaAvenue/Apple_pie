@@ -23,5 +23,3 @@ export const sequelize = new Sequelize(
         dialect: 'postgres'
     }
 );
-
-export const { models } = sequelize;
