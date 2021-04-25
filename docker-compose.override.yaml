@@ -7,7 +7,7 @@ services:
     ports:
       - ${PGPORT}:${PGPORT} # только для GUI базы
     environment:
-      - PGPASSWORD
+      - POSTGRES_PASSWORD=PGPASSWORD
 
   redis:
     container_name: apple_pie_redis
@@ -41,6 +41,8 @@ services:
       - GOOGLE_OAUTH_ID
       - GOOGLE_OAUTH_KEY
       - FACEBOOK_OAUTH_ID
+      - MAIL_ACCOUNT
+      - MAIL_PASSWORD
 
   nginx:
     container_name: apple_pie_nginx

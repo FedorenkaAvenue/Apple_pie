@@ -27,8 +27,6 @@ services:
       - IS_DEV=true
       - APP_NAME='Apple🥧pie local'
       - APP_DOMAIN=http://localhost
-      - MAILING_ACCOUNT=apple_pie_test@outlook.com
-      - MAILING_ACCOUNT_PASSWORD=apple_pie_2700
 
   nginx:
     restart: unless-stopped

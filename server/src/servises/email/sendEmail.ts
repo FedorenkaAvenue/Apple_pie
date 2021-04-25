@@ -1,6 +1,6 @@
 import Mail from 'nodemailer/lib/mailer';
 
-import { emailTransporter, MAILING_ACCOUNT } from '@servises/email/index';
+import { emailTransporter, MAIL_ACCOUNT } from '@servises/email/index';
 
 const { APP_NAME } = process.env;
 
@@ -12,7 +12,7 @@ export default async function({ to, subject, html, text }: IMailOptions): Promis
     if (Array.isArray(to)) to = to.join(', '); // массовая рассылка
 
     emailTransporter.sendMail({
-        from: `${APP_NAME} <${MAILING_ACCOUNT}>`,
+        from: `${APP_NAME} <${MAIL_ACCOUNT}>`,
         to, subject, text, html
     });
 }
