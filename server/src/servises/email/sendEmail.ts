@@ -1,8 +1,8 @@
 import Mail from 'nodemailer/lib/mailer';
 
-import { emailTransporter, MAIL_ACCOUNT } from '@servises/email/index';
+import { emailTransporter } from '@servises/email/index';
 
-const { APP_NAME } = process.env;
+const { APP_NAME, MAIL_ACCOUNT } = process.env;
 
 type IMailOptions = Mail.Options & {
     to: string | Array<string>

@@ -43,6 +43,8 @@ services:
       - FACEBOOK_OAUTH_ID
       - MAIL_ACCOUNT
       - MAIL_PASSWORD
+      - MAIL_SMTP_HOST
+      - MAIL_SMTP_PORT
 
   nginx:
     container_name: apple_pie_nginx

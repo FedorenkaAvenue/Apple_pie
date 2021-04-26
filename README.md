@@ -25,3 +25,4 @@ Web app for searching tattoo artists and customers.
 
 [![Nginx](https://img.shields.io/badge/-Nginx-000?&logo=nginx)](./nginx/README.md) [![client](https://img.shields.io/badge/-client-000?&logo=angular)](./client/README.md) [![server](https://img.shields.io/badge/-server-000?&logo=Node.js)](./server/README.md) [![Redis](https://img.shields.io/badge/-Redis-000?&logo=redis)](./redis/README.md) [![PostgreSQL](https://img.shields.io/badge/-PostreSQL-000?&logo=postgresql)](./postgres/README.md)    
 [Swagger API docs](http://docs.fedorenka.online/?urls.primaryName=Apple%20pie).    
+[SMTP server repo](https://github.com/FedorenkaAvenue/Dovecote)
