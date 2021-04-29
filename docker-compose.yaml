@@ -36,10 +36,3 @@ services:
       - ./nginx/apple_pie_nginx.conf:/etc/nginx/conf.d/apple_pie_nginx.conf
     ports:
       - 80:80
-
-  v2:
-    restart: unless-stopped
-    volumes:
-      - ./v2:/app
-    environment:
-      - IS_DEV=true

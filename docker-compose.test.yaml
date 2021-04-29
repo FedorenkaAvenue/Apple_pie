@@ -35,17 +35,6 @@ services:
       - APP_NAME='Apple🥧pie remote test'
       - APP_DOMAIN=http://apple.fedorenka.online
 
-  v2:
-    extends:
-      file: docker-compose.override.yaml
-      service: v2
-    build:
-      context: ./v2
-      dockerfile: Dockerfile.prod
-    restart: on-failure:5
-    environment:
-      - IS_DEV=true
-
   nginx:
     extends:
       file: docker-compose.override.yaml

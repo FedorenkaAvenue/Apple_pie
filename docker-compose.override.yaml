@@ -52,13 +52,5 @@ services:
     volumes:
       - image_hosting:/var/www/images
 
-  v2:
-    container_name: apple_pie_v2
-    build: ./v2
-    environment:
-      - GOOGLE_OAUTH_ID
-      - GOOGLE_OAUTH_KEY
-      - FACEBOOK_OAUTH_ID
-
 volumes:
   image_hosting:

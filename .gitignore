@@ -15,6 +15,3 @@ client/prerender.js
 # server
 server/API_DOC.md
 server/build
-
-# v2
-v2/.next

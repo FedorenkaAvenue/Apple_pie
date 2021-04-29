@@ -3,7 +3,6 @@
 ## Proxy
 
    * `/` [client](../client/README.md)
-   * `/v2` [test client](../v2/README.md)
    * `/api` [server](../server/README.md)
    * `/images` image hosting
    * `/docs` [Swagger](../swagger/README.md)
